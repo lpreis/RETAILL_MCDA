@@ -133,7 +133,7 @@ def sensitivity_scenarios(analysis: Analysis, phase: Phase) -> pd.DataFrame:
         "A — Pesos iguais": {c.code: 1 for c in base_criteria},
         "B — +10% Qualidade": {**current, "A1.1": current.get("A1.1", 1) + 10},
         "C — +10% Preço": {**current, "A1.2": current.get("A1.2", 1) + 10},
-        "D — Sustentabilidade dominante": {**current, "A1.4": 40},
+        "D — Sustentabilidade dominante": {**current, "A1.4": 100},
     }
 
     rows = []

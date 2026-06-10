@@ -1,0 +1,1494 @@
+{
+  "name": "Selecao de Fornecedores de Fruta - 50 Fornecedores",
+  "description": "Exemplo alargado com 50 fornecedores de fruta com perfis muito diferentes, desde fornecedores excelentes ate fornecedores de alto risco e baixo desempenho.",
+  "context": "Cenario de comparacao alargada para testar ranking, robustez, exportacoes e leitura/gravacao JSON com muitos fornecedores.",
+  "methodology": "1fase",
+  "alternatives": [
+    {
+      "name": "FORN_01_ELITE_PREMIUM",
+      "description": "Fornecedor excelente, com desempenho muito forte na maioria dos criterios. Perfil 1 com variacao operacional 1.",
+      "cost": 118000.0,
+      "selected_for_phase2": true
+    },
+    {
+      "name": "FORN_02_BIO_SUSTENTAVEL",
+      "description": "Fornecedor muito sustentavel e fiavel, com custo elevado. Perfil 2 com variacao operacional 1.",
+      "cost": 126200.0,
+      "selected_for_phase2": true
+    },
+    {
+      "name": "FORN_03_PRECO_AGRESSIVO",
+      "description": "Fornecedor muito competitivo em custo, mas fraco em qualidade e sustentabilidade. Perfil 3 com variacao operacional 1.",
+      "cost": 54400.0,
+      "selected_for_phase2": true
+    },
+    {
+      "name": "FORN_04_LOCAL_FLEXIVEL",
+      "description": "Fornecedor local com boa rapidez, custo aceitavel e escala limitada. Perfil 4 com variacao operacional 1.",
+      "cost": 67600.0,
+      "selected_for_phase2": true
+    },
+    {
+      "name": "FORN_05_INDUSTRIAL_GRANDE",
+      "description": "Fornecedor de grande escala, forte em capacidade e preco. Perfil 5 com variacao operacional 1.",
+      "cost": 80800.0,
+      "selected_for_phase2": true
+    },
+    {
+      "name": "FORN_06_RISCO_ALTO",
+      "description": "Fornecedor barato, mas com qualidade, reputacao e continuidade fracas. Perfil 6 com variacao operacional 1.",
+      "cost": 43000.0,
+      "selected_for_phase2": true
+    },
+    {
+      "name": "FORN_07_GOURMET_QUALIDADE",
+      "description": "Fornecedor de fruta premium, caro e com capacidade media. Perfil 7 com variacao operacional 1.",
+      "cost": 133200.0,
+      "selected_for_phase2": true
+    },
+    {
+      "name": "FORN_08_IMPORTADOR_LONGO_CURSO",
+      "description": "Boa variedade e capacidade, mas prazos e pegada ambiental fracos. Perfil 8 com variacao operacional 1.",
+      "cost": 90400.0,
+      "selected_for_phase2": true
+    },
+    {
+      "name": "FORN_09_COOPERATIVA_VERDE",
+      "description": "Cooperativa sustentavel, fiavel e equilibrada. Perfil 9 com variacao operacional 1.",
+      "cost": 84600.0,
+      "selected_for_phase2": true
+    },
+    {
+      "name": "FORN_10_FORNECEDOR_CRITICO",
+      "description": "Fornecedor com desempenho muito fraco e risco operacional elevado. Perfil 10 com variacao operacional 1.",
+      "cost": 43800.0,
+      "selected_for_phase2": true
+    },
+    {
+      "name": "FORN_11_ELITE_PREMIUM",
+      "description": "Fornecedor excelente, com desempenho muito forte na maioria dos criterios. Perfil 11 com variacao operacional 2.",
+      "cost": 121500.0,
+      "selected_for_phase2": true
+    },
+    {
+      "name": "FORN_12_BIO_SUSTENTAVEL",
+      "description": "Fornecedor muito sustentavel e fiavel, com custo elevado. Perfil 12 com variacao operacional 2.",
+      "cost": 129700.0,
+      "selected_for_phase2": true
+    },
+    {
+      "name": "FORN_13_PRECO_AGRESSIVO",
+      "description": "Fornecedor muito competitivo em custo, mas fraco em qualidade e sustentabilidade. Perfil 13 com variacao operacional 2.",
+      "cost": 57900.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_14_LOCAL_FLEXIVEL",
+      "description": "Fornecedor local com boa rapidez, custo aceitavel e escala limitada. Perfil 14 com variacao operacional 2.",
+      "cost": 71100.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_15_INDUSTRIAL_GRANDE",
+      "description": "Fornecedor de grande escala, forte em capacidade e preco. Perfil 15 com variacao operacional 2.",
+      "cost": 84300.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_16_RISCO_ALTO",
+      "description": "Fornecedor barato, mas com qualidade, reputacao e continuidade fracas. Perfil 16 com variacao operacional 2.",
+      "cost": 46500.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_17_GOURMET_QUALIDADE",
+      "description": "Fornecedor de fruta premium, caro e com capacidade media. Perfil 17 com variacao operacional 2.",
+      "cost": 136700.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_18_IMPORTADOR_LONGO_CURSO",
+      "description": "Boa variedade e capacidade, mas prazos e pegada ambiental fracos. Perfil 18 com variacao operacional 2.",
+      "cost": 93900.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_19_COOPERATIVA_VERDE",
+      "description": "Cooperativa sustentavel, fiavel e equilibrada. Perfil 19 com variacao operacional 2.",
+      "cost": 88100.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_20_FORNECEDOR_CRITICO",
+      "description": "Fornecedor com desempenho muito fraco e risco operacional elevado. Perfil 20 com variacao operacional 2.",
+      "cost": 47300.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_21_ELITE_PREMIUM",
+      "description": "Fornecedor excelente, com desempenho muito forte na maioria dos criterios. Perfil 21 com variacao operacional 3.",
+      "cost": 125000.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_22_BIO_SUSTENTAVEL",
+      "description": "Fornecedor muito sustentavel e fiavel, com custo elevado. Perfil 22 com variacao operacional 3.",
+      "cost": 133200.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_23_PRECO_AGRESSIVO",
+      "description": "Fornecedor muito competitivo em custo, mas fraco em qualidade e sustentabilidade. Perfil 23 com variacao operacional 3.",
+      "cost": 61400.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_24_LOCAL_FLEXIVEL",
+      "description": "Fornecedor local com boa rapidez, custo aceitavel e escala limitada. Perfil 24 com variacao operacional 3.",
+      "cost": 74600.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_25_INDUSTRIAL_GRANDE",
+      "description": "Fornecedor de grande escala, forte em capacidade e preco. Perfil 25 com variacao operacional 3.",
+      "cost": 87800.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_26_RISCO_ALTO",
+      "description": "Fornecedor barato, mas com qualidade, reputacao e continuidade fracas. Perfil 26 com variacao operacional 3.",
+      "cost": 50000.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_27_GOURMET_QUALIDADE",
+      "description": "Fornecedor de fruta premium, caro e com capacidade media. Perfil 27 com variacao operacional 3.",
+      "cost": 140200.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_28_IMPORTADOR_LONGO_CURSO",
+      "description": "Boa variedade e capacidade, mas prazos e pegada ambiental fracos. Perfil 28 com variacao operacional 3.",
+      "cost": 97400.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_29_COOPERATIVA_VERDE",
+      "description": "Cooperativa sustentavel, fiavel e equilibrada. Perfil 29 com variacao operacional 3.",
+      "cost": 91600.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_30_FORNECEDOR_CRITICO",
+      "description": "Fornecedor com desempenho muito fraco e risco operacional elevado. Perfil 30 com variacao operacional 3.",
+      "cost": 50800.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_31_ELITE_PREMIUM",
+      "description": "Fornecedor excelente, com desempenho muito forte na maioria dos criterios. Perfil 31 com variacao operacional 4.",
+      "cost": 128500.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_32_BIO_SUSTENTAVEL",
+      "description": "Fornecedor muito sustentavel e fiavel, com custo elevado. Perfil 32 com variacao operacional 4.",
+      "cost": 136700.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_33_PRECO_AGRESSIVO",
+      "description": "Fornecedor muito competitivo em custo, mas fraco em qualidade e sustentabilidade. Perfil 33 com variacao operacional 4.",
+      "cost": 64900.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_34_LOCAL_FLEXIVEL",
+      "description": "Fornecedor local com boa rapidez, custo aceitavel e escala limitada. Perfil 34 com variacao operacional 4.",
+      "cost": 78100.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_35_INDUSTRIAL_GRANDE",
+      "description": "Fornecedor de grande escala, forte em capacidade e preco. Perfil 35 com variacao operacional 4.",
+      "cost": 91300.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_36_RISCO_ALTO",
+      "description": "Fornecedor barato, mas com qualidade, reputacao e continuidade fracas. Perfil 36 com variacao operacional 4.",
+      "cost": 53500.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_37_GOURMET_QUALIDADE",
+      "description": "Fornecedor de fruta premium, caro e com capacidade media. Perfil 37 com variacao operacional 4.",
+      "cost": 143700.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_38_IMPORTADOR_LONGO_CURSO",
+      "description": "Boa variedade e capacidade, mas prazos e pegada ambiental fracos. Perfil 38 com variacao operacional 4.",
+      "cost": 100900.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_39_COOPERATIVA_VERDE",
+      "description": "Cooperativa sustentavel, fiavel e equilibrada. Perfil 39 com variacao operacional 4.",
+      "cost": 95100.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_40_FORNECEDOR_CRITICO",
+      "description": "Fornecedor com desempenho muito fraco e risco operacional elevado. Perfil 40 com variacao operacional 4.",
+      "cost": 54300.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_41_ELITE_PREMIUM",
+      "description": "Fornecedor excelente, com desempenho muito forte na maioria dos criterios. Perfil 41 com variacao operacional 5.",
+      "cost": 132000.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_42_BIO_SUSTENTAVEL",
+      "description": "Fornecedor muito sustentavel e fiavel, com custo elevado. Perfil 42 com variacao operacional 5.",
+      "cost": 140200.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_43_PRECO_AGRESSIVO",
+      "description": "Fornecedor muito competitivo em custo, mas fraco em qualidade e sustentabilidade. Perfil 43 com variacao operacional 5.",
+      "cost": 68400.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_44_LOCAL_FLEXIVEL",
+      "description": "Fornecedor local com boa rapidez, custo aceitavel e escala limitada. Perfil 44 com variacao operacional 5.",
+      "cost": 81600.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_45_INDUSTRIAL_GRANDE",
+      "description": "Fornecedor de grande escala, forte em capacidade e preco. Perfil 45 com variacao operacional 5.",
+      "cost": 94800.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_46_RISCO_ALTO",
+      "description": "Fornecedor barato, mas com qualidade, reputacao e continuidade fracas. Perfil 46 com variacao operacional 5.",
+      "cost": 57000.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_47_GOURMET_QUALIDADE",
+      "description": "Fornecedor de fruta premium, caro e com capacidade media. Perfil 47 com variacao operacional 5.",
+      "cost": 147200.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_48_IMPORTADOR_LONGO_CURSO",
+      "description": "Boa variedade e capacidade, mas prazos e pegada ambiental fracos. Perfil 48 com variacao operacional 5.",
+      "cost": 104400.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_49_COOPERATIVA_VERDE",
+      "description": "Cooperativa sustentavel, fiavel e equilibrada. Perfil 49 com variacao operacional 5.",
+      "cost": 98600.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "FORN_50_FORNECEDOR_CRITICO",
+      "description": "Fornecedor com desempenho muito fraco e risco operacional elevado. Perfil 50 com variacao operacional 5.",
+      "cost": 57800.0,
+      "selected_for_phase2": false
+    }
+  ],
+  "criteria": [
+    {
+      "code": "A1.1",
+      "name": "Qualidade da Fruta",
+      "phase": 1,
+      "selected": true,
+      "description": "Calibre, aspeto, grau Brix, ausência de defeitos e conformidade com normas.",
+      "order": 1,
+      "weight": 100.0,
+      "is_cost": false,
+      "neutral_level": "N",
+      "best_level": "MM",
+      "levels": [
+        {
+          "code": "MM",
+          "name": "Muito Melhor",
+          "score": 100.0,
+          "color": "#0B6623",
+          "description": ""
+        },
+        {
+          "code": "M",
+          "name": "Melhor",
+          "score": 50.0,
+          "color": "#2F8F3A",
+          "description": ""
+        },
+        {
+          "code": "LM",
+          "name": "Ligeiramente Melhor",
+          "score": 25.0,
+          "color": "#74BF7B",
+          "description": ""
+        },
+        {
+          "code": "N",
+          "name": "Neutro",
+          "score": 0.0,
+          "color": "#EAF4EC",
+          "description": ""
+        },
+        {
+          "code": "LP",
+          "name": "Ligeiramente Pior",
+          "score": -25.0,
+          "color": "#F7D08A",
+          "description": ""
+        },
+        {
+          "code": "P",
+          "name": "Pior",
+          "score": -50.0,
+          "color": "#E6A4A4",
+          "description": ""
+        },
+        {
+          "code": "MP",
+          "name": "Muito Pior",
+          "score": -100.0,
+          "color": "#B71C1C",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "code": "A1.2",
+      "name": "Preço / Custo Total",
+      "phase": 1,
+      "selected": true,
+      "description": "Preço por kg, descontos por volume, custos de transporte e embalagem.",
+      "order": 2,
+      "weight": 80.0,
+      "is_cost": true,
+      "neutral_level": "N",
+      "best_level": "MM",
+      "levels": [
+        {
+          "code": "MM",
+          "name": "Muito Melhor",
+          "score": 100.0,
+          "color": "#0B6623",
+          "description": ""
+        },
+        {
+          "code": "M",
+          "name": "Melhor",
+          "score": 50.0,
+          "color": "#2F8F3A",
+          "description": ""
+        },
+        {
+          "code": "LM",
+          "name": "Ligeiramente Melhor",
+          "score": 25.0,
+          "color": "#74BF7B",
+          "description": ""
+        },
+        {
+          "code": "N",
+          "name": "Neutro",
+          "score": 0.0,
+          "color": "#EAF4EC",
+          "description": ""
+        },
+        {
+          "code": "LP",
+          "name": "Ligeiramente Pior",
+          "score": -25.0,
+          "color": "#F7D08A",
+          "description": ""
+        },
+        {
+          "code": "P",
+          "name": "Pior",
+          "score": -50.0,
+          "color": "#E6A4A4",
+          "description": ""
+        },
+        {
+          "code": "MP",
+          "name": "Muito Pior",
+          "score": -100.0,
+          "color": "#B71C1C",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "code": "A1.3",
+      "name": "Prazo de Entrega",
+      "phase": 1,
+      "selected": true,
+      "description": "Tempo médio de entrega, cumprimento de prazos e flexibilidade de agendamento.",
+      "order": 3,
+      "weight": 60.0,
+      "is_cost": false,
+      "neutral_level": "N",
+      "best_level": "MM",
+      "levels": [
+        {
+          "code": "MM",
+          "name": "Muito Melhor",
+          "score": 100.0,
+          "color": "#0B6623",
+          "description": ""
+        },
+        {
+          "code": "M",
+          "name": "Melhor",
+          "score": 50.0,
+          "color": "#2F8F3A",
+          "description": ""
+        },
+        {
+          "code": "LM",
+          "name": "Ligeiramente Melhor",
+          "score": 25.0,
+          "color": "#74BF7B",
+          "description": ""
+        },
+        {
+          "code": "N",
+          "name": "Neutro",
+          "score": 0.0,
+          "color": "#EAF4EC",
+          "description": ""
+        },
+        {
+          "code": "LP",
+          "name": "Ligeiramente Pior",
+          "score": -25.0,
+          "color": "#F7D08A",
+          "description": ""
+        },
+        {
+          "code": "P",
+          "name": "Pior",
+          "score": -50.0,
+          "color": "#E6A4A4",
+          "description": ""
+        },
+        {
+          "code": "MP",
+          "name": "Muito Pior",
+          "score": -100.0,
+          "color": "#B71C1C",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "code": "A1.4",
+      "name": "Sustentabilidade",
+      "phase": 1,
+      "selected": true,
+      "description": "Certificações bio, pegada carbónica e práticas agrícolas responsáveis.",
+      "order": 4,
+      "weight": 50.0,
+      "is_cost": false,
+      "neutral_level": "N",
+      "best_level": "MM",
+      "levels": [
+        {
+          "code": "MM",
+          "name": "Muito Melhor",
+          "score": 100.0,
+          "color": "#0B6623",
+          "description": ""
+        },
+        {
+          "code": "M",
+          "name": "Melhor",
+          "score": 50.0,
+          "color": "#2F8F3A",
+          "description": ""
+        },
+        {
+          "code": "LM",
+          "name": "Ligeiramente Melhor",
+          "score": 25.0,
+          "color": "#74BF7B",
+          "description": ""
+        },
+        {
+          "code": "N",
+          "name": "Neutro",
+          "score": 0.0,
+          "color": "#EAF4EC",
+          "description": ""
+        },
+        {
+          "code": "LP",
+          "name": "Ligeiramente Pior",
+          "score": -25.0,
+          "color": "#F7D08A",
+          "description": ""
+        },
+        {
+          "code": "P",
+          "name": "Pior",
+          "score": -50.0,
+          "color": "#E6A4A4",
+          "description": ""
+        },
+        {
+          "code": "MP",
+          "name": "Muito Pior",
+          "score": -100.0,
+          "color": "#B71C1C",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "code": "A1.5",
+      "name": "Fiabilidade / Reputação",
+      "phase": 1,
+      "selected": true,
+      "description": "Histórico de incidentes, referências de clientes e anos de experiência.",
+      "order": 5,
+      "weight": 40.0,
+      "is_cost": false,
+      "neutral_level": "N",
+      "best_level": "MM",
+      "levels": [
+        {
+          "code": "MM",
+          "name": "Muito Melhor",
+          "score": 100.0,
+          "color": "#0B6623",
+          "description": ""
+        },
+        {
+          "code": "M",
+          "name": "Melhor",
+          "score": 50.0,
+          "color": "#2F8F3A",
+          "description": ""
+        },
+        {
+          "code": "LM",
+          "name": "Ligeiramente Melhor",
+          "score": 25.0,
+          "color": "#74BF7B",
+          "description": ""
+        },
+        {
+          "code": "N",
+          "name": "Neutro",
+          "score": 0.0,
+          "color": "#EAF4EC",
+          "description": ""
+        },
+        {
+          "code": "LP",
+          "name": "Ligeiramente Pior",
+          "score": -25.0,
+          "color": "#F7D08A",
+          "description": ""
+        },
+        {
+          "code": "P",
+          "name": "Pior",
+          "score": -50.0,
+          "color": "#E6A4A4",
+          "description": ""
+        },
+        {
+          "code": "MP",
+          "name": "Muito Pior",
+          "score": -100.0,
+          "color": "#B71C1C",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "code": "A1.6",
+      "name": "Capacidade de Fornecimento",
+      "phase": 1,
+      "selected": true,
+      "description": "Volume disponível, variedade de espécies e continuidade ao longo do ano.",
+      "order": 6,
+      "weight": 40.0,
+      "is_cost": false,
+      "neutral_level": "N",
+      "best_level": "MM",
+      "levels": [
+        {
+          "code": "MM",
+          "name": "Muito Melhor",
+          "score": 100.0,
+          "color": "#0B6623",
+          "description": ""
+        },
+        {
+          "code": "M",
+          "name": "Melhor",
+          "score": 50.0,
+          "color": "#2F8F3A",
+          "description": ""
+        },
+        {
+          "code": "LM",
+          "name": "Ligeiramente Melhor",
+          "score": 25.0,
+          "color": "#74BF7B",
+          "description": ""
+        },
+        {
+          "code": "N",
+          "name": "Neutro",
+          "score": 0.0,
+          "color": "#EAF4EC",
+          "description": ""
+        },
+        {
+          "code": "LP",
+          "name": "Ligeiramente Pior",
+          "score": -25.0,
+          "color": "#F7D08A",
+          "description": ""
+        },
+        {
+          "code": "P",
+          "name": "Pior",
+          "score": -50.0,
+          "color": "#E6A4A4",
+          "description": ""
+        },
+        {
+          "code": "MP",
+          "name": "Muito Pior",
+          "score": -100.0,
+          "color": "#B71C1C",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "scores": {
+    "FORN_01_ELITE_PREMIUM": {
+      "A1.1": 100.0,
+      "A1.2": 25.0,
+      "A1.3": 100.0,
+      "A1.4": 100.0,
+      "A1.5": 100.0,
+      "A1.6": 50.0
+    },
+    "FORN_02_BIO_SUSTENTAVEL": {
+      "A1.1": 50.0,
+      "A1.2": -25.0,
+      "A1.3": 100.0,
+      "A1.4": 100.0,
+      "A1.5": 50.0,
+      "A1.6": 50.0
+    },
+    "FORN_03_PRECO_AGRESSIVO": {
+      "A1.1": -25.0,
+      "A1.2": 100.0,
+      "A1.3": 0.0,
+      "A1.4": -50.0,
+      "A1.5": 0.0,
+      "A1.6": 50.0
+    },
+    "FORN_04_LOCAL_FLEXIVEL": {
+      "A1.1": 25.0,
+      "A1.2": 50.0,
+      "A1.3": 50.0,
+      "A1.4": 25.0,
+      "A1.5": 25.0,
+      "A1.6": -25.0
+    },
+    "FORN_05_INDUSTRIAL_GRANDE": {
+      "A1.1": 25.0,
+      "A1.2": 50.0,
+      "A1.3": 50.0,
+      "A1.4": -25.0,
+      "A1.5": 0.0,
+      "A1.6": 100.0
+    },
+    "FORN_06_RISCO_ALTO": {
+      "A1.1": -100.0,
+      "A1.2": 100.0,
+      "A1.3": -25.0,
+      "A1.4": -100.0,
+      "A1.5": -25.0,
+      "A1.6": -25.0
+    },
+    "FORN_07_GOURMET_QUALIDADE": {
+      "A1.1": 100.0,
+      "A1.2": -50.0,
+      "A1.3": 25.0,
+      "A1.4": 100.0,
+      "A1.5": 50.0,
+      "A1.6": -25.0
+    },
+    "FORN_08_IMPORTADOR_LONGO_CURSO": {
+      "A1.1": 50.0,
+      "A1.2": -25.0,
+      "A1.3": -25.0,
+      "A1.4": -50.0,
+      "A1.5": -25.0,
+      "A1.6": 100.0
+    },
+    "FORN_09_COOPERATIVA_VERDE": {
+      "A1.1": 25.0,
+      "A1.2": 25.0,
+      "A1.3": 25.0,
+      "A1.4": 50.0,
+      "A1.5": 100.0,
+      "A1.6": 25.0
+    },
+    "FORN_10_FORNECEDOR_CRITICO": {
+      "A1.1": -50.0,
+      "A1.2": 25.0,
+      "A1.3": -100.0,
+      "A1.4": -50.0,
+      "A1.5": -100.0,
+      "A1.6": -100.0
+    },
+    "FORN_11_ELITE_PREMIUM": {
+      "A1.1": 100.0,
+      "A1.2": 0.0,
+      "A1.3": 100.0,
+      "A1.4": 50.0,
+      "A1.5": 50.0,
+      "A1.6": 100.0
+    },
+    "FORN_12_BIO_SUSTENTAVEL": {
+      "A1.1": 25.0,
+      "A1.2": 0.0,
+      "A1.3": 50.0,
+      "A1.4": 50.0,
+      "A1.5": 100.0,
+      "A1.6": 25.0
+    },
+    "FORN_13_PRECO_AGRESSIVO": {
+      "A1.1": 0.0,
+      "A1.2": 100.0,
+      "A1.3": -25.0,
+      "A1.4": -25.0,
+      "A1.5": -25.0,
+      "A1.6": 25.0
+    },
+    "FORN_14_LOCAL_FLEXIVEL": {
+      "A1.1": 0.0,
+      "A1.2": 25.0,
+      "A1.3": 100.0,
+      "A1.4": 0.0,
+      "A1.5": 0.0,
+      "A1.6": 0.0
+    },
+    "FORN_15_INDUSTRIAL_GRANDE": {
+      "A1.1": 0.0,
+      "A1.2": 100.0,
+      "A1.3": 25.0,
+      "A1.4": -50.0,
+      "A1.5": 25.0,
+      "A1.6": 100.0
+    },
+    "FORN_16_RISCO_ALTO": {
+      "A1.1": -25.0,
+      "A1.2": 100.0,
+      "A1.3": -50.0,
+      "A1.4": -50.0,
+      "A1.5": -50.0,
+      "A1.6": -50.0
+    },
+    "FORN_17_GOURMET_QUALIDADE": {
+      "A1.1": 100.0,
+      "A1.2": -100.0,
+      "A1.3": 100.0,
+      "A1.4": 50.0,
+      "A1.5": 25.0,
+      "A1.6": 25.0
+    },
+    "FORN_18_IMPORTADOR_LONGO_CURSO": {
+      "A1.1": 25.0,
+      "A1.2": 25.0,
+      "A1.3": -50.0,
+      "A1.4": -100.0,
+      "A1.5": 25.0,
+      "A1.6": 50.0
+    },
+    "FORN_19_COOPERATIVA_VERDE": {
+      "A1.1": 100.0,
+      "A1.2": 0.0,
+      "A1.3": 0.0,
+      "A1.4": 100.0,
+      "A1.5": 50.0,
+      "A1.6": 0.0
+    },
+    "FORN_20_FORNECEDOR_CRITICO": {
+      "A1.1": -100.0,
+      "A1.2": 0.0,
+      "A1.3": -25.0,
+      "A1.4": -100.0,
+      "A1.5": -100.0,
+      "A1.6": -25.0
+    },
+    "FORN_21_ELITE_PREMIUM": {
+      "A1.1": 50.0,
+      "A1.2": 50.0,
+      "A1.3": 100.0,
+      "A1.4": 25.0,
+      "A1.5": 100.0,
+      "A1.6": 50.0
+    },
+    "FORN_22_BIO_SUSTENTAVEL": {
+      "A1.1": 100.0,
+      "A1.2": -25.0,
+      "A1.3": 25.0,
+      "A1.4": 100.0,
+      "A1.5": 50.0,
+      "A1.6": 0.0
+    },
+    "FORN_23_PRECO_AGRESSIVO": {
+      "A1.1": -25.0,
+      "A1.2": 50.0,
+      "A1.3": 25.0,
+      "A1.4": -50.0,
+      "A1.5": -50.0,
+      "A1.6": 100.0
+    },
+    "FORN_24_LOCAL_FLEXIVEL": {
+      "A1.1": -25.0,
+      "A1.2": 100.0,
+      "A1.3": 50.0,
+      "A1.4": -25.0,
+      "A1.5": 50.0,
+      "A1.6": -25.0
+    },
+    "FORN_25_INDUSTRIAL_GRANDE": {
+      "A1.1": 50.0,
+      "A1.2": 50.0,
+      "A1.3": 0.0,
+      "A1.4": 0.0,
+      "A1.5": 0.0,
+      "A1.6": 50.0
+    },
+    "FORN_26_RISCO_ALTO": {
+      "A1.1": -50.0,
+      "A1.2": 50.0,
+      "A1.3": 0.0,
+      "A1.4": -100.0,
+      "A1.5": -100.0,
+      "A1.6": 0.0
+    },
+    "FORN_27_GOURMET_QUALIDADE": {
+      "A1.1": 50.0,
+      "A1.2": -25.0,
+      "A1.3": 50.0,
+      "A1.4": 25.0,
+      "A1.5": 100.0,
+      "A1.6": 0.0
+    },
+    "FORN_28_IMPORTADOR_LONGO_CURSO": {
+      "A1.1": 100.0,
+      "A1.2": 0.0,
+      "A1.3": -100.0,
+      "A1.4": -25.0,
+      "A1.5": 0.0,
+      "A1.6": 25.0
+    },
+    "FORN_29_COOPERATIVA_VERDE": {
+      "A1.1": 50.0,
+      "A1.2": -25.0,
+      "A1.3": 50.0,
+      "A1.4": 100.0,
+      "A1.5": 25.0,
+      "A1.6": 50.0
+    },
+    "FORN_30_FORNECEDOR_CRITICO": {
+      "A1.1": -100.0,
+      "A1.2": 50.0,
+      "A1.3": -50.0,
+      "A1.4": -100.0,
+      "A1.5": -50.0,
+      "A1.6": -50.0
+    },
+    "FORN_31_ELITE_PREMIUM": {
+      "A1.1": 100.0,
+      "A1.2": 25.0,
+      "A1.3": 50.0,
+      "A1.4": 100.0,
+      "A1.5": 100.0,
+      "A1.6": 25.0
+    },
+    "FORN_32_BIO_SUSTENTAVEL": {
+      "A1.1": 50.0,
+      "A1.2": -50.0,
+      "A1.3": 100.0,
+      "A1.4": 100.0,
+      "A1.5": 25.0,
+      "A1.6": 50.0
+    },
+    "FORN_33_PRECO_AGRESSIVO": {
+      "A1.1": -50.0,
+      "A1.2": 100.0,
+      "A1.3": 0.0,
+      "A1.4": -100.0,
+      "A1.5": 0.0,
+      "A1.6": 50.0
+    },
+    "FORN_34_LOCAL_FLEXIVEL": {
+      "A1.1": 25.0,
+      "A1.2": 50.0,
+      "A1.3": 25.0,
+      "A1.4": 25.0,
+      "A1.5": 25.0,
+      "A1.6": -50.0
+    },
+    "FORN_35_INDUSTRIAL_GRANDE": {
+      "A1.1": 25.0,
+      "A1.2": 25.0,
+      "A1.3": 50.0,
+      "A1.4": -25.0,
+      "A1.5": -25.0,
+      "A1.6": 100.0
+    },
+    "FORN_36_RISCO_ALTO": {
+      "A1.1": -100.0,
+      "A1.2": 100.0,
+      "A1.3": -25.0,
+      "A1.4": -100.0,
+      "A1.5": -25.0,
+      "A1.6": -25.0
+    },
+    "FORN_37_GOURMET_QUALIDADE": {
+      "A1.1": 100.0,
+      "A1.2": -50.0,
+      "A1.3": 25.0,
+      "A1.4": 100.0,
+      "A1.5": 50.0,
+      "A1.6": -25.0
+    },
+    "FORN_38_IMPORTADOR_LONGO_CURSO": {
+      "A1.1": 50.0,
+      "A1.2": -25.0,
+      "A1.3": -25.0,
+      "A1.4": -50.0,
+      "A1.5": -25.0,
+      "A1.6": 100.0
+    },
+    "FORN_39_COOPERATIVA_VERDE": {
+      "A1.1": 25.0,
+      "A1.2": 25.0,
+      "A1.3": 25.0,
+      "A1.4": 50.0,
+      "A1.5": 100.0,
+      "A1.6": 25.0
+    },
+    "FORN_40_FORNECEDOR_CRITICO": {
+      "A1.1": -50.0,
+      "A1.2": 25.0,
+      "A1.3": -100.0,
+      "A1.4": -50.0,
+      "A1.5": -100.0,
+      "A1.6": -100.0
+    },
+    "FORN_41_ELITE_PREMIUM": {
+      "A1.1": 100.0,
+      "A1.2": 0.0,
+      "A1.3": 100.0,
+      "A1.4": 50.0,
+      "A1.5": 50.0,
+      "A1.6": 100.0
+    },
+    "FORN_42_BIO_SUSTENTAVEL": {
+      "A1.1": 25.0,
+      "A1.2": 0.0,
+      "A1.3": 50.0,
+      "A1.4": 50.0,
+      "A1.5": 100.0,
+      "A1.6": 25.0
+    },
+    "FORN_43_PRECO_AGRESSIVO": {
+      "A1.1": 0.0,
+      "A1.2": 100.0,
+      "A1.3": -25.0,
+      "A1.4": -25.0,
+      "A1.5": -25.0,
+      "A1.6": 25.0
+    },
+    "FORN_44_LOCAL_FLEXIVEL": {
+      "A1.1": 0.0,
+      "A1.2": 25.0,
+      "A1.3": 100.0,
+      "A1.4": 0.0,
+      "A1.5": 0.0,
+      "A1.6": 0.0
+    },
+    "FORN_45_INDUSTRIAL_GRANDE": {
+      "A1.1": 0.0,
+      "A1.2": 100.0,
+      "A1.3": 25.0,
+      "A1.4": -50.0,
+      "A1.5": 25.0,
+      "A1.6": 100.0
+    },
+    "FORN_46_RISCO_ALTO": {
+      "A1.1": -50.0,
+      "A1.2": 100.0,
+      "A1.3": -50.0,
+      "A1.4": -100.0,
+      "A1.5": -50.0,
+      "A1.6": -50.0
+    },
+    "FORN_47_GOURMET_QUALIDADE": {
+      "A1.1": 100.0,
+      "A1.2": -100.0,
+      "A1.3": 50.0,
+      "A1.4": 50.0,
+      "A1.5": 25.0,
+      "A1.6": 0.0
+    },
+    "FORN_48_IMPORTADOR_LONGO_CURSO": {
+      "A1.1": 25.0,
+      "A1.2": 0.0,
+      "A1.3": -50.0,
+      "A1.4": -100.0,
+      "A1.5": 0.0,
+      "A1.6": 50.0
+    },
+    "FORN_49_COOPERATIVA_VERDE": {
+      "A1.1": 50.0,
+      "A1.2": 0.0,
+      "A1.3": 0.0,
+      "A1.4": 100.0,
+      "A1.5": 50.0,
+      "A1.6": 0.0
+    },
+    "FORN_50_FORNECEDOR_CRITICO": {
+      "A1.1": -100.0,
+      "A1.2": 0.0,
+      "A1.3": -50.0,
+      "A1.4": -100.0,
+      "A1.5": -100.0,
+      "A1.6": -50.0
+    }
+  },
+  "semantic_scores": {
+    "FORN_01_ELITE_PREMIUM": {
+      "A1.1": "MM",
+      "A1.2": "LM",
+      "A1.3": "MM",
+      "A1.4": "MM",
+      "A1.5": "MM",
+      "A1.6": "M"
+    },
+    "FORN_02_BIO_SUSTENTAVEL": {
+      "A1.1": "M",
+      "A1.2": "LP",
+      "A1.3": "MM",
+      "A1.4": "MM",
+      "A1.5": "M",
+      "A1.6": "M"
+    },
+    "FORN_03_PRECO_AGRESSIVO": {
+      "A1.1": "LP",
+      "A1.2": "MM",
+      "A1.3": "N",
+      "A1.4": "P",
+      "A1.5": "N",
+      "A1.6": "M"
+    },
+    "FORN_04_LOCAL_FLEXIVEL": {
+      "A1.1": "LM",
+      "A1.2": "M",
+      "A1.3": "M",
+      "A1.4": "LM",
+      "A1.5": "LM",
+      "A1.6": "LP"
+    },
+    "FORN_05_INDUSTRIAL_GRANDE": {
+      "A1.1": "LM",
+      "A1.2": "M",
+      "A1.3": "M",
+      "A1.4": "LP",
+      "A1.5": "N",
+      "A1.6": "MM"
+    },
+    "FORN_06_RISCO_ALTO": {
+      "A1.1": "MP",
+      "A1.2": "MM",
+      "A1.3": "LP",
+      "A1.4": "MP",
+      "A1.5": "LP",
+      "A1.6": "LP"
+    },
+    "FORN_07_GOURMET_QUALIDADE": {
+      "A1.1": "MM",
+      "A1.2": "P",
+      "A1.3": "LM",
+      "A1.4": "MM",
+      "A1.5": "M",
+      "A1.6": "LP"
+    },
+    "FORN_08_IMPORTADOR_LONGO_CURSO": {
+      "A1.1": "M",
+      "A1.2": "LP",
+      "A1.3": "LP",
+      "A1.4": "P",
+      "A1.5": "LP",
+      "A1.6": "MM"
+    },
+    "FORN_09_COOPERATIVA_VERDE": {
+      "A1.1": "LM",
+      "A1.2": "LM",
+      "A1.3": "LM",
+      "A1.4": "M",
+      "A1.5": "MM",
+      "A1.6": "LM"
+    },
+    "FORN_10_FORNECEDOR_CRITICO": {
+      "A1.1": "P",
+      "A1.2": "LM",
+      "A1.3": "MP",
+      "A1.4": "P",
+      "A1.5": "MP",
+      "A1.6": "MP"
+    },
+    "FORN_11_ELITE_PREMIUM": {
+      "A1.1": "MM",
+      "A1.2": "N",
+      "A1.3": "MM",
+      "A1.4": "M",
+      "A1.5": "M",
+      "A1.6": "MM"
+    },
+    "FORN_12_BIO_SUSTENTAVEL": {
+      "A1.1": "LM",
+      "A1.2": "N",
+      "A1.3": "M",
+      "A1.4": "M",
+      "A1.5": "MM",
+      "A1.6": "LM"
+    },
+    "FORN_13_PRECO_AGRESSIVO": {
+      "A1.1": "N",
+      "A1.2": "MM",
+      "A1.3": "LP",
+      "A1.4": "LP",
+      "A1.5": "LP",
+      "A1.6": "LM"
+    },
+    "FORN_14_LOCAL_FLEXIVEL": {
+      "A1.1": "N",
+      "A1.2": "LM",
+      "A1.3": "MM",
+      "A1.4": "N",
+      "A1.5": "N",
+      "A1.6": "N"
+    },
+    "FORN_15_INDUSTRIAL_GRANDE": {
+      "A1.1": "N",
+      "A1.2": "MM",
+      "A1.3": "LM",
+      "A1.4": "P",
+      "A1.5": "LM",
+      "A1.6": "MM"
+    },
+    "FORN_16_RISCO_ALTO": {
+      "A1.1": "LP",
+      "A1.2": "MM",
+      "A1.3": "P",
+      "A1.4": "P",
+      "A1.5": "P",
+      "A1.6": "P"
+    },
+    "FORN_17_GOURMET_QUALIDADE": {
+      "A1.1": "MM",
+      "A1.2": "MP",
+      "A1.3": "MM",
+      "A1.4": "M",
+      "A1.5": "LM",
+      "A1.6": "LM"
+    },
+    "FORN_18_IMPORTADOR_LONGO_CURSO": {
+      "A1.1": "LM",
+      "A1.2": "LM",
+      "A1.3": "P",
+      "A1.4": "MP",
+      "A1.5": "LM",
+      "A1.6": "M"
+    },
+    "FORN_19_COOPERATIVA_VERDE": {
+      "A1.1": "MM",
+      "A1.2": "N",
+      "A1.3": "N",
+      "A1.4": "MM",
+      "A1.5": "M",
+      "A1.6": "N"
+    },
+    "FORN_20_FORNECEDOR_CRITICO": {
+      "A1.1": "MP",
+      "A1.2": "N",
+      "A1.3": "LP",
+      "A1.4": "MP",
+      "A1.5": "MP",
+      "A1.6": "LP"
+    },
+    "FORN_21_ELITE_PREMIUM": {
+      "A1.1": "M",
+      "A1.2": "M",
+      "A1.3": "MM",
+      "A1.4": "LM",
+      "A1.5": "MM",
+      "A1.6": "M"
+    },
+    "FORN_22_BIO_SUSTENTAVEL": {
+      "A1.1": "MM",
+      "A1.2": "LP",
+      "A1.3": "LM",
+      "A1.4": "MM",
+      "A1.5": "M",
+      "A1.6": "N"
+    },
+    "FORN_23_PRECO_AGRESSIVO": {
+      "A1.1": "LP",
+      "A1.2": "M",
+      "A1.3": "LM",
+      "A1.4": "P",
+      "A1.5": "P",
+      "A1.6": "MM"
+    },
+    "FORN_24_LOCAL_FLEXIVEL": {
+      "A1.1": "LP",
+      "A1.2": "MM",
+      "A1.3": "M",
+      "A1.4": "LP",
+      "A1.5": "M",
+      "A1.6": "LP"
+    },
+    "FORN_25_INDUSTRIAL_GRANDE": {
+      "A1.1": "M",
+      "A1.2": "M",
+      "A1.3": "N",
+      "A1.4": "N",
+      "A1.5": "N",
+      "A1.6": "M"
+    },
+    "FORN_26_RISCO_ALTO": {
+      "A1.1": "P",
+      "A1.2": "M",
+      "A1.3": "N",
+      "A1.4": "MP",
+      "A1.5": "MP",
+      "A1.6": "N"
+    },
+    "FORN_27_GOURMET_QUALIDADE": {
+      "A1.1": "M",
+      "A1.2": "LP",
+      "A1.3": "M",
+      "A1.4": "LM",
+      "A1.5": "MM",
+      "A1.6": "N"
+    },
+    "FORN_28_IMPORTADOR_LONGO_CURSO": {
+      "A1.1": "MM",
+      "A1.2": "N",
+      "A1.3": "MP",
+      "A1.4": "LP",
+      "A1.5": "N",
+      "A1.6": "LM"
+    },
+    "FORN_29_COOPERATIVA_VERDE": {
+      "A1.1": "M",
+      "A1.2": "LP",
+      "A1.3": "M",
+      "A1.4": "MM",
+      "A1.5": "LM",
+      "A1.6": "M"
+    },
+    "FORN_30_FORNECEDOR_CRITICO": {
+      "A1.1": "MP",
+      "A1.2": "M",
+      "A1.3": "P",
+      "A1.4": "MP",
+      "A1.5": "P",
+      "A1.6": "P"
+    },
+    "FORN_31_ELITE_PREMIUM": {
+      "A1.1": "MM",
+      "A1.2": "LM",
+      "A1.3": "M",
+      "A1.4": "MM",
+      "A1.5": "MM",
+      "A1.6": "LM"
+    },
+    "FORN_32_BIO_SUSTENTAVEL": {
+      "A1.1": "M",
+      "A1.2": "P",
+      "A1.3": "MM",
+      "A1.4": "MM",
+      "A1.5": "LM",
+      "A1.6": "M"
+    },
+    "FORN_33_PRECO_AGRESSIVO": {
+      "A1.1": "P",
+      "A1.2": "MM",
+      "A1.3": "N",
+      "A1.4": "MP",
+      "A1.5": "N",
+      "A1.6": "M"
+    },
+    "FORN_34_LOCAL_FLEXIVEL": {
+      "A1.1": "LM",
+      "A1.2": "M",
+      "A1.3": "LM",
+      "A1.4": "LM",
+      "A1.5": "LM",
+      "A1.6": "P"
+    },
+    "FORN_35_INDUSTRIAL_GRANDE": {
+      "A1.1": "LM",
+      "A1.2": "LM",
+      "A1.3": "M",
+      "A1.4": "LP",
+      "A1.5": "LP",
+      "A1.6": "MM"
+    },
+    "FORN_36_RISCO_ALTO": {
+      "A1.1": "MP",
+      "A1.2": "MM",
+      "A1.3": "LP",
+      "A1.4": "MP",
+      "A1.5": "LP",
+      "A1.6": "LP"
+    },
+    "FORN_37_GOURMET_QUALIDADE": {
+      "A1.1": "MM",
+      "A1.2": "P",
+      "A1.3": "LM",
+      "A1.4": "MM",
+      "A1.5": "M",
+      "A1.6": "LP"
+    },
+    "FORN_38_IMPORTADOR_LONGO_CURSO": {
+      "A1.1": "M",
+      "A1.2": "LP",
+      "A1.3": "LP",
+      "A1.4": "P",
+      "A1.5": "LP",
+      "A1.6": "MM"
+    },
+    "FORN_39_COOPERATIVA_VERDE": {
+      "A1.1": "LM",
+      "A1.2": "LM",
+      "A1.3": "LM",
+      "A1.4": "M",
+      "A1.5": "MM",
+      "A1.6": "LM"
+    },
+    "FORN_40_FORNECEDOR_CRITICO": {
+      "A1.1": "P",
+      "A1.2": "LM",
+      "A1.3": "MP",
+      "A1.4": "P",
+      "A1.5": "MP",
+      "A1.6": "MP"
+    },
+    "FORN_41_ELITE_PREMIUM": {
+      "A1.1": "MM",
+      "A1.2": "N",
+      "A1.3": "MM",
+      "A1.4": "M",
+      "A1.5": "M",
+      "A1.6": "MM"
+    },
+    "FORN_42_BIO_SUSTENTAVEL": {
+      "A1.1": "LM",
+      "A1.2": "N",
+      "A1.3": "M",
+      "A1.4": "M",
+      "A1.5": "MM",
+      "A1.6": "LM"
+    },
+    "FORN_43_PRECO_AGRESSIVO": {
+      "A1.1": "N",
+      "A1.2": "MM",
+      "A1.3": "LP",
+      "A1.4": "LP",
+      "A1.5": "LP",
+      "A1.6": "LM"
+    },
+    "FORN_44_LOCAL_FLEXIVEL": {
+      "A1.1": "N",
+      "A1.2": "LM",
+      "A1.3": "MM",
+      "A1.4": "N",
+      "A1.5": "N",
+      "A1.6": "N"
+    },
+    "FORN_45_INDUSTRIAL_GRANDE": {
+      "A1.1": "N",
+      "A1.2": "MM",
+      "A1.3": "LM",
+      "A1.4": "P",
+      "A1.5": "LM",
+      "A1.6": "MM"
+    },
+    "FORN_46_RISCO_ALTO": {
+      "A1.1": "P",
+      "A1.2": "MM",
+      "A1.3": "P",
+      "A1.4": "MP",
+      "A1.5": "P",
+      "A1.6": "P"
+    },
+    "FORN_47_GOURMET_QUALIDADE": {
+      "A1.1": "MM",
+      "A1.2": "MP",
+      "A1.3": "M",
+      "A1.4": "M",
+      "A1.5": "LM",
+      "A1.6": "N"
+    },
+    "FORN_48_IMPORTADOR_LONGO_CURSO": {
+      "A1.1": "LM",
+      "A1.2": "N",
+      "A1.3": "P",
+      "A1.4": "MP",
+      "A1.5": "N",
+      "A1.6": "M"
+    },
+    "FORN_49_COOPERATIVA_VERDE": {
+      "A1.1": "M",
+      "A1.2": "N",
+      "A1.3": "N",
+      "A1.4": "MM",
+      "A1.5": "M",
+      "A1.6": "N"
+    },
+    "FORN_50_FORNECEDOR_CRITICO": {
+      "A1.1": "MP",
+      "A1.2": "N",
+      "A1.3": "P",
+      "A1.4": "MP",
+      "A1.5": "MP",
+      "A1.6": "P"
+    }
+  },
+  "created_by": "MMASSITI Moderno",
+  "notes": "Dataset sintetico deterministico para testes de interface, exportacao e analise de sensibilidade com 50 fornecedores."
+}
