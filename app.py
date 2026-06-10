@@ -281,7 +281,6 @@ def render_sidebar():
         open_save_dialog()
         st.rerun()
     st.sidebar.divider()
-    st.sidebar.download_button("Descarregar JSON", data=analysis_to_json(st.session_state.analysis), file_name=f"{st.session_state.analysis.name}.json", mime="application/json")
     st.sidebar.caption("Exportação completa")
     render_export_buttons()
 

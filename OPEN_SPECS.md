@@ -499,6 +499,7 @@ Permitir no menu lateral:
 - Em `Ler Análise`, a opção `Não` deve continuar diretamente para o seletor do JSON a ler;
 - Em `Ler Análise`, a opção `Cancelar` deve voltar atrás sem alterar a análise atual;
 - Botão `Gravar Análise`, abrindo popup de gravação com nome de ficheiro JSON editável;
+- Não deve existir botão separado `Descarregar JSON`; a gravação JSON é feita por `Gravar Análise`;
 - Exportação da análise completa para CSV, Excel e PDF.
 
 Estado recuperado no código: o fluxo `Nova Análise` / `Ler Análise` / `Gravar Análise` volta a ser conduzido por popups no menu lateral, a tab final de JSON não deve aparecer na navegação, o logotipo `RETAILL_MCDA` deve estar destacado na sidebar, a barra superior deve excluir esse logotipo e mostrar apenas os restantes logos em tamanho secundário, e as exportações completas CSV/Excel/PDF devem estar disponíveis no menu lateral.
