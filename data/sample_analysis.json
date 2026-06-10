@@ -1,0 +1,234 @@
+{
+  "name": "Exemplo MMASSITI Moderno",
+  "description": "Exemplo de avaliação multicritério de sistemas SI/TI.",
+  "methodology": "1e2fases",
+  "alternatives": [
+    {
+      "name": "Sistema A",
+      "description": "Solução comercial consolidada.",
+      "cost": 85000.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "Sistema B",
+      "description": "Solução open-source com customização.",
+      "cost": 60000.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "Sistema C",
+      "description": "Solução enterprise com suporte completo.",
+      "cost": 105000.0,
+      "selected_for_phase2": false
+    }
+  ],
+  "criteria": [
+    {
+      "code": "C1",
+      "name": "Adequação funcional",
+      "phase": 1,
+      "selected": true,
+      "description": "Grau de cobertura das necessidades funcionais.",
+      "order": 1,
+      "weight": 35.0,
+      "is_cost": false,
+      "neutral_level": "Médio",
+      "best_level": "Excelente",
+      "levels": [
+        {
+          "name": "Fraco",
+          "score": 20.0,
+          "description": ""
+        },
+        {
+          "name": "Médio",
+          "score": 50.0,
+          "description": ""
+        },
+        {
+          "name": "Bom",
+          "score": 80.0,
+          "description": ""
+        },
+        {
+          "name": "Excelente",
+          "score": 100.0,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "code": "C2",
+      "name": "Facilidade de integração",
+      "phase": 1,
+      "selected": true,
+      "description": "Capacidade de integração com sistemas existentes.",
+      "order": 2,
+      "weight": 25.0,
+      "is_cost": false,
+      "neutral_level": "Média",
+      "best_level": "Alta",
+      "levels": [
+        {
+          "name": "Baixa",
+          "score": 20.0,
+          "description": ""
+        },
+        {
+          "name": "Média",
+          "score": 60.0,
+          "description": ""
+        },
+        {
+          "name": "Alta",
+          "score": 100.0,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "code": "C3",
+      "name": "Usabilidade",
+      "phase": 1,
+      "selected": true,
+      "description": "Facilidade de uso por utilizadores finais e administradores.",
+      "order": 3,
+      "weight": 20.0,
+      "is_cost": false,
+      "neutral_level": "Média",
+      "best_level": "Alta",
+      "levels": [
+        {
+          "name": "Baixa",
+          "score": 25.0,
+          "description": ""
+        },
+        {
+          "name": "Média",
+          "score": 60.0,
+          "description": ""
+        },
+        {
+          "name": "Alta",
+          "score": 100.0,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "code": "C4",
+      "name": "Risco de implementação",
+      "phase": 1,
+      "selected": true,
+      "description": "Risco técnico e organizacional. Sendo custo/risco, menor é melhor.",
+      "order": 4,
+      "weight": 20.0,
+      "is_cost": true,
+      "neutral_level": "Médio",
+      "best_level": "Baixo",
+      "levels": [
+        {
+          "name": "Baixo",
+          "score": 20.0,
+          "description": ""
+        },
+        {
+          "name": "Médio",
+          "score": 60.0,
+          "description": ""
+        },
+        {
+          "name": "Alto",
+          "score": 100.0,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "code": "C5",
+      "name": "Escalabilidade",
+      "phase": 2,
+      "selected": true,
+      "description": "Capacidade de crescimento futuro.",
+      "order": 1,
+      "weight": 50.0,
+      "is_cost": false,
+      "neutral_level": null,
+      "best_level": null,
+      "levels": [
+        {
+          "name": "Baixa",
+          "score": 20.0,
+          "description": ""
+        },
+        {
+          "name": "Média",
+          "score": 60.0,
+          "description": ""
+        },
+        {
+          "name": "Alta",
+          "score": 100.0,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "code": "C6",
+      "name": "Manutenibilidade",
+      "phase": 2,
+      "selected": true,
+      "description": "Facilidade de manutenção e evolução.",
+      "order": 2,
+      "weight": 50.0,
+      "is_cost": false,
+      "neutral_level": null,
+      "best_level": null,
+      "levels": [
+        {
+          "name": "Baixa",
+          "score": 20.0,
+          "description": ""
+        },
+        {
+          "name": "Média",
+          "score": 60.0,
+          "description": ""
+        },
+        {
+          "name": "Alta",
+          "score": 100.0,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "scores": {
+    "Sistema A": {
+      "C1": 85.0,
+      "C2": 70.0,
+      "C3": 80.0,
+      "C4": 45.0,
+      "C5": 75.0,
+      "C6": 80.0
+    },
+    "Sistema B": {
+      "C1": 70.0,
+      "C2": 85.0,
+      "C3": 65.0,
+      "C4": 55.0,
+      "C5": 70.0,
+      "C6": 60.0
+    },
+    "Sistema C": {
+      "C1": 95.0,
+      "C2": 60.0,
+      "C3": 85.0,
+      "C4": 35.0,
+      "C5": 95.0,
+      "C6": 90.0
+    }
+  },
+  "created_by": "MMASSITI Moderno",
+  "notes": "Exemplo inicial editável."
+}

@@ -1,0 +1,5 @@
+Ranking,Alternativa,Fase,Valor Global,Custo,Benefício/Custo,A1.1 nível,A1.1 pontuação,A1.1 contribuição,A1.2 nível,A1.2 pontuação,A1.2 contribuição,A1.3 nível,A1.3 pontuação,A1.3 contribuição,A1.4 nível,A1.4 pontuação,A1.4 contribuição,A1.5 nível,A1.5 pontuação,A1.5 contribuição,A1.6 nível,A1.6 pontuação,A1.6 contribuição
+1,ALPHA,1,41.8919,78000.0,0.537076,M,50.0,13.5135,N,0.0,0.0,MM,100.0,16.2162,M,50.0,6.7568,LM,25.0,2.7027,LM,25.0,2.7027
+2,BETA,1,29.0541,65000.0,0.446985,LM,25.0,6.7568,M,50.0,10.8108,LM,25.0,4.0541,LP,-25.0,-3.3784,M,50.0,5.4054,M,50.0,5.4054
+3,GAMMA,1,12.1622,82000.0,0.148319,N,0.0,0.0,LP,-25.0,-5.4054,LM,25.0,4.0541,MM,100.0,13.5135,LM,25.0,2.7027,LP,-25.0,-2.7027
+4,DELTA,1,-7.4324,59000.0,-0.125973,LP,-25.0,-6.7568,LM,25.0,5.4054,N,0.0,0.0,LP,-25.0,-3.3784,N,0.0,0.0,LP,-25.0,-2.7027

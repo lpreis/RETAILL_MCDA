@@ -1,0 +1,482 @@
+{
+  "name": "Seleção de Fornecedores de Fruta",
+  "description": "Modelo MCDA/MMASSI-IT para selecionar fornecedores de fruta numa cadeia de abastecimento.",
+  "context": "Uma empresa de distribuição de fruta precisa selecionar fornecedores. A decisão envolve conflitos entre qualidade, preço, prazo, sustentabilidade, reputação e capacidade de fornecimento.",
+  "methodology": "1fase",
+  "alternatives": [
+    {
+      "name": "ALPHA",
+      "description": "Fornecedor equilibrado, forte em qualidade, prazo e sustentabilidade.",
+      "cost": 78000.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "BETA",
+      "description": "Fornecedor competitivo em preço e capacidade, com qualidade intermédia.",
+      "cost": 65000.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "GAMMA",
+      "description": "Fornecedor muito sustentável, mas menos competitivo em preço e capacidade.",
+      "cost": 82000.0,
+      "selected_for_phase2": false
+    },
+    {
+      "name": "DELTA",
+      "description": "Fornecedor local de baixo custo, mas com limitações de qualidade e escala.",
+      "cost": 59000.0,
+      "selected_for_phase2": false
+    }
+  ],
+  "criteria": [
+    {
+      "code": "A1.1",
+      "name": "Qualidade da Fruta",
+      "phase": 1,
+      "selected": true,
+      "description": "Calibre, aspeto, grau Brix, ausência de defeitos e conformidade com normas.",
+      "order": 1,
+      "weight": 100.0,
+      "is_cost": false,
+      "neutral_level": "N",
+      "best_level": "MM",
+      "levels": [
+        {
+          "code": "MM",
+          "name": "Muito Melhor",
+          "score": 100.0,
+          "color": "#0B6623",
+          "description": ""
+        },
+        {
+          "code": "M",
+          "name": "Melhor",
+          "score": 50.0,
+          "color": "#2F8F3A",
+          "description": ""
+        },
+        {
+          "code": "LM",
+          "name": "Ligeiramente Melhor",
+          "score": 25.0,
+          "color": "#74BF7B",
+          "description": ""
+        },
+        {
+          "code": "N",
+          "name": "Neutro",
+          "score": 0.0,
+          "color": "#EAF4EC",
+          "description": ""
+        },
+        {
+          "code": "LP",
+          "name": "Ligeiramente Pior",
+          "score": -25.0,
+          "color": "#F7D08A",
+          "description": ""
+        },
+        {
+          "code": "P",
+          "name": "Pior",
+          "score": -50.0,
+          "color": "#E6A4A4",
+          "description": ""
+        },
+        {
+          "code": "MP",
+          "name": "Muito Pior",
+          "score": -100.0,
+          "color": "#B71C1C",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "code": "A1.2",
+      "name": "Preço / Custo Total",
+      "phase": 1,
+      "selected": true,
+      "description": "Preço por kg, descontos por volume, custos de transporte e embalagem.",
+      "order": 2,
+      "weight": 80.0,
+      "is_cost": true,
+      "neutral_level": "N",
+      "best_level": "MM",
+      "levels": [
+        {
+          "code": "MM",
+          "name": "Muito Melhor",
+          "score": 100.0,
+          "color": "#0B6623",
+          "description": ""
+        },
+        {
+          "code": "M",
+          "name": "Melhor",
+          "score": 50.0,
+          "color": "#2F8F3A",
+          "description": ""
+        },
+        {
+          "code": "LM",
+          "name": "Ligeiramente Melhor",
+          "score": 25.0,
+          "color": "#74BF7B",
+          "description": ""
+        },
+        {
+          "code": "N",
+          "name": "Neutro",
+          "score": 0.0,
+          "color": "#EAF4EC",
+          "description": ""
+        },
+        {
+          "code": "LP",
+          "name": "Ligeiramente Pior",
+          "score": -25.0,
+          "color": "#F7D08A",
+          "description": ""
+        },
+        {
+          "code": "P",
+          "name": "Pior",
+          "score": -50.0,
+          "color": "#E6A4A4",
+          "description": ""
+        },
+        {
+          "code": "MP",
+          "name": "Muito Pior",
+          "score": -100.0,
+          "color": "#B71C1C",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "code": "A1.3",
+      "name": "Prazo de Entrega",
+      "phase": 1,
+      "selected": true,
+      "description": "Tempo médio de entrega, cumprimento de prazos e flexibilidade de agendamento.",
+      "order": 3,
+      "weight": 60.0,
+      "is_cost": false,
+      "neutral_level": "N",
+      "best_level": "MM",
+      "levels": [
+        {
+          "code": "MM",
+          "name": "Muito Melhor",
+          "score": 100.0,
+          "color": "#0B6623",
+          "description": ""
+        },
+        {
+          "code": "M",
+          "name": "Melhor",
+          "score": 50.0,
+          "color": "#2F8F3A",
+          "description": ""
+        },
+        {
+          "code": "LM",
+          "name": "Ligeiramente Melhor",
+          "score": 25.0,
+          "color": "#74BF7B",
+          "description": ""
+        },
+        {
+          "code": "N",
+          "name": "Neutro",
+          "score": 0.0,
+          "color": "#EAF4EC",
+          "description": ""
+        },
+        {
+          "code": "LP",
+          "name": "Ligeiramente Pior",
+          "score": -25.0,
+          "color": "#F7D08A",
+          "description": ""
+        },
+        {
+          "code": "P",
+          "name": "Pior",
+          "score": -50.0,
+          "color": "#E6A4A4",
+          "description": ""
+        },
+        {
+          "code": "MP",
+          "name": "Muito Pior",
+          "score": -100.0,
+          "color": "#B71C1C",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "code": "A1.4",
+      "name": "Sustentabilidade",
+      "phase": 1,
+      "selected": true,
+      "description": "Certificações bio, pegada carbónica e práticas agrícolas responsáveis.",
+      "order": 4,
+      "weight": 50.0,
+      "is_cost": false,
+      "neutral_level": "N",
+      "best_level": "MM",
+      "levels": [
+        {
+          "code": "MM",
+          "name": "Muito Melhor",
+          "score": 100.0,
+          "color": "#0B6623",
+          "description": ""
+        },
+        {
+          "code": "M",
+          "name": "Melhor",
+          "score": 50.0,
+          "color": "#2F8F3A",
+          "description": ""
+        },
+        {
+          "code": "LM",
+          "name": "Ligeiramente Melhor",
+          "score": 25.0,
+          "color": "#74BF7B",
+          "description": ""
+        },
+        {
+          "code": "N",
+          "name": "Neutro",
+          "score": 0.0,
+          "color": "#EAF4EC",
+          "description": ""
+        },
+        {
+          "code": "LP",
+          "name": "Ligeiramente Pior",
+          "score": -25.0,
+          "color": "#F7D08A",
+          "description": ""
+        },
+        {
+          "code": "P",
+          "name": "Pior",
+          "score": -50.0,
+          "color": "#E6A4A4",
+          "description": ""
+        },
+        {
+          "code": "MP",
+          "name": "Muito Pior",
+          "score": -100.0,
+          "color": "#B71C1C",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "code": "A1.5",
+      "name": "Fiabilidade / Reputação",
+      "phase": 1,
+      "selected": true,
+      "description": "Histórico de incidentes, referências de clientes e anos de experiência.",
+      "order": 5,
+      "weight": 40.0,
+      "is_cost": false,
+      "neutral_level": "N",
+      "best_level": "MM",
+      "levels": [
+        {
+          "code": "MM",
+          "name": "Muito Melhor",
+          "score": 100.0,
+          "color": "#0B6623",
+          "description": ""
+        },
+        {
+          "code": "M",
+          "name": "Melhor",
+          "score": 50.0,
+          "color": "#2F8F3A",
+          "description": ""
+        },
+        {
+          "code": "LM",
+          "name": "Ligeiramente Melhor",
+          "score": 25.0,
+          "color": "#74BF7B",
+          "description": ""
+        },
+        {
+          "code": "N",
+          "name": "Neutro",
+          "score": 0.0,
+          "color": "#EAF4EC",
+          "description": ""
+        },
+        {
+          "code": "LP",
+          "name": "Ligeiramente Pior",
+          "score": -25.0,
+          "color": "#F7D08A",
+          "description": ""
+        },
+        {
+          "code": "P",
+          "name": "Pior",
+          "score": -50.0,
+          "color": "#E6A4A4",
+          "description": ""
+        },
+        {
+          "code": "MP",
+          "name": "Muito Pior",
+          "score": -100.0,
+          "color": "#B71C1C",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "code": "A1.6",
+      "name": "Capacidade de Fornecimento",
+      "phase": 1,
+      "selected": true,
+      "description": "Volume disponível, variedade de espécies e continuidade ao longo do ano.",
+      "order": 6,
+      "weight": 40.0,
+      "is_cost": false,
+      "neutral_level": "N",
+      "best_level": "MM",
+      "levels": [
+        {
+          "code": "MM",
+          "name": "Muito Melhor",
+          "score": 100.0,
+          "color": "#0B6623",
+          "description": ""
+        },
+        {
+          "code": "M",
+          "name": "Melhor",
+          "score": 50.0,
+          "color": "#2F8F3A",
+          "description": ""
+        },
+        {
+          "code": "LM",
+          "name": "Ligeiramente Melhor",
+          "score": 25.0,
+          "color": "#74BF7B",
+          "description": ""
+        },
+        {
+          "code": "N",
+          "name": "Neutro",
+          "score": 0.0,
+          "color": "#EAF4EC",
+          "description": ""
+        },
+        {
+          "code": "LP",
+          "name": "Ligeiramente Pior",
+          "score": -25.0,
+          "color": "#F7D08A",
+          "description": ""
+        },
+        {
+          "code": "P",
+          "name": "Pior",
+          "score": -50.0,
+          "color": "#E6A4A4",
+          "description": ""
+        },
+        {
+          "code": "MP",
+          "name": "Muito Pior",
+          "score": -100.0,
+          "color": "#B71C1C",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "scores": {
+    "ALPHA": {
+      "A1.1": 50.0,
+      "A1.2": 0.0,
+      "A1.3": 100.0,
+      "A1.4": 50.0,
+      "A1.5": 25.0,
+      "A1.6": 25.0
+    },
+    "BETA": {
+      "A1.1": 25.0,
+      "A1.2": 50.0,
+      "A1.3": 25.0,
+      "A1.4": -25.0,
+      "A1.5": 50.0,
+      "A1.6": 50.0
+    },
+    "GAMMA": {
+      "A1.1": 0.0,
+      "A1.2": -25.0,
+      "A1.3": 25.0,
+      "A1.4": 100.0,
+      "A1.5": 25.0,
+      "A1.6": -25.0
+    },
+    "DELTA": {
+      "A1.1": -25.0,
+      "A1.2": 25.0,
+      "A1.3": 0.0,
+      "A1.4": -25.0,
+      "A1.5": 0.0,
+      "A1.6": -25.0
+    }
+  },
+  "semantic_scores": {
+    "ALPHA": {
+      "A1.1": "M",
+      "A1.2": "N",
+      "A1.3": "MM",
+      "A1.4": "M",
+      "A1.5": "LM",
+      "A1.6": "LM"
+    },
+    "BETA": {
+      "A1.1": "LM",
+      "A1.2": "M",
+      "A1.3": "LM",
+      "A1.4": "LP",
+      "A1.5": "M",
+      "A1.6": "M"
+    },
+    "GAMMA": {
+      "A1.1": "N",
+      "A1.2": "LP",
+      "A1.3": "LM",
+      "A1.4": "MM",
+      "A1.5": "LM",
+      "A1.6": "LP"
+    },
+    "DELTA": {
+      "A1.1": "LP",
+      "A1.2": "LM",
+      "A1.3": "N",
+      "A1.4": "LP",
+      "A1.5": "N",
+      "A1.6": "LP"
+    }
+  },
+  "created_by": "MMASSITI Moderno",
+  "notes": "Problema exemplo baseado nos slides de MCDA para fornecedores de fruta. Os pesos seguem a lógica A1.1=100, A1.2=80, A1.3=60, A1.4=50, A1.5=40, A1.6=40."
+}

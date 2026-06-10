@@ -1,0 +1,51 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+from typing import List
+
+from .models import Analysis
+
+
+DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+
+
+def ensure_data_dir() -> Path:
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    return DATA_DIR
+
+
+def list_analysis_files() -> List[Path]:
+    ensure_data_dir()
+    return sorted(DATA_DIR.glob("*.json"))
+
+
+def load_analysis(path: str | Path) -> Analysis:
+    path = Path(path)
+    with path.open("r", encoding="utf-8") as f:
+        raw = json.load(f)
+    return Analysis.model_validate(raw)
+
+
+def save_analysis(analysis: Analysis, path: str | Path | None = None) -> Path:
+    ensure_data_dir()
+    if path is None:
+        safe_name = "".join(c if c.isalnum() or c in "-_ " else "_" for c in analysis.name).strip()
+        if not safe_name:
+            safe_name = "analysis"
+        path = DATA_DIR / f"{safe_name}.json"
+    else:
+        path = Path(path)
+
+    with path.open("w", encoding="utf-8") as f:
+        json.dump(analysis.model_dump(), f, ensure_ascii=False, indent=2)
+    return path
+
+
+def analysis_to_json(analysis: Analysis) -> str:
+    return json.dumps(analysis.model_dump(), ensure_ascii=False, indent=2)
+
+
+def load_analysis_from_json_text(text: str) -> Analysis:
+    raw = json.loads(text)
+    return Analysis.model_validate(raw)
