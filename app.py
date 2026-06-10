@@ -110,6 +110,7 @@ def apply_css() -> None:
 def init_state() -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     st.session_state.setdefault("active_page", 0)
+    st.session_state.setdefault("analysis_revision", 0)
     st.session_state.setdefault("criteria_revision", 0)
     st.session_state.setdefault("active_dialog", None)
     st.session_state.setdefault("post_save_action", None)
@@ -140,6 +141,7 @@ def safe_json_path(filename: str) -> Path:
 
 
 def mark_analysis_replaced() -> None:
+    st.session_state.analysis_revision = int(st.session_state.get("analysis_revision", 0)) + 1
     st.session_state.criteria_revision = int(st.session_state.get("criteria_revision", 0)) + 1
 
 
@@ -237,6 +239,7 @@ def read_analysis_dialog() -> None:
             text_from_file = uploaded.getvalue().decode("utf-8")
             st.session_state.analysis = load_analysis_from_json_text(text_from_file)
             st.session_state.current_path = str(safe_json_path(uploaded.name))
+            sync_scores_with_structure()
             mark_analysis_replaced()
             rerun_save(st.session_state.current_path)
             st.session_state.active_dialog = None
@@ -281,6 +284,14 @@ def render_sidebar():
         open_save_dialog()
         st.rerun()
     st.sidebar.divider()
+    st.sidebar.selectbox(
+        "Produtores nos gráficos",
+        ["Top 5", "Top 10", "Todos"],
+        index=0,
+        key="producer_display_limit",
+        help="Limita apenas a visualização. Os cálculos continuam a usar todos os produtores.",
+    )
+    st.sidebar.divider()
     st.sidebar.caption("Exportação completa")
     render_export_buttons()
 
@@ -321,12 +332,20 @@ def render_section_nav() -> None:
     active = min(max(active, 0), len(MENU_ITEMS) - 1)
     st.session_state.active_page = active
 
-    html = '<div class="nav-compact">'
+    st.markdown('<div class="nav-compact">', unsafe_allow_html=True)
+    cols = st.columns(4)
     for idx, label in enumerate(MENU_ITEMS):
-        cls = "nav-chip active" if idx == active else "nav-chip"
-        html += f'<a class="{cls}" href="?page={idx}">{idx + 1}. {label}</a>'
-    html += '</div>'
-    st.markdown(html, unsafe_allow_html=True)
+        with cols[idx % 4]:
+            if st.button(
+                f"{idx + 1}. {label}",
+                key=f"nav_{idx}",
+                use_container_width=True,
+                type="primary" if idx == active else "secondary",
+            ):
+                st.session_state.active_page = idx
+                st.query_params["page"] = str(idx)
+                st.rerun()
+    st.markdown("</div>", unsafe_allow_html=True)
 
 
 def render_hero():
@@ -480,6 +499,33 @@ def level_color(level_code):
         if level.code == level_code:
             return level.color
     return "#EAF4EC"
+
+
+def producer_display_limit() -> int | None:
+    selected = st.session_state.get("producer_display_limit", "Top 5")
+    if selected == "Top 5":
+        return 5
+    if selected == "Top 10":
+        return 10
+    return None
+
+
+def visible_producer_names(analysis, phase: int = 1) -> list[str]:
+    limit = producer_display_limit()
+    if limit is None:
+        return [alternative.name for alternative in analysis.alternatives]
+
+    ranked = evaluate_phase(analysis, phase)
+    if ranked.empty:
+        return [alternative.name for alternative in analysis.alternatives[:limit]]
+    return ranked.sort_values("Ranking")["Alternativa"].head(limit).tolist()
+
+
+def filter_alternative_rows(df: pd.DataFrame, analysis, phase: int = 1) -> pd.DataFrame:
+    if df.empty or "Alternativa" not in df.columns:
+        return df
+    names = visible_producer_names(analysis, phase)
+    return df[df["Alternativa"].isin(names)].copy()
 
 
 def _safe_download_name(name: str, suffix: str) -> str:
@@ -689,7 +735,8 @@ def page_dashboard():
     if not results.empty:
         winner, value = results.iloc[0]["Alternativa"], results.iloc[0]["Valor Global"]
         st.markdown(f'<div class="winner-box">Fornecedor recomendado: {winner} — Valor Global {value:.1f}</div>', unsafe_allow_html=True)
-        fig = px.bar(results.sort_values("Valor Global"), x="Valor Global", y="Alternativa", orientation="h", text="Valor Global", title="Ranking final", color_discrete_sequence=[GREEN])
+        visible_results = filter_alternative_rows(results, analysis, 1)
+        fig = px.bar(visible_results.sort_values("Valor Global"), x="Valor Global", y="Alternativa", orientation="h", text="Valor Global", title="Ranking final", color_discrete_sequence=[GREEN])
         fig.update_layout(plot_bgcolor="white", paper_bgcolor="white", font_color=DARK_BLUE, title_font_color=DARK_BLUE, xaxis_title="Valor global", yaxis_title="Fornecedor", height=360)
         fig.update_traces(texttemplate="%{text:.1f}", textposition="outside", marker_line_width=0)
         st.plotly_chart(fig, use_container_width=True)
@@ -697,16 +744,18 @@ def page_dashboard():
 
 def page_analysis():
     a = st.session_state.analysis
+    revision = st.session_state.get("analysis_revision", 0)
     st.header("2. Análise")
     col1, col2 = st.columns([2, 1])
     with col1:
-        a.name = st.text_input("Nome da análise", a.name)
-        a.description = st.text_area("Descrição", a.description, height=90)
-        a.context = st.text_area("Contexto do problema", a.context, height=120)
-        a.notes = st.text_area("Notas", a.notes, height=100)
+        a.name = st.text_input("Nome da análise", a.name, key=f"analysis_name_{revision}")
+        a.description = st.text_area("Descrição", a.description, height=90, key=f"analysis_description_{revision}")
+        a.context = st.text_area("Contexto do problema", a.context, height=120, key=f"analysis_context_{revision}")
+        a.notes = st.text_area("Notas", a.notes, height=100, key=f"analysis_notes_{revision}")
     with col2:
-        a.methodology = st.selectbox("Metodologia", ["1fase", "2fases", "1e2fases"], index=["1fase", "2fases", "1e2fases"].index(a.methodology))
-        a.created_by = st.text_input("Responsável", a.created_by)
+        methodology_options = ["1fase", "2fases", "1e2fases"]
+        a.methodology = st.selectbox("Metodologia", methodology_options, index=methodology_options.index(a.methodology), key=f"analysis_methodology_{revision}")
+        a.created_by = st.text_input("Responsável", a.created_by, key=f"analysis_created_by_{revision}")
         st.metric("Alternativas", len(a.alternatives)); st.metric("Critérios", len(a.criteria))
     if st.button("Guardar alterações da análise"):
         rerun_save()
@@ -717,6 +766,7 @@ def page_alternatives():
     df = alternatives_dataframe(st.session_state.analysis)
     edited = st.data_editor(
         df,
+        key=f"alternatives_editor_{st.session_state.get('analysis_revision', 0)}",
         num_rows="dynamic",
         use_container_width=True,
         column_config={
@@ -789,14 +839,19 @@ def page_scores():
     if st.button("Aplicar avaliações"):
         apply_semantic_scores_dataframe(edited); rerun_save(); st.rerun()
     st.subheader("Matriz de avaliação colorida")
-    html = '<table style="width:100%; border-collapse: collapse; background:white; box-shadow:0 8px 22px rgba(23,58,94,0.08);"><tr style="background:#173A5E;color:white;"><th style="padding:12px;text-align:left;">Critério</th>'
-    for alt in st.session_state.analysis.alternatives:
-        html += f'<th style="padding:12px;text-align:center;">{alt.name}</th>'
+    st.caption("Produtores nas linhas e critérios nas colunas. A lista segue o filtro visual definido na sidebar.")
+    visible_names = visible_producer_names(st.session_state.analysis, 1)
+    alternatives_by_name = {alternative.name: alternative for alternative in st.session_state.analysis.alternatives}
+    visible_alternatives = [alternatives_by_name[name] for name in visible_names if name in alternatives_by_name]
+    visible_criteria = selected_criteria(st.session_state.analysis, 1)
+    html = '<table style="width:100%; border-collapse: collapse; background:white; box-shadow:0 8px 22px rgba(23,58,94,0.08);"><tr style="background:#173A5E;color:white;"><th style="padding:12px;text-align:left;">Produtor</th>'
+    for criterion in visible_criteria:
+        html += f'<th style="padding:12px;text-align:center;">{criterion.code}<br><span style="font-size:0.75rem;font-weight:500;">{criterion.name}</span></th>'
     html += '</tr>'
-    for c in selected_criteria(st.session_state.analysis, 1):
-        html += f'<tr><td style="padding:12px;border-bottom:1px solid #E8EFEA;"><strong>{c.code}</strong><br><span style="font-size:0.85rem;color:#466;">{c.name}</span></td>'
-        for alt in st.session_state.analysis.alternatives:
-            level = st.session_state.analysis.semantic_scores.get(alt.name, {}).get(c.code, "N")
+    for alternative in visible_alternatives:
+        html += f'<tr><td style="padding:12px;border-bottom:1px solid #E8EFEA;"><strong>{alternative.name}</strong></td>'
+        for criterion in visible_criteria:
+            level = st.session_state.analysis.semantic_scores.get(alternative.name, {}).get(criterion.code, "N")
             color = level_color(level)
             text_color = "white" if level in ["MM", "M", "MP"] else DARK_BLUE
             html += f'<td style="padding:12px;text-align:center;border-bottom:1px solid #E8EFEA;background:{color};color:{text_color};font-weight:800;">{level}<br><span style="font-size:0.75rem;">({level_score(level):+.0f})</span></td>'
@@ -817,12 +872,14 @@ def page_results():
         if not df.empty:
             winner, value = df.iloc[0]["Alternativa"], df.iloc[0]["Valor Global"]
             st.markdown(f'<div class="winner-box">Fornecedor recomendado: {winner} — Valor Global {value:.1f}</div>', unsafe_allow_html=True)
-            fig = px.bar(df[["Alternativa", "Valor Global"]].sort_values("Valor Global"), x="Valor Global", y="Alternativa", orientation="h", text="Valor Global", title=f"Ranking final — Fase {phase}", color_discrete_sequence=[GREEN])
+            visible_df = filter_alternative_rows(df, st.session_state.analysis, phase)
+            fig = px.bar(visible_df[["Alternativa", "Valor Global"]].sort_values("Valor Global"), x="Valor Global", y="Alternativa", orientation="h", text="Valor Global", title=f"Ranking final — Fase {phase}", color_discrete_sequence=[GREEN])
             fig.update_layout(plot_bgcolor="white", paper_bgcolor="white", font_color=DARK_BLUE, title_font_color=DARK_BLUE, xaxis_title="Valor global", yaxis_title="Fornecedor", height=420)
             fig.update_traces(texttemplate="%{text:.1f}", textposition="outside")
             st.plotly_chart(fig, use_container_width=True)
             contrib = criterion_contributions(st.session_state.analysis, phase)
-            fig2 = px.bar(contrib, x="Alternativa", y="Contribuição", color="Critério", title="Contribuição dos critérios por fornecedor")
+            visible_contrib = filter_alternative_rows(contrib, st.session_state.analysis, phase)
+            fig2 = px.bar(visible_contrib, x="Alternativa", y="Contribuição", color="Critério", title="Contribuição dos critérios por fornecedor")
             fig2.update_layout(plot_bgcolor="white", paper_bgcolor="white", font_color=DARK_BLUE, height=420)
             st.plotly_chart(fig2, use_container_width=True)
         st.download_button(f"Descarregar resultados da fase {phase} em CSV", data=df.to_csv(index=False).encode("utf-8"), file_name=f"resultados_fase_{phase}.csv", mime="text/csv")
@@ -830,13 +887,14 @@ def page_results():
 
 def page_sensitivity():
     st.header("8. Sensibilidade")
-    phase = st.selectbox("Fase", [1, 2], index=0)
+    phase = st.selectbox("Fase", [1, 2], index=0, key=f"sensitivity_phase_{st.session_state.get('analysis_revision', 0)}")
     sens_df = sensitivity_scenarios(st.session_state.analysis, phase)
     if sens_df.empty:
         st.info("Não existem dados suficientes para análise de sensibilidade."); return
     st.subheader("Cenários")
     st.dataframe(sens_df, use_container_width=True)
-    fig = px.line(sens_df, x="Cenário", y="Valor Global", color="Alternativa", markers=True, title="Estabilidade do ranking por cenário")
+    visible_sens_df = filter_alternative_rows(sens_df, st.session_state.analysis, phase)
+    fig = px.line(visible_sens_df, x="Cenário", y="Valor Global", color="Alternativa", markers=True, title="Estabilidade do ranking por cenário")
     fig.update_layout(plot_bgcolor="white", paper_bgcolor="white", font_color=DARK_BLUE, height=430)
     st.plotly_chart(fig, use_container_width=True)
     robust = robustness_summary(st.session_state.analysis, phase)
@@ -857,6 +915,8 @@ def page_json():
         try:
             text_from_file = uploaded.getvalue().decode("utf-8")
             st.session_state.analysis = load_analysis_from_json_text(text_from_file)
+            sync_scores_with_structure()
+            mark_analysis_replaced()
             rerun_save()
             st.success("JSON importado com sucesso.")
             st.rerun()
@@ -866,7 +926,7 @@ def page_json():
     c1, c2 = st.columns(2)
     if c1.button("Validar e carregar JSON"):
         try:
-            st.session_state.analysis = load_analysis_from_json_text(text); rerun_save(); st.success("JSON carregado com sucesso."); st.rerun()
+            st.session_state.analysis = load_analysis_from_json_text(text); sync_scores_with_structure(); mark_analysis_replaced(); rerun_save(); st.success("JSON carregado com sucesso."); st.rerun()
         except Exception as e:
             st.error(f"Erro ao validar JSON: {e}")
     c2.download_button("Descarregar JSON atual", data=analysis_to_json(st.session_state.analysis), file_name=f"{st.session_state.analysis.name}.json", mime="application/json")

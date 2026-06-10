@@ -120,6 +120,7 @@ Vermelho escala: #B71C1C
 - Barra superior com logos institucionais/parceiros, excluindo o logotipo `RETAILL_MCDA`;
 - Barra de logos responsiva, compacta e com logos secundários pequenos para não competir com o logotipo principal;
 - Barra de logos com altura e padding vertical suficientes para evitar cortes no topo e na base dos logos;
+- A navegação interna da aplicação deve ocorrer sempre na mesma tab do browser, sem abrir novos separadores.
 - Matrizes coloridas para avaliação das alternativas;
 - Gráficos horizontais para ranking;
 - Separação clara por etapas;
@@ -498,6 +499,11 @@ Permitir no menu lateral:
 - Em `Ler Análise`, a opção `Sim` deve gravar a análise atual e depois mostrar o seletor do JSON a ler;
 - Em `Ler Análise`, a opção `Não` deve continuar diretamente para o seletor do JSON a ler;
 - Em `Ler Análise`, a opção `Cancelar` deve voltar atrás sem alterar a análise atual;
+- Ao ler um JSON, todas as etapas da aplicação devem passar a refletir imediatamente os dados da nova análise: metadados, alternativas, critérios, pesos, escala, avaliações, resultados, sensibilidade e robustez;
+- A leitura de JSON deve reconstruir/sincronizar a matriz de avaliações para os critérios e alternativas do ficheiro carregado, inicializando valores em falta com `N`;
+- Os editores e seletores da interface não devem manter valores visuais da análise anterior depois de uma nova análise ser lida ou criada;
+- A matriz colorida critérios vs. produtores deve apresentar produtores nas linhas e critérios nas colunas, para suportar facilmente casos com muitos produtores e poucos critérios;
+- A interface deve permitir filtrar visualmente gráficos e matrizes por `Top 5`, `Top 10` ou `Todos` os produtores, sem alterar os cálculos completos;
 - Botão `Gravar Análise`, abrindo popup de gravação com nome de ficheiro JSON editável;
 - Não deve existir botão separado `Descarregar JSON`; a gravação JSON é feita por `Gravar Análise`;
 - Exportação da análise completa para CSV, Excel e PDF.
