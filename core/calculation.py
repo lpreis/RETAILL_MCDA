@@ -4,7 +4,7 @@ from typing import Dict, List
 import copy
 import pandas as pd
 
-from .models import Analysis, Criterion, Phase, level_score
+from .models import Analysis, Criterion, Phase, closest_level_code, level_score, scale_for_analysis
 
 
 def selected_criteria(analysis: Analysis, phase: Phase) -> List[Criterion]:
@@ -27,26 +27,22 @@ def normalize_weights(criteria: List[Criterion]) -> Dict[str, float]:
 
 
 def get_score(analysis: Analysis, alternative_name: str, criterion_code: str) -> float:
+    scale = scale_for_analysis(analysis)
     semantic = analysis.semantic_scores.get(alternative_name, {}).get(criterion_code)
     if semantic:
-        return level_score(semantic)
+        return level_score(semantic, scale)
 
     return float(analysis.scores.get(alternative_name, {}).get(criterion_code, 0.0))
 
 
 def get_level(analysis: Analysis, alternative_name: str, criterion_code: str) -> str:
+    scale = scale_for_analysis(analysis)
     semantic = analysis.semantic_scores.get(alternative_name, {}).get(criterion_code)
     if semantic:
         return semantic
 
     value = float(analysis.scores.get(alternative_name, {}).get(criterion_code, 0.0))
-    if value >= 75: return "MM"
-    if value >= 37.5: return "M"
-    if value >= 12.5: return "LM"
-    if value > -12.5: return "N"
-    if value > -37.5: return "LP"
-    if value > -75: return "P"
-    return "MP"
+    return closest_level_code(value, scale)
 
 
 def evaluate_phase(analysis: Analysis, phase: Phase) -> pd.DataFrame:
@@ -73,6 +69,7 @@ def evaluate_phase(analysis: Analysis, phase: Phase) -> pd.DataFrame:
             benefit_cost = total / (alt.cost / 1000.0)
 
         rows.append({
+            "Fornecedor Nº": alt.id,
             "Alternativa": alt.name,
             "Fase": phase,
             "Valor Global": round(total, 4),
@@ -106,7 +103,9 @@ def criterion_contributions(analysis: Analysis, phase: Phase) -> pd.DataFrame:
         for criterion in criteria:
             score = get_score(analysis, alt.name, criterion.code)
             rows.append({
+                "Fornecedor Nº": alt.id,
                 "Alternativa": alt.name,
+                "Critério Nº": criterion.id,
                 "Critério": criterion.code,
                 "Nome": criterion.name,
                 "Peso normalizado": weights.get(criterion.code, 0.0),

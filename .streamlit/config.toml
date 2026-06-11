@@ -4,3 +4,7 @@ backgroundColor = "#F3F8F4"
 secondaryBackgroundColor = "#FFFFFF"
 textColor = "#173A5E"
 font = "sans serif"
+
+[server]
+port = 8502
+headless = true

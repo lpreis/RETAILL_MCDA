@@ -146,7 +146,7 @@ def create_fruit_supplier_analysis() -> Analysis:
 
     return Analysis(
         name="Seleção de Fornecedores de Fruta",
-        description="Modelo MCDA/MMASSI-IT para selecionar fornecedores de fruta numa cadeia de abastecimento.",
+        description="Modelo MCDA/MCDA para selecionar fornecedores de fruta numa cadeia de abastecimento.",
         context=(
             "Uma empresa de distribuição de fruta precisa selecionar fornecedores. "
             "A decisão envolve conflitos entre qualidade, preço, prazo, sustentabilidade, reputação e capacidade de fornecimento."
@@ -156,7 +156,7 @@ def create_fruit_supplier_analysis() -> Analysis:
         criteria=criteria,
         scores=scores,
         semantic_scores=semantic_scores,
-        created_by="MMASSITI Moderno",
+        created_by="MCDA Moderno",
         notes=(
             "Problema exemplo baseado nos slides de MCDA para fornecedores de fruta. "
             "Os pesos seguem a lógica A1.1=100, A1.2=80, A1.3=60, A1.4=50, A1.5=40, A1.6=40."

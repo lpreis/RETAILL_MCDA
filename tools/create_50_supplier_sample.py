@@ -73,7 +73,7 @@ def main() -> None:
         criteria=base.criteria,
         scores=scores,
         semantic_scores=semantic_scores,
-        created_by="MMASSITI Moderno",
+        created_by="MCDA Moderno",
         notes="Dataset sintetico deterministico para testes de interface, exportacao e analise de sensibilidade com 50 fornecedores.",
     )
     path = save_analysis(analysis, "data/fornecedores_fruta_50_variado.json")

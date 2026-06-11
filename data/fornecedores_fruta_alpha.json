@@ -1,28 +1,32 @@
 {
   "name": "Seleção de Fornecedores de Fruta",
-  "description": "Modelo MCDA/MMASSI-IT para selecionar fornecedores de fruta numa cadeia de abastecimento.",
+  "description": "Modelo MCDA/MCDA para selecionar fornecedores de fruta numa cadeia de abastecimento.",
   "context": "Uma empresa de distribuição de fruta precisa selecionar fornecedores. A decisão envolve conflitos entre qualidade, preço, prazo, sustentabilidade, reputação e capacidade de fornecimento.",
   "methodology": "1fase",
   "alternatives": [
     {
+      "id": 1,
       "name": "ALPHA",
       "description": "Fornecedor equilibrado, forte em qualidade, prazo e sustentabilidade.",
       "cost": 78000.0,
       "selected_for_phase2": false
     },
     {
+      "id": 2,
       "name": "BETA",
       "description": "Fornecedor competitivo em preço e capacidade, com qualidade intermédia.",
       "cost": 65000.0,
       "selected_for_phase2": false
     },
     {
+      "id": 3,
       "name": "GAMMA",
       "description": "Fornecedor muito sustentável, mas menos competitivo em preço e capacidade.",
       "cost": 82000.0,
       "selected_for_phase2": false
     },
     {
+      "id": 4,
       "name": "DELTA",
       "description": "Fornecedor local de baixo custo, mas com limitações de qualidade e escala.",
       "cost": 59000.0,
@@ -31,6 +35,7 @@
   ],
   "criteria": [
     {
+      "id": 1,
       "code": "A1.1",
       "name": "Qualidade da Fruta",
       "phase": 1,
@@ -40,60 +45,10 @@
       "weight": 100.0,
       "is_cost": false,
       "neutral_level": "N",
-      "best_level": "MM",
-      "levels": [
-        {
-          "code": "MM",
-          "name": "Muito Melhor",
-          "score": 100.0,
-          "color": "#0B6623",
-          "description": ""
-        },
-        {
-          "code": "M",
-          "name": "Melhor",
-          "score": 50.0,
-          "color": "#2F8F3A",
-          "description": ""
-        },
-        {
-          "code": "LM",
-          "name": "Ligeiramente Melhor",
-          "score": 25.0,
-          "color": "#74BF7B",
-          "description": ""
-        },
-        {
-          "code": "N",
-          "name": "Neutro",
-          "score": 0.0,
-          "color": "#EAF4EC",
-          "description": ""
-        },
-        {
-          "code": "LP",
-          "name": "Ligeiramente Pior",
-          "score": -25.0,
-          "color": "#F7D08A",
-          "description": ""
-        },
-        {
-          "code": "P",
-          "name": "Pior",
-          "score": -50.0,
-          "color": "#E6A4A4",
-          "description": ""
-        },
-        {
-          "code": "MP",
-          "name": "Muito Pior",
-          "score": -100.0,
-          "color": "#B71C1C",
-          "description": ""
-        }
-      ]
+      "best_level": "MM"
     },
     {
+      "id": 2,
       "code": "A1.2",
       "name": "Preço / Custo Total",
       "phase": 1,
@@ -103,60 +58,10 @@
       "weight": 80.0,
       "is_cost": true,
       "neutral_level": "N",
-      "best_level": "MM",
-      "levels": [
-        {
-          "code": "MM",
-          "name": "Muito Melhor",
-          "score": 100.0,
-          "color": "#0B6623",
-          "description": ""
-        },
-        {
-          "code": "M",
-          "name": "Melhor",
-          "score": 50.0,
-          "color": "#2F8F3A",
-          "description": ""
-        },
-        {
-          "code": "LM",
-          "name": "Ligeiramente Melhor",
-          "score": 25.0,
-          "color": "#74BF7B",
-          "description": ""
-        },
-        {
-          "code": "N",
-          "name": "Neutro",
-          "score": 0.0,
-          "color": "#EAF4EC",
-          "description": ""
-        },
-        {
-          "code": "LP",
-          "name": "Ligeiramente Pior",
-          "score": -25.0,
-          "color": "#F7D08A",
-          "description": ""
-        },
-        {
-          "code": "P",
-          "name": "Pior",
-          "score": -50.0,
-          "color": "#E6A4A4",
-          "description": ""
-        },
-        {
-          "code": "MP",
-          "name": "Muito Pior",
-          "score": -100.0,
-          "color": "#B71C1C",
-          "description": ""
-        }
-      ]
+      "best_level": "MM"
     },
     {
+      "id": 3,
       "code": "A1.3",
       "name": "Prazo de Entrega",
       "phase": 1,
@@ -166,60 +71,10 @@
       "weight": 60.0,
       "is_cost": false,
       "neutral_level": "N",
-      "best_level": "MM",
-      "levels": [
-        {
-          "code": "MM",
-          "name": "Muito Melhor",
-          "score": 100.0,
-          "color": "#0B6623",
-          "description": ""
-        },
-        {
-          "code": "M",
-          "name": "Melhor",
-          "score": 50.0,
-          "color": "#2F8F3A",
-          "description": ""
-        },
-        {
-          "code": "LM",
-          "name": "Ligeiramente Melhor",
-          "score": 25.0,
-          "color": "#74BF7B",
-          "description": ""
-        },
-        {
-          "code": "N",
-          "name": "Neutro",
-          "score": 0.0,
-          "color": "#EAF4EC",
-          "description": ""
-        },
-        {
-          "code": "LP",
-          "name": "Ligeiramente Pior",
-          "score": -25.0,
-          "color": "#F7D08A",
-          "description": ""
-        },
-        {
-          "code": "P",
-          "name": "Pior",
-          "score": -50.0,
-          "color": "#E6A4A4",
-          "description": ""
-        },
-        {
-          "code": "MP",
-          "name": "Muito Pior",
-          "score": -100.0,
-          "color": "#B71C1C",
-          "description": ""
-        }
-      ]
+      "best_level": "MM"
     },
     {
+      "id": 4,
       "code": "A1.4",
       "name": "Sustentabilidade",
       "phase": 1,
@@ -229,60 +84,10 @@
       "weight": 50.0,
       "is_cost": false,
       "neutral_level": "N",
-      "best_level": "MM",
-      "levels": [
-        {
-          "code": "MM",
-          "name": "Muito Melhor",
-          "score": 100.0,
-          "color": "#0B6623",
-          "description": ""
-        },
-        {
-          "code": "M",
-          "name": "Melhor",
-          "score": 50.0,
-          "color": "#2F8F3A",
-          "description": ""
-        },
-        {
-          "code": "LM",
-          "name": "Ligeiramente Melhor",
-          "score": 25.0,
-          "color": "#74BF7B",
-          "description": ""
-        },
-        {
-          "code": "N",
-          "name": "Neutro",
-          "score": 0.0,
-          "color": "#EAF4EC",
-          "description": ""
-        },
-        {
-          "code": "LP",
-          "name": "Ligeiramente Pior",
-          "score": -25.0,
-          "color": "#F7D08A",
-          "description": ""
-        },
-        {
-          "code": "P",
-          "name": "Pior",
-          "score": -50.0,
-          "color": "#E6A4A4",
-          "description": ""
-        },
-        {
-          "code": "MP",
-          "name": "Muito Pior",
-          "score": -100.0,
-          "color": "#B71C1C",
-          "description": ""
-        }
-      ]
+      "best_level": "MM"
     },
     {
+      "id": 5,
       "code": "A1.5",
       "name": "Fiabilidade / Reputação",
       "phase": 1,
@@ -292,60 +97,10 @@
       "weight": 40.0,
       "is_cost": false,
       "neutral_level": "N",
-      "best_level": "MM",
-      "levels": [
-        {
-          "code": "MM",
-          "name": "Muito Melhor",
-          "score": 100.0,
-          "color": "#0B6623",
-          "description": ""
-        },
-        {
-          "code": "M",
-          "name": "Melhor",
-          "score": 50.0,
-          "color": "#2F8F3A",
-          "description": ""
-        },
-        {
-          "code": "LM",
-          "name": "Ligeiramente Melhor",
-          "score": 25.0,
-          "color": "#74BF7B",
-          "description": ""
-        },
-        {
-          "code": "N",
-          "name": "Neutro",
-          "score": 0.0,
-          "color": "#EAF4EC",
-          "description": ""
-        },
-        {
-          "code": "LP",
-          "name": "Ligeiramente Pior",
-          "score": -25.0,
-          "color": "#F7D08A",
-          "description": ""
-        },
-        {
-          "code": "P",
-          "name": "Pior",
-          "score": -50.0,
-          "color": "#E6A4A4",
-          "description": ""
-        },
-        {
-          "code": "MP",
-          "name": "Muito Pior",
-          "score": -100.0,
-          "color": "#B71C1C",
-          "description": ""
-        }
-      ]
+      "best_level": "MM"
     },
     {
+      "id": 6,
       "code": "A1.6",
       "name": "Capacidade de Fornecimento",
       "phase": 1,
@@ -355,128 +110,135 @@
       "weight": 40.0,
       "is_cost": false,
       "neutral_level": "N",
-      "best_level": "MM",
-      "levels": [
-        {
-          "code": "MM",
-          "name": "Muito Melhor",
-          "score": 100.0,
-          "color": "#0B6623",
-          "description": ""
-        },
-        {
-          "code": "M",
-          "name": "Melhor",
-          "score": 50.0,
-          "color": "#2F8F3A",
-          "description": ""
-        },
-        {
-          "code": "LM",
-          "name": "Ligeiramente Melhor",
-          "score": 25.0,
-          "color": "#74BF7B",
-          "description": ""
-        },
-        {
-          "code": "N",
-          "name": "Neutro",
-          "score": 0.0,
-          "color": "#EAF4EC",
-          "description": ""
-        },
-        {
-          "code": "LP",
-          "name": "Ligeiramente Pior",
-          "score": -25.0,
-          "color": "#F7D08A",
-          "description": ""
-        },
-        {
-          "code": "P",
-          "name": "Pior",
-          "score": -50.0,
-          "color": "#E6A4A4",
-          "description": ""
-        },
-        {
-          "code": "MP",
-          "name": "Muito Pior",
-          "score": -100.0,
-          "color": "#B71C1C",
-          "description": ""
-        }
-      ]
+      "best_level": "MM"
+    }
+  ],
+  "levels": [
+    {
+      "id": 1,
+      "code": "MM",
+      "name": "Muito Melhor",
+      "score": 100.0,
+      "color": "#0B6623",
+      "description": ""
+    },
+    {
+      "id": 2,
+      "code": "M",
+      "name": "Melhor",
+      "score": 50.0,
+      "color": "#2F8F3A",
+      "description": ""
+    },
+    {
+      "id": 3,
+      "code": "LM",
+      "name": "Ligeiramente Melhor",
+      "score": 25.0,
+      "color": "#74BF7B",
+      "description": ""
+    },
+    {
+      "id": 4,
+      "code": "N",
+      "name": "Neutro",
+      "score": 0.0,
+      "color": "#EAF4EC",
+      "description": ""
+    },
+    {
+      "id": 5,
+      "code": "LP",
+      "name": "Ligeiramente Pior",
+      "score": -25.0,
+      "color": "#F7D08A",
+      "description": ""
+    },
+    {
+      "id": 6,
+      "code": "P",
+      "name": "Pior",
+      "score": -50.0,
+      "color": "#E6A4A4",
+      "description": ""
+    },
+    {
+      "id": 7,
+      "code": "MP",
+      "name": "Muito Pior",
+      "score": -100.0,
+      "color": "#B71C1C",
+      "description": ""
     }
   ],
   "scores": {
-    "ALPHA": {
-      "A1.1": 50.0,
-      "A1.2": 0.0,
-      "A1.3": 100.0,
-      "A1.4": 50.0,
-      "A1.5": 25.0,
-      "A1.6": 25.0
+    "1": {
+      "1": 50.0,
+      "2": 0.0,
+      "3": 100.0,
+      "4": 50.0,
+      "5": 25.0,
+      "6": 25.0
     },
-    "BETA": {
-      "A1.1": 25.0,
-      "A1.2": 50.0,
-      "A1.3": 25.0,
-      "A1.4": -25.0,
-      "A1.5": 50.0,
-      "A1.6": 50.0
+    "2": {
+      "1": 25.0,
+      "2": 50.0,
+      "3": 25.0,
+      "4": -25.0,
+      "5": 50.0,
+      "6": 50.0
     },
-    "GAMMA": {
-      "A1.1": 0.0,
-      "A1.2": -25.0,
-      "A1.3": 25.0,
-      "A1.4": 100.0,
-      "A1.5": 25.0,
-      "A1.6": -25.0
+    "3": {
+      "1": 0.0,
+      "2": -25.0,
+      "3": 25.0,
+      "4": 100.0,
+      "5": 25.0,
+      "6": -25.0
     },
-    "DELTA": {
-      "A1.1": -25.0,
-      "A1.2": 25.0,
-      "A1.3": 0.0,
-      "A1.4": -25.0,
-      "A1.5": 0.0,
-      "A1.6": -25.0
+    "4": {
+      "1": -25.0,
+      "2": 25.0,
+      "3": 0.0,
+      "4": -25.0,
+      "5": 0.0,
+      "6": -25.0
     }
   },
   "semantic_scores": {
-    "ALPHA": {
-      "A1.1": "M",
-      "A1.2": "N",
-      "A1.3": "MM",
-      "A1.4": "M",
-      "A1.5": "LM",
-      "A1.6": "LM"
+    "1": {
+      "1": 2,
+      "2": 4,
+      "3": 1,
+      "4": 2,
+      "5": 3,
+      "6": 3
     },
-    "BETA": {
-      "A1.1": "LM",
-      "A1.2": "M",
-      "A1.3": "LM",
-      "A1.4": "LP",
-      "A1.5": "M",
-      "A1.6": "M"
+    "2": {
+      "1": 3,
+      "2": 2,
+      "3": 3,
+      "4": 5,
+      "5": 2,
+      "6": 2
     },
-    "GAMMA": {
-      "A1.1": "N",
-      "A1.2": "LP",
-      "A1.3": "LM",
-      "A1.4": "MM",
-      "A1.5": "LM",
-      "A1.6": "LP"
+    "3": {
+      "1": 4,
+      "2": 5,
+      "3": 3,
+      "4": 1,
+      "5": 3,
+      "6": 5
     },
-    "DELTA": {
-      "A1.1": "LP",
-      "A1.2": "LM",
-      "A1.3": "N",
-      "A1.4": "LP",
-      "A1.5": "N",
-      "A1.6": "LP"
+    "4": {
+      "1": 5,
+      "2": 3,
+      "3": 4,
+      "4": 5,
+      "5": 4,
+      "6": 5
     }
   },
-  "created_by": "MMASSITI Moderno",
+  "created_by": "MCDA Moderno",
   "notes": "Problema exemplo baseado nos slides de MCDA para fornecedores de fruta. Os pesos seguem a lógica A1.1=100, A1.2=80, A1.3=60, A1.4=50, A1.5=40, A1.6=40."
 }

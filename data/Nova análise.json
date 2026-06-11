@@ -6,6 +6,7 @@
   "alternatives": [],
   "criteria": [
     {
+      "id": 1,
       "code": "A1.1",
       "name": "Qualidade da Fruta",
       "phase": 1,
@@ -15,60 +16,10 @@
       "weight": 100.0,
       "is_cost": false,
       "neutral_level": "N",
-      "best_level": "MM",
-      "levels": [
-        {
-          "code": "MM",
-          "name": "Muito Melhor",
-          "score": 100.0,
-          "color": "#0B6623",
-          "description": ""
-        },
-        {
-          "code": "M",
-          "name": "Melhor",
-          "score": 50.0,
-          "color": "#2F8F3A",
-          "description": ""
-        },
-        {
-          "code": "LM",
-          "name": "Ligeiramente Melhor",
-          "score": 25.0,
-          "color": "#74BF7B",
-          "description": ""
-        },
-        {
-          "code": "N",
-          "name": "Neutro",
-          "score": 0.0,
-          "color": "#EAF4EC",
-          "description": ""
-        },
-        {
-          "code": "LP",
-          "name": "Ligeiramente Pior",
-          "score": -25.0,
-          "color": "#F7D08A",
-          "description": ""
-        },
-        {
-          "code": "P",
-          "name": "Pior",
-          "score": -50.0,
-          "color": "#E6A4A4",
-          "description": ""
-        },
-        {
-          "code": "MP",
-          "name": "Muito Pior",
-          "score": -100.0,
-          "color": "#B71C1C",
-          "description": ""
-        }
-      ]
+      "best_level": "MM"
     },
     {
+      "id": 2,
       "code": "A1.2",
       "name": "Preço / Custo Total",
       "phase": 1,
@@ -78,60 +29,10 @@
       "weight": 80.0,
       "is_cost": true,
       "neutral_level": "N",
-      "best_level": "MM",
-      "levels": [
-        {
-          "code": "MM",
-          "name": "Muito Melhor",
-          "score": 100.0,
-          "color": "#0B6623",
-          "description": ""
-        },
-        {
-          "code": "M",
-          "name": "Melhor",
-          "score": 50.0,
-          "color": "#2F8F3A",
-          "description": ""
-        },
-        {
-          "code": "LM",
-          "name": "Ligeiramente Melhor",
-          "score": 25.0,
-          "color": "#74BF7B",
-          "description": ""
-        },
-        {
-          "code": "N",
-          "name": "Neutro",
-          "score": 0.0,
-          "color": "#EAF4EC",
-          "description": ""
-        },
-        {
-          "code": "LP",
-          "name": "Ligeiramente Pior",
-          "score": -25.0,
-          "color": "#F7D08A",
-          "description": ""
-        },
-        {
-          "code": "P",
-          "name": "Pior",
-          "score": -50.0,
-          "color": "#E6A4A4",
-          "description": ""
-        },
-        {
-          "code": "MP",
-          "name": "Muito Pior",
-          "score": -100.0,
-          "color": "#B71C1C",
-          "description": ""
-        }
-      ]
+      "best_level": "MM"
     },
     {
+      "id": 3,
       "code": "A1.3",
       "name": "Prazo de Entrega",
       "phase": 1,
@@ -141,60 +42,10 @@
       "weight": 60.0,
       "is_cost": false,
       "neutral_level": "N",
-      "best_level": "MM",
-      "levels": [
-        {
-          "code": "MM",
-          "name": "Muito Melhor",
-          "score": 100.0,
-          "color": "#0B6623",
-          "description": ""
-        },
-        {
-          "code": "M",
-          "name": "Melhor",
-          "score": 50.0,
-          "color": "#2F8F3A",
-          "description": ""
-        },
-        {
-          "code": "LM",
-          "name": "Ligeiramente Melhor",
-          "score": 25.0,
-          "color": "#74BF7B",
-          "description": ""
-        },
-        {
-          "code": "N",
-          "name": "Neutro",
-          "score": 0.0,
-          "color": "#EAF4EC",
-          "description": ""
-        },
-        {
-          "code": "LP",
-          "name": "Ligeiramente Pior",
-          "score": -25.0,
-          "color": "#F7D08A",
-          "description": ""
-        },
-        {
-          "code": "P",
-          "name": "Pior",
-          "score": -50.0,
-          "color": "#E6A4A4",
-          "description": ""
-        },
-        {
-          "code": "MP",
-          "name": "Muito Pior",
-          "score": -100.0,
-          "color": "#B71C1C",
-          "description": ""
-        }
-      ]
+      "best_level": "MM"
     },
     {
+      "id": 4,
       "code": "A1.4",
       "name": "Sustentabilidade",
       "phase": 1,
@@ -204,60 +55,10 @@
       "weight": 50.0,
       "is_cost": false,
       "neutral_level": "N",
-      "best_level": "MM",
-      "levels": [
-        {
-          "code": "MM",
-          "name": "Muito Melhor",
-          "score": 100.0,
-          "color": "#0B6623",
-          "description": ""
-        },
-        {
-          "code": "M",
-          "name": "Melhor",
-          "score": 50.0,
-          "color": "#2F8F3A",
-          "description": ""
-        },
-        {
-          "code": "LM",
-          "name": "Ligeiramente Melhor",
-          "score": 25.0,
-          "color": "#74BF7B",
-          "description": ""
-        },
-        {
-          "code": "N",
-          "name": "Neutro",
-          "score": 0.0,
-          "color": "#EAF4EC",
-          "description": ""
-        },
-        {
-          "code": "LP",
-          "name": "Ligeiramente Pior",
-          "score": -25.0,
-          "color": "#F7D08A",
-          "description": ""
-        },
-        {
-          "code": "P",
-          "name": "Pior",
-          "score": -50.0,
-          "color": "#E6A4A4",
-          "description": ""
-        },
-        {
-          "code": "MP",
-          "name": "Muito Pior",
-          "score": -100.0,
-          "color": "#B71C1C",
-          "description": ""
-        }
-      ]
+      "best_level": "MM"
     },
     {
+      "id": 5,
       "code": "A1.5",
       "name": "Fiabilidade / Reputação",
       "phase": 1,
@@ -267,60 +68,10 @@
       "weight": 40.0,
       "is_cost": false,
       "neutral_level": "N",
-      "best_level": "MM",
-      "levels": [
-        {
-          "code": "MM",
-          "name": "Muito Melhor",
-          "score": 100.0,
-          "color": "#0B6623",
-          "description": ""
-        },
-        {
-          "code": "M",
-          "name": "Melhor",
-          "score": 50.0,
-          "color": "#2F8F3A",
-          "description": ""
-        },
-        {
-          "code": "LM",
-          "name": "Ligeiramente Melhor",
-          "score": 25.0,
-          "color": "#74BF7B",
-          "description": ""
-        },
-        {
-          "code": "N",
-          "name": "Neutro",
-          "score": 0.0,
-          "color": "#EAF4EC",
-          "description": ""
-        },
-        {
-          "code": "LP",
-          "name": "Ligeiramente Pior",
-          "score": -25.0,
-          "color": "#F7D08A",
-          "description": ""
-        },
-        {
-          "code": "P",
-          "name": "Pior",
-          "score": -50.0,
-          "color": "#E6A4A4",
-          "description": ""
-        },
-        {
-          "code": "MP",
-          "name": "Muito Pior",
-          "score": -100.0,
-          "color": "#B71C1C",
-          "description": ""
-        }
-      ]
+      "best_level": "MM"
     },
     {
+      "id": 6,
       "code": "A1.6",
       "name": "Capacidade de Fornecimento",
       "phase": 1,
@@ -330,58 +81,65 @@
       "weight": 40.0,
       "is_cost": false,
       "neutral_level": "N",
-      "best_level": "MM",
-      "levels": [
-        {
-          "code": "MM",
-          "name": "Muito Melhor",
-          "score": 100.0,
-          "color": "#0B6623",
-          "description": ""
-        },
-        {
-          "code": "M",
-          "name": "Melhor",
-          "score": 50.0,
-          "color": "#2F8F3A",
-          "description": ""
-        },
-        {
-          "code": "LM",
-          "name": "Ligeiramente Melhor",
-          "score": 25.0,
-          "color": "#74BF7B",
-          "description": ""
-        },
-        {
-          "code": "N",
-          "name": "Neutro",
-          "score": 0.0,
-          "color": "#EAF4EC",
-          "description": ""
-        },
-        {
-          "code": "LP",
-          "name": "Ligeiramente Pior",
-          "score": -25.0,
-          "color": "#F7D08A",
-          "description": ""
-        },
-        {
-          "code": "P",
-          "name": "Pior",
-          "score": -50.0,
-          "color": "#E6A4A4",
-          "description": ""
-        },
-        {
-          "code": "MP",
-          "name": "Muito Pior",
-          "score": -100.0,
-          "color": "#B71C1C",
-          "description": ""
-        }
-      ]
+      "best_level": "MM"
+    }
+  ],
+  "levels": [
+    {
+      "id": 1,
+      "code": "MM",
+      "name": "Muito Melhor",
+      "score": 100.0,
+      "color": "#0B6623",
+      "description": ""
+    },
+    {
+      "id": 2,
+      "code": "M",
+      "name": "Melhor",
+      "score": 50.0,
+      "color": "#2F8F3A",
+      "description": ""
+    },
+    {
+      "id": 3,
+      "code": "LM",
+      "name": "Ligeiramente Melhor",
+      "score": 25.0,
+      "color": "#74BF7B",
+      "description": ""
+    },
+    {
+      "id": 4,
+      "code": "N",
+      "name": "Neutro",
+      "score": 0.0,
+      "color": "#EAF4EC",
+      "description": ""
+    },
+    {
+      "id": 5,
+      "code": "LP",
+      "name": "Ligeiramente Pior",
+      "score": -25.0,
+      "color": "#F7D08A",
+      "description": ""
+    },
+    {
+      "id": 6,
+      "code": "P",
+      "name": "Pior",
+      "score": -50.0,
+      "color": "#E6A4A4",
+      "description": ""
+    },
+    {
+      "id": 7,
+      "code": "MP",
+      "name": "Muito Pior",
+      "score": -100.0,
+      "color": "#B71C1C",
+      "description": ""
     }
   ],
   "scores": {},

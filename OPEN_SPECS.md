@@ -1,12 +1,12 @@
-# OPEN_SPECS — RETAILL_MCDA / MMASSITI Moderno
+# OPEN_SPECS — RETAILL_MCDA / MCDA Moderno
 
 ## 1. Identificação do projeto
 
 **Nome final do repositório:** `RETAILL_MCDA`  
-**Nome da aplicação:** `MMASSITI Moderno — Seleção de Fornecedores de Fruta`  
+**Nome da aplicação:** `MCDA Moderno — Seleção de Fornecedores de Fruta`  
 **Tipo de projeto:** Aplicação web local em Python para apoio à decisão multicritério.  
 **Tecnologia principal:** Python + Streamlit + JSON.  
-**Inspiração:** Aplicação legacy MMASSI/IT e slides do exemplo MCDA para seleção de fornecedores de fruta.
+**Inspiração:** Aplicação legacy MCDA e slides do exemplo MCDA para seleção de fornecedores de fruta.
 
 > Decisão de projeto: o nome com dois “L” é intencional. O projeto deve usar `RETAILL_MCDA` de forma consistente no README e na interface.
 
@@ -14,7 +14,7 @@
 
 ## 2. Objetivo
 
-Desenvolver uma versão moderna, simples e extensível do MMASSI/IT, usando Python e ficheiros JSON, com uma interface mais atual e visualmente inspirada na aplicação original e nos slides fornecidos.
+Desenvolver uma versão moderna, simples e extensível do MCDA, usando Python e ficheiros JSON, com uma interface mais atual e visualmente inspirada na aplicação original e nos slides fornecidos.
 
 A aplicação deve permitir estruturar um problema de decisão multicritério, avaliar alternativas com critérios ponderados, usar uma escala semântica de 7 níveis, calcular rankings e executar análises de sensibilidade/robustez.
 
@@ -32,7 +32,7 @@ Uma empresa de distribuição de fruta precisa selecionar fornecedores para a su
 - Reputação vs. proximidade;
 - Capacidade de fornecimento vs. risco operacional.
 
-A metodologia MCDA/MMASSI-IT estrutura a decisão num processo claro, auditável e compreensível para decisores não técnicos.
+A metodologia MCDA/MCDA estrutura a decisão num processo claro, auditável e compreensível para decisores não técnicos.
 
 ---
 
@@ -221,7 +221,7 @@ data/fornecedores_fruta_50_variado.json
 ### 9.2 Descrição
 
 ```text
-Modelo MCDA/MMASSI-IT para selecionar fornecedores de fruta numa cadeia de abastecimento.
+Modelo MCDA/MCDA para selecionar fornecedores de fruta numa cadeia de abastecimento.
 ```
 
 ### 9.3 Contexto
@@ -372,7 +372,7 @@ GAMMA pode melhorar, mas ALPHA deve manter a recomendação no exemplo base.
 
 ---
 
-## 16. Etapas do processo MMASSI/IT
+## 16. Etapas do processo MCDA
 
 A aplicação deve representar as 8 etapas discutidas nos slides:
 
@@ -527,14 +527,14 @@ data/fornecedores_fruta_alpha.json
 ```json
 {
   "name": "Seleção de Fornecedores de Fruta",
-  "description": "Modelo MCDA/MMASSI-IT para selecionar fornecedores de fruta numa cadeia de abastecimento.",
+  "description": "Modelo MCDA/MCDA para selecionar fornecedores de fruta numa cadeia de abastecimento.",
   "context": "Uma empresa de distribuição de fruta precisa selecionar fornecedores...",
   "methodology": "1fase",
   "alternatives": [],
   "criteria": [],
   "scores": {},
   "semantic_scores": {},
-  "created_by": "MMASSITI Moderno",
+  "created_by": "MCDA Moderno",
   "notes": ""
 }
 ```
@@ -675,7 +675,7 @@ O README deve começar com:
 ```markdown
 # RETAILL_MCDA
 
-## MMASSITI Moderno — Seleção de Fornecedores de Fruta
+## MCDA Moderno — Seleção de Fornecedores de Fruta
 ```
 
 Evitar colocar o título principal no fim do ficheiro.
@@ -687,7 +687,7 @@ Evitar colocar o título principal no fim do ficheiro.
 Estado do projeto:
 
 ```text
-Protótipo funcional inicial com dashboard MMASSI/IT, gestão JSON no menu lateral, exportação CSV/Excel/PDF e testes unitários de cálculo.
+Protótipo funcional inicial com dashboard MCDA, gestão JSON no menu lateral, exportação CSV/Excel/PDF e testes unitários de cálculo.
 ```
 
 Versão conceptual:

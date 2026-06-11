@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import base64
-import html
 from io import BytesIO
 from pathlib import Path
 
@@ -9,8 +8,17 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-from core.models import Analysis, Alternative, Criterion, SEVEN_LEVEL_SCALE, level_score
-from core.storage import DATA_DIR, analysis_to_json, load_analysis, load_analysis_from_json_text, save_analysis
+from core.models import (
+    Analysis,
+    Alternative,
+    Criterion,
+    Level,
+    closest_level_code,
+    level_score,
+    neutral_level_code,
+    scale_for_analysis,
+)
+from core.storage import DATA_DIR, analysis_to_json, list_analysis_files, load_analysis, load_analysis_from_json_text, save_analysis
 from core.sample_data import create_fruit_supplier_analysis
 from core.calculation import criterion_contributions, evaluate_all, evaluate_phase, normalize_weights, robustness_summary, selected_criteria, sensitivity_scenarios
 
@@ -25,7 +33,7 @@ MENU_ITEMS = [
     "Análise",
     "Fornecedores",
     "Critérios & Pesos",
-    "Escala 7 Níveis",
+    "Escala",
     "Avaliações",
     "Resultados",
     "Sensibilidade",
@@ -79,7 +87,7 @@ TRANSLATIONS = {
         "nav_analysis": "Análise",
         "nav_suppliers": "Fornecedores",
         "nav_criteria": "Critérios & Pesos",
-        "nav_levels": "Escala 7 Níveis",
+        "nav_levels": "Escala",
         "nav_scores": "Avaliações",
         "nav_results": "Resultados",
         "nav_sensitivity": "Sensibilidade",
@@ -87,9 +95,9 @@ TRANSLATIONS = {
         "decision_conflicts": "Conflitos de decisão",
         "decision_conflicts_text": "Preço vs. qualidade, prazo vs. variedade, sustentabilidade vs. custo e reputação vs. proximidade.",
         "scale": "Escala",
-        "scale_text": "Sete níveis semânticos de -100 a +100, com neutro e melhor como referências.",
+        "scale_text": "Escala semântica configurável, com códigos, pontuações e cores definidos pela análise.",
         "quick_nav": "Navegação rápida e fluxo principal na barra superior.",
-        "steps_title": "8 etapas MMASSI/IT",
+        "steps_title": "8 etapas MCDA",
         "recommended_supplier": "Fornecedor recomendado",
         "global_value": "Valor Global",
         "global_value_axis": "Valor global",
@@ -121,7 +129,7 @@ TRANSLATIONS = {
         "relative_importance": "Importância relativa dos critérios",
         "level": "Nível",
         "score": "Pontuação",
-        "semantic_scale_title": "Escala semântica de 7 níveis",
+        "semantic_scale_title": "Escala semântica",
         "reference_example": "Exemplo de referência: Calibre",
         "neutral": "Neutro",
         "better": "Melhor",
@@ -149,13 +157,13 @@ TRANSLATIONS = {
         "selected_phase2": "Selecionada para 2.ª fase",
     },
     "en": {
-        "current_analysis": "Current analysis", "language": "Language", "new_analysis": "New Analysis", "read_analysis": "Open Analysis", "save_analysis": "Save Analysis", "producer_filter": "Producers in charts", "producer_filter_help": "Only limits the view. Calculations still use all producers.", "all": "All", "complete_export": "Complete export", "export_csv": "Export CSV", "export_excel": "Export Excel", "export_pdf": "Export PDF", "yes": "Yes", "no": "No", "cancel": "Cancel", "create": "Create", "save": "Save", "saved_to": "Saved to {name}", "new_analysis_created": "New analysis created.", "analysis_loaded": "Analysis loaded.", "confirm_new_body": "Before creating a new analysis, choose what to do with the current analysis.", "confirm_read_body": "Before opening another JSON analysis, choose what to do with the current analysis.", "new_analysis_name": "New analysis name", "save_filename": "JSON file name", "select_json": "Select JSON file", "select_json_error": "Select a JSON file.", "read_error": "Error reading analysis: {error}", "nav_dashboard": "Dashboard", "nav_analysis": "Analysis", "nav_suppliers": "Suppliers", "nav_criteria": "Criteria & Weights", "nav_levels": "7-Level Scale", "nav_scores": "Assessments", "nav_results": "Results", "nav_sensitivity": "Sensitivity", "problem": "Problem", "decision_conflicts": "Decision conflicts", "decision_conflicts_text": "Price vs. quality, lead time vs. variety, sustainability vs. cost, and reputation vs. proximity.", "scale": "Scale", "scale_text": "Seven semantic levels from -100 to +100, with neutral and better as references.", "quick_nav": "Quick navigation and main workflow in the top bar.", "steps_title": "8 MMASSI/IT steps", "recommended_supplier": "Recommended supplier", "global_value": "Global Value", "global_value_axis": "Global value", "supplier": "Supplier", "final_ranking": "Final ranking", "analysis_name": "Analysis name", "description": "Description", "context": "Problem context", "notes": "Notes", "methodology": "Methodology", "owner": "Owner", "alternatives": "Alternatives", "criteria": "Criteria", "save_analysis_changes": "Save analysis changes", "cost": "Cost", "apply_suppliers": "Apply suppliers", "criteria_help": "Add rows to create criteria; edit existing rows; delete rows to remove criteria.", "code": "Code", "name": "Name", "phase": "Phase", "selected": "Selected", "weight": "Weight", "cost_risk": "Cost/Risk?", "order": "Order", "unique_criterion_help": "Unique criterion identifier, for example A1.7.", "apply_criteria": "Apply criteria and weights", "original_weight": "Original weight", "normalized_weight_pct": "Normalized weight (%)", "relative_importance": "Relative importance of criteria", "level": "Level", "score": "Score", "semantic_scale_title": "7-level semantic scale", "reference_example": "Reference example: Size grade", "neutral": "Neutral", "better": "Better", "worse": "Worse", "apply_scores": "Apply assessments", "colored_matrix": "Colored assessment matrix", "matrix_caption": "Producers in rows and criteria in columns. The list follows the visual filter set in the sidebar.", "producer": "Producer", "no_results": "No selected criteria are available to calculate results.", "formula": "Formula", "formula_text": "Global Value = Σ (Normalized Criterion Weight × Scale Score)", "contribution": "Contribution", "criterion": "Criterion", "criteria_contribution": "Criteria contribution by supplier", "download_phase_csv": "Download phase {phase} results as CSV", "no_sensitivity": "There is not enough data for sensitivity analysis.", "scenarios": "Scenarios", "scenario": "Scenario", "ranking_stability": "Ranking stability by scenario", "robustness_summary": "Robustness summary", "keeps_base_winner": "Keeps base winner?", "winner": "Winner", "robust_conclusion": "Conclusion: robust ranking — {winner} keeps the recommendation in the tested scenarios.", "sensitive_ranking": "The ranking is sensitive in at least one scenario.", "selected_phase2": "Selected for phase 2",
+        "current_analysis": "Current analysis", "language": "Language", "new_analysis": "New Analysis", "read_analysis": "Open Analysis", "save_analysis": "Save Analysis", "producer_filter": "Producers in charts", "producer_filter_help": "Only limits the view. Calculations still use all producers.", "all": "All", "complete_export": "Complete export", "export_csv": "Export CSV", "export_excel": "Export Excel", "export_pdf": "Export PDF", "yes": "Yes", "no": "No", "cancel": "Cancel", "create": "Create", "save": "Save", "saved_to": "Saved to {name}", "new_analysis_created": "New analysis created.", "analysis_loaded": "Analysis loaded.", "confirm_new_body": "Before creating a new analysis, choose what to do with the current analysis.", "confirm_read_body": "Before opening another JSON analysis, choose what to do with the current analysis.", "new_analysis_name": "New analysis name", "save_filename": "JSON file name", "select_json": "Select JSON file", "select_json_error": "Select a JSON file.", "read_error": "Error reading analysis: {error}", "nav_dashboard": "Dashboard", "nav_analysis": "Analysis", "nav_suppliers": "Suppliers", "nav_criteria": "Criteria & Weights", "nav_levels": "Scale", "nav_scores": "Assessments", "nav_results": "Results", "nav_sensitivity": "Sensitivity", "problem": "Problem", "decision_conflicts": "Decision conflicts", "decision_conflicts_text": "Price vs. quality, lead time vs. variety, sustainability vs. cost, and reputation vs. proximity.", "scale": "Scale", "scale_text": "Configurable semantic scale with codes, scores, and colors defined by the analysis.", "quick_nav": "Quick navigation and main workflow in the top bar.", "steps_title": "8 MCDA steps", "recommended_supplier": "Recommended supplier", "global_value": "Global Value", "global_value_axis": "Global value", "supplier": "Supplier", "final_ranking": "Final ranking", "analysis_name": "Analysis name", "description": "Description", "context": "Problem context", "notes": "Notes", "methodology": "Methodology", "owner": "Owner", "alternatives": "Alternatives", "criteria": "Criteria", "save_analysis_changes": "Save analysis changes", "cost": "Cost", "apply_suppliers": "Apply suppliers", "criteria_help": "Add rows to create criteria; edit existing rows; delete rows to remove criteria.", "code": "Code", "name": "Name", "phase": "Phase", "selected": "Selected", "weight": "Weight", "cost_risk": "Cost/Risk?", "order": "Order", "unique_criterion_help": "Unique criterion identifier, for example A1.7.", "apply_criteria": "Apply criteria and weights", "original_weight": "Original weight", "normalized_weight_pct": "Normalized weight (%)", "relative_importance": "Relative importance of criteria", "level": "Level", "score": "Score", "semantic_scale_title": "Semantic scale", "reference_example": "Reference example: Size grade", "neutral": "Neutral", "better": "Better", "worse": "Worse", "apply_scores": "Apply assessments", "colored_matrix": "Colored assessment matrix", "matrix_caption": "Producers in rows and criteria in columns. The list follows the visual filter set in the sidebar.", "producer": "Producer", "no_results": "No selected criteria are available to calculate results.", "formula": "Formula", "formula_text": "Global Value = Σ (Normalized Criterion Weight × Scale Score)", "contribution": "Contribution", "criterion": "Criterion", "criteria_contribution": "Criteria contribution by supplier", "download_phase_csv": "Download phase {phase} results as CSV", "no_sensitivity": "There is not enough data for sensitivity analysis.", "scenarios": "Scenarios", "scenario": "Scenario", "ranking_stability": "Ranking stability by scenario", "robustness_summary": "Robustness summary", "keeps_base_winner": "Keeps base winner?", "winner": "Winner", "robust_conclusion": "Conclusion: robust ranking — {winner} keeps the recommendation in the tested scenarios.", "sensitive_ranking": "The ranking is sensitive in at least one scenario.", "selected_phase2": "Selected for phase 2",
     },
     "es": {
-        "current_analysis": "Análisis actual", "language": "Idioma", "new_analysis": "Nuevo Análisis", "read_analysis": "Leer Análisis", "save_analysis": "Guardar Análisis", "producer_filter": "Productores en gráficos", "producer_filter_help": "Solo limita la visualización. Los cálculos siguen usando todos los productores.", "all": "Todos", "complete_export": "Exportación completa", "export_csv": "Exportar CSV", "export_excel": "Exportar Excel", "export_pdf": "Exportar PDF", "yes": "Sí", "no": "No", "cancel": "Cancelar", "create": "Crear", "save": "Guardar", "saved_to": "Guardado en {name}", "new_analysis_created": "Nuevo análisis creado.", "analysis_loaded": "Análisis cargado.", "confirm_new_body": "Antes de crear un nuevo análisis, elija qué hacer con el análisis actual.", "confirm_read_body": "Antes de leer otro análisis JSON, elija qué hacer con el análisis actual.", "new_analysis_name": "Nombre del nuevo análisis", "save_filename": "Nombre del fichero JSON", "select_json": "Seleccionar fichero JSON", "select_json_error": "Seleccione un fichero JSON.", "read_error": "Error al leer el análisis: {error}", "nav_dashboard": "Panel", "nav_analysis": "Análisis", "nav_suppliers": "Proveedores", "nav_criteria": "Criterios y Pesos", "nav_levels": "Escala de 7 Niveles", "nav_scores": "Evaluaciones", "nav_results": "Resultados", "nav_sensitivity": "Sensibilidad", "problem": "Problema", "decision_conflicts": "Conflictos de decisión", "decision_conflicts_text": "Precio vs. calidad, plazo vs. variedad, sostenibilidad vs. coste y reputación vs. proximidad.", "scale": "Escala", "scale_text": "Siete niveles semánticos de -100 a +100, con neutro y mejor como referencias.", "quick_nav": "Navegación rápida y flujo principal en la barra superior.", "steps_title": "8 etapas MMASSI/IT", "recommended_supplier": "Proveedor recomendado", "global_value": "Valor Global", "global_value_axis": "Valor global", "supplier": "Proveedor", "final_ranking": "Ranking final", "analysis_name": "Nombre del análisis", "description": "Descripción", "context": "Contexto del problema", "notes": "Notas", "methodology": "Metodología", "owner": "Responsable", "alternatives": "Alternativas", "criteria": "Criterios", "save_analysis_changes": "Guardar cambios del análisis", "cost": "Coste", "apply_suppliers": "Aplicar proveedores", "criteria_help": "Añada filas para crear criterios; edite filas existentes; elimine filas para quitar criterios.", "code": "Código", "name": "Nombre", "phase": "Fase", "selected": "Seleccionado", "weight": "Peso", "cost_risk": "Coste/Riesgo?", "order": "Orden", "unique_criterion_help": "Identificador único del criterio, por ejemplo A1.7.", "apply_criteria": "Aplicar criterios y pesos", "original_weight": "Peso original", "normalized_weight_pct": "Peso normalizado (%)", "relative_importance": "Importancia relativa de los criterios", "level": "Nivel", "score": "Puntuación", "semantic_scale_title": "Escala semántica de 7 niveles", "reference_example": "Ejemplo de referencia: Calibre", "neutral": "Neutro", "better": "Mejor", "worse": "Peor", "apply_scores": "Aplicar evaluaciones", "colored_matrix": "Matriz de evaluación coloreada", "matrix_caption": "Productores en las filas y criterios en las columnas. La lista sigue el filtro visual definido en la barra lateral.", "producer": "Productor", "no_results": "No hay criterios seleccionados para calcular resultados.", "formula": "Fórmula", "formula_text": "Valor Global = Σ (Peso normalizado del Criterio × Puntuación en la Escala)", "contribution": "Contribución", "criterion": "Criterio", "criteria_contribution": "Contribución de criterios por proveedor", "download_phase_csv": "Descargar resultados de la fase {phase} en CSV", "no_sensitivity": "No hay datos suficientes para el análisis de sensibilidad.", "scenarios": "Escenarios", "scenario": "Escenario", "ranking_stability": "Estabilidad del ranking por escenario", "robustness_summary": "Resumen de robustez", "keeps_base_winner": "Mantiene el ganador base?", "winner": "Ganador", "robust_conclusion": "Conclusión: ranking robusto — {winner} mantiene la recomendación en los escenarios probados.", "sensitive_ranking": "El ranking es sensible en al menos un escenario.", "selected_phase2": "Seleccionada para la fase 2",
+        "current_analysis": "Análisis actual", "language": "Idioma", "new_analysis": "Nuevo Análisis", "read_analysis": "Leer Análisis", "save_analysis": "Guardar Análisis", "producer_filter": "Productores en gráficos", "producer_filter_help": "Solo limita la visualización. Los cálculos siguen usando todos los productores.", "all": "Todos", "complete_export": "Exportación completa", "export_csv": "Exportar CSV", "export_excel": "Exportar Excel", "export_pdf": "Exportar PDF", "yes": "Sí", "no": "No", "cancel": "Cancelar", "create": "Crear", "save": "Guardar", "saved_to": "Guardado en {name}", "new_analysis_created": "Nuevo análisis creado.", "analysis_loaded": "Análisis cargado.", "confirm_new_body": "Antes de crear un nuevo análisis, elija qué hacer con el análisis actual.", "confirm_read_body": "Antes de leer otro análisis JSON, elija qué hacer con el análisis actual.", "new_analysis_name": "Nombre del nuevo análisis", "save_filename": "Nombre del fichero JSON", "select_json": "Seleccionar fichero JSON", "select_json_error": "Seleccione un fichero JSON.", "read_error": "Error al leer el análisis: {error}", "nav_dashboard": "Panel", "nav_analysis": "Análisis", "nav_suppliers": "Proveedores", "nav_criteria": "Criterios y Pesos", "nav_levels": "Escala", "nav_scores": "Evaluaciones", "nav_results": "Resultados", "nav_sensitivity": "Sensibilidad", "problem": "Problema", "decision_conflicts": "Conflictos de decisión", "decision_conflicts_text": "Precio vs. calidad, plazo vs. variedad, sostenibilidad vs. coste y reputación vs. proximidad.", "scale": "Escala", "scale_text": "Escala semántica configurable con códigos, puntuaciones y colores definidos por el análisis.", "quick_nav": "Navegación rápida y flujo principal en la barra superior.", "steps_title": "8 etapas MCDA", "recommended_supplier": "Proveedor recomendado", "global_value": "Valor Global", "global_value_axis": "Valor global", "supplier": "Proveedor", "final_ranking": "Ranking final", "analysis_name": "Nombre del análisis", "description": "Descripción", "context": "Contexto del problema", "notes": "Notas", "methodology": "Metodología", "owner": "Responsable", "alternatives": "Alternativas", "criteria": "Criterios", "save_analysis_changes": "Guardar cambios del análisis", "cost": "Coste", "apply_suppliers": "Aplicar proveedores", "criteria_help": "Añada filas para crear criterios; edite filas existentes; elimine filas para quitar criterios.", "code": "Código", "name": "Nombre", "phase": "Fase", "selected": "Seleccionado", "weight": "Peso", "cost_risk": "Coste/Riesgo?", "order": "Orden", "unique_criterion_help": "Identificador único del criterio, por ejemplo A1.7.", "apply_criteria": "Aplicar criterios y pesos", "original_weight": "Peso original", "normalized_weight_pct": "Peso normalizado (%)", "relative_importance": "Importancia relativa de los criterios", "level": "Nivel", "score": "Puntuación", "semantic_scale_title": "Escala semántica", "reference_example": "Ejemplo de referencia: Calibre", "neutral": "Neutro", "better": "Mejor", "worse": "Peor", "apply_scores": "Aplicar evaluaciones", "colored_matrix": "Matriz de evaluación coloreada", "matrix_caption": "Productores en las filas y criterios en las columnas. La lista sigue el filtro visual definido en la barra lateral.", "producer": "Productor", "no_results": "No hay criterios seleccionados para calcular resultados.", "formula": "Fórmula", "formula_text": "Valor Global = Σ (Peso normalizado del Criterio × Puntuación en la Escala)", "contribution": "Contribución", "criterion": "Criterio", "criteria_contribution": "Contribución de criterios por proveedor", "download_phase_csv": "Descargar resultados de la fase {phase} en CSV", "no_sensitivity": "No hay datos suficientes para el análisis de sensibilidad.", "scenarios": "Escenarios", "scenario": "Escenario", "ranking_stability": "Estabilidad del ranking por escenario", "robustness_summary": "Resumen de robustez", "keeps_base_winner": "Mantiene el ganador base?", "winner": "Ganador", "robust_conclusion": "Conclusión: ranking robusto — {winner} mantiene la recomendación en los escenarios probados.", "sensitive_ranking": "El ranking es sensible en al menos un escenario.", "selected_phase2": "Seleccionada para la fase 2",
     },
     "tr": {
-        "current_analysis": "Geçerli analiz", "language": "Dil", "new_analysis": "Yeni Analiz", "read_analysis": "Analiz Aç", "save_analysis": "Analizi Kaydet", "producer_filter": "Grafiklerdeki üreticiler", "producer_filter_help": "Yalnızca görünümü sınırlar. Hesaplamalar tüm üreticileri kullanmaya devam eder.", "all": "Tümü", "complete_export": "Tam dışa aktarma", "export_csv": "CSV dışa aktar", "export_excel": "Excel dışa aktar", "export_pdf": "PDF dışa aktar", "yes": "Evet", "no": "Hayır", "cancel": "İptal", "create": "Oluştur", "save": "Kaydet", "saved_to": "{name} dosyasına kaydedildi", "new_analysis_created": "Yeni analiz oluşturuldu.", "analysis_loaded": "Analiz yüklendi.", "confirm_new_body": "Yeni analiz oluşturmadan önce geçerli analizle ne yapılacağını seçin.", "confirm_read_body": "Başka bir JSON analizi açmadan önce geçerli analizle ne yapılacağını seçin.", "new_analysis_name": "Yeni analiz adı", "save_filename": "JSON dosya adı", "select_json": "JSON dosyası seç", "select_json_error": "Bir JSON dosyası seçin.", "read_error": "Analiz okunurken hata: {error}", "nav_dashboard": "Panel", "nav_analysis": "Analiz", "nav_suppliers": "Tedarikçiler", "nav_criteria": "Kriterler ve Ağırlıklar", "nav_levels": "7 Seviyeli Ölçek", "nav_scores": "Değerlendirmeler", "nav_results": "Sonuçlar", "nav_sensitivity": "Duyarlılık", "problem": "Problem", "decision_conflicts": "Karar çatışmaları", "decision_conflicts_text": "Fiyat ve kalite, teslim süresi ve çeşitlilik, sürdürülebilirlik ve maliyet, itibar ve yakınlık.", "scale": "Ölçek", "scale_text": "-100 ile +100 arasında, nötr ve daha iyi referanslarıyla yedi anlamsal seviye.", "quick_nav": "Üst çubukta hızlı gezinme ve ana akış.", "steps_title": "8 MMASSI/IT adımı", "recommended_supplier": "Önerilen tedarikçi", "global_value": "Global Değer", "global_value_axis": "Global değer", "supplier": "Tedarikçi", "final_ranking": "Nihai sıralama", "analysis_name": "Analiz adı", "description": "Açıklama", "context": "Problem bağlamı", "notes": "Notlar", "methodology": "Metodoloji", "owner": "Sorumlu", "alternatives": "Alternatifler", "criteria": "Kriterler", "save_analysis_changes": "Analiz değişikliklerini kaydet", "cost": "Maliyet", "apply_suppliers": "Tedarikçileri uygula", "criteria_help": "Kriter oluşturmak için satır ekleyin; mevcut satırları düzenleyin; kriter silmek için satırları kaldırın.", "code": "Kod", "name": "Ad", "phase": "Aşama", "selected": "Seçili", "weight": "Ağırlık", "cost_risk": "Maliyet/Risk?", "order": "Sıra", "unique_criterion_help": "Benzersiz kriter tanımlayıcısı, örneğin A1.7.", "apply_criteria": "Kriterleri ve ağırlıkları uygula", "original_weight": "Orijinal ağırlık", "normalized_weight_pct": "Normalize ağırlık (%)", "relative_importance": "Kriterlerin göreli önemi", "level": "Seviye", "score": "Puan", "semantic_scale_title": "7 seviyeli anlamsal ölçek", "reference_example": "Referans örnek: Kalibre", "neutral": "Nötr", "better": "Daha iyi", "worse": "Daha kötü", "apply_scores": "Değerlendirmeleri uygula", "colored_matrix": "Renkli değerlendirme matrisi", "matrix_caption": "Üreticiler satırlarda, kriterler sütunlarda gösterilir. Liste yan çubuktaki görsel filtreyi izler.", "producer": "Üretici", "no_results": "Sonuç hesaplamak için seçili kriter yok.", "formula": "Formül", "formula_text": "Global Değer = Σ (Normalize Kriter Ağırlığı × Ölçek Puanı)", "contribution": "Katkı", "criterion": "Kriter", "criteria_contribution": "Tedarikçiye göre kriter katkısı", "download_phase_csv": "{phase}. aşama sonuçlarını CSV indir", "no_sensitivity": "Duyarlılık analizi için yeterli veri yok.", "scenarios": "Senaryolar", "scenario": "Senaryo", "ranking_stability": "Senaryoya göre sıralama kararlılığı", "robustness_summary": "Sağlamlık özeti", "keeps_base_winner": "Temel kazanan korunuyor mu?", "winner": "Kazanan", "robust_conclusion": "Sonuç: sağlam sıralama — {winner} test edilen senaryolarda öneriyi koruyor.", "sensitive_ranking": "Sıralama en az bir senaryoda duyarlıdır.", "selected_phase2": "2. aşama için seçili",
+        "current_analysis": "Geçerli analiz", "language": "Dil", "new_analysis": "Yeni Analiz", "read_analysis": "Analiz Aç", "save_analysis": "Analizi Kaydet", "producer_filter": "Grafiklerdeki üreticiler", "producer_filter_help": "Yalnızca görünümü sınırlar. Hesaplamalar tüm üreticileri kullanmaya devam eder.", "all": "Tümü", "complete_export": "Tam dışa aktarma", "export_csv": "CSV dışa aktar", "export_excel": "Excel dışa aktar", "export_pdf": "PDF dışa aktar", "yes": "Evet", "no": "Hayır", "cancel": "İptal", "create": "Oluştur", "save": "Kaydet", "saved_to": "{name} dosyasına kaydedildi", "new_analysis_created": "Yeni analiz oluşturuldu.", "analysis_loaded": "Analiz yüklendi.", "confirm_new_body": "Yeni analiz oluşturmadan önce geçerli analizle ne yapılacağını seçin.", "confirm_read_body": "Başka bir JSON analizi açmadan önce geçerli analizle ne yapılacağını seçin.", "new_analysis_name": "Yeni analiz adı", "save_filename": "JSON dosya adı", "select_json": "JSON dosyası seç", "select_json_error": "Bir JSON dosyası seçin.", "read_error": "Analiz okunurken hata: {error}", "nav_dashboard": "Panel", "nav_analysis": "Analiz", "nav_suppliers": "Tedarikçiler", "nav_criteria": "Kriterler ve Ağırlıklar", "nav_levels": "Ölçek", "nav_scores": "Değerlendirmeler", "nav_results": "Sonuçlar", "nav_sensitivity": "Duyarlılık", "problem": "Problem", "decision_conflicts": "Karar çatışmaları", "decision_conflicts_text": "Fiyat ve kalite, teslim süresi ve çeşitlilik, sürdürülebilirlik ve maliyet, itibar ve yakınlık.", "scale": "Ölçek", "scale_text": "Kodları, puanları ve renkleri analiz tarafından tanımlanan yapılandırılabilir anlamsal ölçek.", "quick_nav": "Üst çubukta hızlı gezinme ve ana akış.", "steps_title": "8 MCDA adımı", "recommended_supplier": "Önerilen tedarikçi", "global_value": "Global Değer", "global_value_axis": "Global değer", "supplier": "Tedarikçi", "final_ranking": "Nihai sıralama", "analysis_name": "Analiz adı", "description": "Açıklama", "context": "Problem bağlamı", "notes": "Notlar", "methodology": "Metodoloji", "owner": "Sorumlu", "alternatives": "Alternatifler", "criteria": "Kriterler", "save_analysis_changes": "Analiz değişikliklerini kaydet", "cost": "Maliyet", "apply_suppliers": "Tedarikçileri uygula", "criteria_help": "Kriter oluşturmak için satır ekleyin; mevcut satırları düzenleyin; kriter silmek için satırları kaldırın.", "code": "Kod", "name": "Ad", "phase": "Aşama", "selected": "Seçili", "weight": "Ağırlık", "cost_risk": "Maliyet/Risk?", "order": "Sıra", "unique_criterion_help": "Benzersiz kriter tanımlayıcısı, örneğin A1.7.", "apply_criteria": "Kriterleri ve ağırlıkları uygula", "original_weight": "Orijinal ağırlık", "normalized_weight_pct": "Normalize ağırlık (%)", "relative_importance": "Kriterlerin göreli önemi", "level": "Seviye", "score": "Puan", "semantic_scale_title": "Anlamsal ölçek", "reference_example": "Referans örnek: Kalibre", "neutral": "Nötr", "better": "Daha iyi", "worse": "Daha kötü", "apply_scores": "Değerlendirmeleri uygula", "colored_matrix": "Renkli değerlendirme matrisi", "matrix_caption": "Üreticiler satırlarda, kriterler sütunlarda gösterilir. Liste yan çubuktaki görsel filtreyi izler.", "producer": "Üretici", "no_results": "Sonuç hesaplamak için seçili kriter yok.", "formula": "Formül", "formula_text": "Global Değer = Σ (Normalize Kriter Ağırlığı × Ölçek Puanı)", "contribution": "Katkı", "criterion": "Kriter", "criteria_contribution": "Tedarikçiye göre kriter katkısı", "download_phase_csv": "{phase}. aşama sonuçlarını CSV indir", "no_sensitivity": "Duyarlılık analizi için yeterli veri yok.", "scenarios": "Senaryolar", "scenario": "Senaryo", "ranking_stability": "Senaryoya göre sıralama kararlılığı", "robustness_summary": "Sağlamlık özeti", "keeps_base_winner": "Temel kazanan korunuyor mu?", "winner": "Kazanan", "robust_conclusion": "Sonuç: sağlam sıralama — {winner} test edilen senaryolarda öneriyi koruyor.", "sensitive_ranking": "Sıralama en az bir senaryoda duyarlıdır.", "selected_phase2": "2. aşama için seçili",
     },
 }
 
@@ -238,6 +246,20 @@ def apply_css() -> None:
         border-color: {GREEN};
         box-shadow: 0 8px 14px rgba(73,176,81,0.18);
     }}
+    div[data-testid="stButton"] button[kind="secondary"] {{
+        color: #FFFFFF !important;
+        border: 1px solid {DARK_BLUE};
+        background: linear-gradient(180deg, #19506B 0%, #15465D 100%);
+        box-shadow: 0 6px 12px rgba(23,58,94,0.12);
+        font-weight: 800;
+    }}
+    div[data-testid="stButton"] button[kind="primary"] {{
+        color: #FFFFFF !important;
+        border: 1px solid {GREEN};
+        background: linear-gradient(135deg, {GREEN} 0%, #2B8A3E 100%);
+        box-shadow: 0 8px 14px rgba(73,176,81,0.18);
+        font-weight: 800;
+    }}
     @media (max-width: 760px) {{
         .nav-compact {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
         .nav-chip {{ white-space: normal; }}
@@ -316,7 +338,7 @@ def open_save_dialog(post_save_action: str | None = None) -> None:
     st.session_state.active_dialog = "save"
 
 
-@st.dialog("MMASSITI")
+@st.dialog("MCDA")
 def confirm_new_analysis_dialog() -> None:
     st.subheader(t("save_analysis"))
     st.write(t("confirm_new_body"))
@@ -332,7 +354,7 @@ def confirm_new_analysis_dialog() -> None:
         st.rerun()
 
 
-@st.dialog("MMASSITI")
+@st.dialog("MCDA")
 def new_analysis_name_dialog() -> None:
     st.subheader(t("new_analysis_name"))
     st.text_input(t("new_analysis_name"), key="new_analysis_name")
@@ -347,7 +369,7 @@ def new_analysis_name_dialog() -> None:
         st.rerun()
 
 
-@st.dialog("MMASSITI")
+@st.dialog("MCDA")
 def save_analysis_dialog() -> None:
     st.subheader(t("save_analysis"))
     st.text_input(t("save_filename"), key="save_analysis_filename")
@@ -371,7 +393,7 @@ def save_analysis_dialog() -> None:
         st.rerun()
 
 
-@st.dialog("MMASSITI")
+@st.dialog("MCDA")
 def confirm_read_analysis_dialog() -> None:
     st.subheader(t("save_analysis"))
     st.write(t("confirm_read_body"))
@@ -388,19 +410,30 @@ def confirm_read_analysis_dialog() -> None:
         st.rerun()
 
 
-@st.dialog("MMASSITI")
+@st.dialog("MCDA")
 def read_analysis_dialog() -> None:
     st.subheader(t("read_analysis"))
+    available_files = list_analysis_files()
+    selected_path = st.selectbox(
+        t("select_json"),
+        options=[None, *available_files],
+        format_func=lambda path: "Upload JSON..." if path is None else path.name,
+        key="read_analysis_existing_file",
+    )
     uploaded = st.file_uploader(t("select_json"), type=["json"])
     c1, c2 = st.columns(2)
     if c1.button(t("read_analysis"), use_container_width=True):
-        if uploaded is None:
+        if selected_path is None and uploaded is None:
             st.error(t("select_json_error"))
             return
         try:
-            text_from_file = uploaded.getvalue().decode("utf-8")
-            st.session_state.analysis = load_analysis_from_json_text(text_from_file)
-            st.session_state.current_path = str(safe_json_path(uploaded.name))
+            if selected_path is not None:
+                st.session_state.analysis = load_analysis(selected_path)
+                st.session_state.current_path = str(selected_path)
+            else:
+                text_from_file = uploaded.getvalue().decode("utf-8")
+                st.session_state.analysis = load_analysis_from_json_text(text_from_file)
+                st.session_state.current_path = str(safe_json_path(uploaded.name))
             sync_scores_with_structure()
             mark_analysis_replaced()
             rerun_save(st.session_state.current_path)
@@ -452,8 +485,9 @@ def render_sidebar():
         open_save_dialog()
         st.rerun()
     st.sidebar.divider()
-    filter_options = ["Top 5", "Top 10", "Todos"]
-    filter_labels = {"Top 5": "Top 5", "Top 10": "Top 10", "Todos": t("all")}
+    filter_options = ["Top 5", "Top 10", "Top 20", "Top 100", "Todos"]
+    filter_labels = {option: option for option in filter_options}
+    filter_labels["Todos"] = t("all")
     st.sidebar.selectbox(
         t("producer_filter"),
         filter_options,
@@ -503,12 +537,20 @@ def render_section_nav() -> None:
     active = min(max(active, 0), len(MENU_ITEMS) - 1)
     st.session_state.active_page = active
 
-    chips = ['<div class="nav-compact">']
+    st.markdown('<div class="nav-compact">', unsafe_allow_html=True)
+    cols = st.columns(4)
     for idx, label in enumerate(translated_menu_items()):
-        cls = "nav-chip active" if idx == active else "nav-chip"
-        chips.append(f'<a class="{cls}" href="?page={idx}">{idx + 1}. {html.escape(label)}</a>')
-    chips.append("</div>")
-    st.markdown("".join(chips), unsafe_allow_html=True)
+        with cols[idx % 4]:
+            if st.button(
+                f"{idx + 1}. {label}",
+                key=f"nav_{idx}",
+                use_container_width=True,
+                type="primary" if idx == active else "secondary",
+            ):
+                st.session_state.active_page = idx
+                st.query_params["page"] = str(idx)
+                st.rerun()
+    st.markdown("</div>", unsafe_allow_html=True)
 
 
 def render_hero():
@@ -532,10 +574,10 @@ def render_steps(active: int = 1):
 
 
 def alternatives_dataframe(analysis):
-    columns = ["Nome", "Custo", "Selecionada para 2.ª fase", "Descrição"]
+    columns = ["Nº", "Nome", "Custo", "Selecionada para 2.ª fase", "Descrição"]
     return pd.DataFrame(
         [
-            {"Nome": a.name, "Custo": a.cost, "Selecionada para 2.ª fase": a.selected_for_phase2, "Descrição": a.description}
+            {"Nº": a.id, "Nome": a.name, "Custo": a.cost, "Selecionada para 2.ª fase": a.selected_for_phase2, "Descrição": a.description}
             for a in analysis.alternatives
         ],
         columns=columns,
@@ -543,11 +585,30 @@ def alternatives_dataframe(analysis):
 
 
 def criteria_dataframe(analysis):
-    columns = ["Código", "Nome", "Fase", "Selecionado", "Peso", "Custo/Risco?", "Ordem", "Descrição"]
+    columns = ["Nº", "Código", "Nome", "Fase", "Selecionado", "Peso", "Custo/Risco?", "Ordem", "Descrição"]
     return pd.DataFrame(
         [
-            {"Código": c.code, "Nome": c.name, "Fase": c.phase, "Selecionado": c.selected, "Peso": c.weight, "Custo/Risco?": c.is_cost, "Ordem": c.order, "Descrição": c.description}
+            {"Nº": c.id, "Código": c.code, "Nome": c.name, "Fase": c.phase, "Selecionado": c.selected, "Peso": c.weight, "Custo/Risco?": c.is_cost, "Ordem": c.order, "Descrição": c.description}
             for c in analysis.criteria
+        ],
+        columns=columns,
+    )
+
+
+def scale_dataframe(analysis):
+    columns = ["Nº", "Código", "Nível", "Pontuação", "Cor", "Descrição"]
+    scale = scale_for_analysis(analysis)
+    return pd.DataFrame(
+        [
+            {
+                "Nº": level.id,
+                "Código": level.code,
+                "Nível": level.name,
+                "Pontuação": level.score,
+                "Cor": level.color,
+                "Descrição": level.description,
+            }
+            for level in scale
         ],
         columns=columns,
     )
@@ -556,25 +617,108 @@ def criteria_dataframe(analysis):
 def semantic_scores_dataframe(analysis):
     rows = []
     for alt in analysis.alternatives:
-        row = {"Alternativa": alt.name}
+        row = {"Fornecedor Nº": alt.id, "Alternativa": alt.name}
         for c in analysis.criteria:
-            row[c.code] = analysis.semantic_scores.get(alt.name, {}).get(c.code, "N")
+            row[c.code] = analysis.semantic_scores.get(alt.name, {}).get(c.code, neutral_level_code(scale_for_analysis(analysis)))
         rows.append(row)
     return pd.DataFrame(rows)
 
 
 def apply_alternatives_dataframe(df):
+    existing_by_name = {alternative.name: alternative for alternative in st.session_state.analysis.alternatives}
+    used_ids = set()
+    alternatives = []
+    next_id = 1
+    def next_available_id():
+        nonlocal next_id
+        while next_id in used_ids:
+            next_id += 1
+        value = next_id
+        used_ids.add(value)
+        next_id += 1
+        return value
+
+    for _, r in df.iterrows():
+        name = str(r.get("Nome", "")).strip()
+        if not name:
+            continue
+        raw_id = r.get("Nº")
+        try:
+            alt_id = int(raw_id)
+        except (TypeError, ValueError):
+            alt_id = existing_by_name.get(name, Alternative(name=name)).id
+        if alt_id <= 0 or alt_id in used_ids:
+            alt_id = next_available_id()
+        else:
+            used_ids.add(alt_id)
+        alternatives.append(
+            Alternative(id=alt_id, name=name, cost=float(r.get("Custo", 0) or 0), selected_for_phase2=bool(r.get("Selecionada para 2.ª fase", False)), description=str(r.get("Descrição", "") or ""))
+        )
     st.session_state.analysis.alternatives = [
-        Alternative(name=str(r["Nome"]).strip(), cost=float(r.get("Custo", 0) or 0), selected_for_phase2=bool(r.get("Selecionada para 2.ª fase", False)), description=str(r.get("Descrição", "") or ""))
-        for _, r in df.iterrows() if str(r.get("Nome", "")).strip()
+        alternative for alternative in alternatives
     ]
+
+
+def _clean_color(value: str) -> str:
+    color = str(value or "").strip()
+    if not color:
+        return "#EAF4EC"
+    if not color.startswith("#"):
+        color = f"#{color}"
+    if len(color) != 7:
+        return "#EAF4EC"
+    try:
+        int(color[1:], 16)
+    except ValueError:
+        return "#EAF4EC"
+    return color.upper()
+
+
+def apply_scale_dataframe(df) -> None:
+    levels = []
+    used_codes = set()
+    used_ids = set()
+    next_id = 1
+    for _, row in df.iterrows():
+        code = str(row.get("Código", "") or "").strip().upper()
+        if not code or code in used_codes:
+            continue
+        used_codes.add(code)
+        try:
+            level_id = int(row.get("Nº"))
+        except (TypeError, ValueError):
+            level_id = 0
+        if level_id <= 0 or level_id in used_ids:
+            while next_id in used_ids:
+                next_id += 1
+            level_id = next_id
+        used_ids.add(level_id)
+        levels.append(
+            Level(
+                id=level_id,
+                code=code,
+                name=str(row.get("Nível", "") or code).strip(),
+                score=float(row.get("Pontuação", 0) or 0),
+                color=_clean_color(row.get("Cor", "#EAF4EC")),
+                description=str(row.get("Descrição", "") or ""),
+            )
+        )
+
+    if not levels:
+        levels = [Level(id=1, code="N", name="Neutro", score=0, color="#EAF4EC")]
+
+    st.session_state.analysis.levels = levels
+    sync_scores_with_structure()
+    st.session_state.criteria_revision = int(st.session_state.get("criteria_revision", 0)) + 1
 
 
 def sync_scores_with_structure(rename_map: dict[str, str] | None = None) -> None:
     analysis = st.session_state.analysis
     criterion_codes = [criterion.code for criterion in analysis.criteria]
     alternative_names = [alternative.name for alternative in analysis.alternatives]
-    valid_levels = {scale_level.code for scale_level in SEVEN_LEVEL_SCALE}
+    scale = scale_for_analysis(analysis)
+    valid_levels = {scale_level.code for scale_level in scale}
+    neutral_code = neutral_level_code(scale)
     rename_map = rename_map or {}
     synced_semantic_scores = {}
     synced_scores = {}
@@ -593,9 +737,9 @@ def sync_scores_with_structure(rename_map: dict[str, str] | None = None) -> None
                 numeric_score = existing_scores.get(criterion_code)
                 if numeric_score is None and old_code:
                     numeric_score = existing_scores.get(old_code)
-                level = "N" if numeric_score is None else next((scale_level.code for scale_level in SEVEN_LEVEL_SCALE if scale_level.score == numeric_score), "N")
+                level = neutral_code if numeric_score is None else closest_level_code(float(numeric_score), scale)
             synced_semantic_scores[alternative_name][criterion_code] = level
-            synced_scores[alternative_name][criterion_code] = level_score(level)
+            synced_scores[alternative_name][criterion_code] = level_score(level, scale)
 
     analysis.semantic_scores = synced_semantic_scores
     analysis.scores = synced_scores
@@ -609,9 +753,13 @@ def apply_criteria_dataframe(df):
 
     existing_criteria = {criterion.code: criterion for criterion in st.session_state.analysis.criteria}
     existing_codes_by_index = [criterion.code for criterion in st.session_state.analysis.criteria]
+    active_scale = scale_for_analysis(st.session_state.analysis)
+    neutral_code = neutral_level_code(active_scale)
     criteria = []
     rename_map = {}
     used_codes = set()
+    used_ids = set()
+    next_id = 1
     for index, row in df.iterrows():
         code = str(row.get("Código", "")).strip()
         if not code or code in used_codes:
@@ -621,8 +769,18 @@ def apply_criteria_dataframe(df):
         existing = existing_criteria.get(code) or (existing_criteria.get(old_code) if old_code else None)
         if old_code and old_code != code and old_code in existing_criteria:
             rename_map[code] = old_code
+        try:
+            criterion_id = int(value_or_default(row.get("Nº"), 0))
+        except (TypeError, ValueError):
+            criterion_id = existing.id if existing else 0
+        if criterion_id <= 0 or criterion_id in used_ids:
+            while next_id in used_ids:
+                next_id += 1
+            criterion_id = next_id
+        used_ids.add(criterion_id)
         criteria.append(
             Criterion(
+                id=criterion_id,
                 code=code,
                 name=str(row.get("Nome", "") or code).strip(),
                 phase=int(value_or_default(row.get("Fase", 1), 1)),
@@ -631,9 +789,9 @@ def apply_criteria_dataframe(df):
                 is_cost=bool(value_or_default(row.get("Custo/Risco?", False), False)),
                 order=int(value_or_default(row.get("Ordem", index + 1), index + 1)),
                 description=str(row.get("Descrição", "") or ""),
-                neutral_level=existing.neutral_level if existing else "N",
-                best_level=existing.best_level if existing else "MM",
-                levels=existing.levels if existing and existing.levels else SEVEN_LEVEL_SCALE,
+                neutral_level=existing.neutral_level if existing and existing.neutral_level in {level.code for level in active_scale} else neutral_code,
+                best_level=existing.best_level if existing and existing.best_level in {level.code for level in active_scale} else active_scale[0].code,
+                levels=active_scale,
             )
         )
     st.session_state.analysis.criteria = criteria
@@ -644,24 +802,36 @@ def apply_criteria_dataframe(df):
 def apply_semantic_scores_dataframe(df):
     semantic_scores, scores = {}, {}
     criterion_codes = [c.code for c in st.session_state.analysis.criteria]
+    scale = scale_for_analysis(st.session_state.analysis)
+    valid_levels = {level.code for level in scale}
+    neutral_code = neutral_level_code(scale)
     for _, row in df.iterrows():
         alt_name = str(row.get("Alternativa", "")).strip()
         if not alt_name:
             continue
         semantic_scores[alt_name], scores[alt_name] = {}, {}
         for code in criterion_codes:
-            level = str(row.get(code, "N") or "N")
+            level = str(row.get(code, neutral_code) or neutral_code).strip().upper()
+            if level not in valid_levels:
+                level = neutral_code
             semantic_scores[alt_name][code] = level
-            scores[alt_name][code] = level_score(level)
+            scores[alt_name][code] = level_score(level, scale)
     st.session_state.analysis.semantic_scores = semantic_scores
     st.session_state.analysis.scores = scores
 
 
 def level_color(level_code):
-    for level in SEVEN_LEVEL_SCALE:
+    for level in scale_for_analysis(st.session_state.analysis):
         if level.code == level_code:
             return level.color
     return "#EAF4EC"
+
+
+def text_color_for_background(color: str) -> str:
+    clean = _clean_color(color).lstrip("#")
+    red, green, blue = int(clean[0:2], 16), int(clean[2:4], 16), int(clean[4:6], 16)
+    luminance = (0.299 * red + 0.587 * green + 0.114 * blue) / 255
+    return "white" if luminance < 0.5 else DARK_BLUE
 
 
 def producer_display_limit() -> int | None:
@@ -670,6 +840,10 @@ def producer_display_limit() -> int | None:
         return 5
     if selected == "Top 10":
         return 10
+    if selected == "Top 20":
+        return 20
+    if selected == "Top 100":
+        return 100
     return None
 
 
@@ -700,21 +874,25 @@ def _safe_download_name(name: str, suffix: str) -> str:
 
 def evaluation_matrix_dataframe(analysis) -> pd.DataFrame:
     rows = []
+    scale = scale_for_analysis(analysis)
+    neutral_code = neutral_level_code(scale)
     for criterion in analysis.criteria:
-        row = {"Critério": criterion.code, "Nome": criterion.name, "Fase": criterion.phase}
+        row = {"Critério Nº": criterion.id, "Critério": criterion.code, "Nome": criterion.name, "Fase": criterion.phase}
         for alternative in analysis.alternatives:
-            level = analysis.semantic_scores.get(alternative.name, {}).get(criterion.code, "N")
-            row[alternative.name] = f"{level} ({level_score(level):+.0f})"
+            level = analysis.semantic_scores.get(alternative.name, {}).get(criterion.code, neutral_code)
+            row[f"{alternative.id}. {alternative.name}"] = f"{level} ({level_score(level, scale):+.0f})"
         rows.append(row)
     return pd.DataFrame(rows)
 
 
 def numeric_scores_dataframe(analysis) -> pd.DataFrame:
     rows = []
+    scale = scale_for_analysis(analysis)
+    neutral_code = neutral_level_code(scale)
     for alternative in analysis.alternatives:
-        row = {"Alternativa": alternative.name}
+        row = {"Fornecedor Nº": alternative.id, "Alternativa": alternative.name}
         for criterion in analysis.criteria:
-            row[criterion.code] = analysis.scores.get(alternative.name, {}).get(criterion.code, level_score(analysis.semantic_scores.get(alternative.name, {}).get(criterion.code, "N")))
+            row[f"{criterion.id}. {criterion.code}"] = analysis.scores.get(alternative.name, {}).get(criterion.code, level_score(analysis.semantic_scores.get(alternative.name, {}).get(criterion.code, neutral_code), scale))
         rows.append(row)
     return pd.DataFrame(rows)
 
@@ -726,6 +904,7 @@ def normalized_weights_dataframe(analysis, phase: int) -> pd.DataFrame:
         [
             {
                 "Fase": phase,
+                "Critério Nº": criterion.id,
                 "Critério": criterion.code,
                 "Nome": criterion.name,
                 "Peso": criterion.weight,
@@ -753,7 +932,7 @@ def analysis_export_tables(analysis) -> dict[str, pd.DataFrame]:
         ),
         "Alternativas": alternatives_dataframe(analysis),
         "Critérios": criteria_dataframe(analysis),
-        "Escala": pd.DataFrame([level.model_dump() for level in SEVEN_LEVEL_SCALE]),
+        "Escala": pd.DataFrame([level.model_dump() for level in scale_for_analysis(analysis)]),
         "Avaliações semânticas": semantic_scores_dataframe(analysis),
         "Avaliações numéricas": numeric_scores_dataframe(analysis),
         "Matriz avaliação": evaluation_matrix_dataframe(analysis),
@@ -876,11 +1055,19 @@ def render_export_buttons() -> None:
     )
     st.sidebar.download_button(
         t("export_pdf"),
-        data=build_complete_pdf(analysis),
+        data=_safe_build_pdf(analysis),
         file_name=_safe_download_name(analysis.name, "pdf"),
         mime="application/pdf",
         use_container_width=True,
     )
+
+
+def _safe_build_pdf(analysis) -> bytes:
+    try:
+        return build_complete_pdf(analysis)
+    except ImportError as exc:
+        st.sidebar.warning(f"PDF indisponível: {exc}")
+        return b""
 
 
 def page_dashboard():
@@ -933,6 +1120,7 @@ def page_alternatives():
         num_rows="dynamic",
         use_container_width=True,
         column_config={
+            "Nº": st.column_config.NumberColumn("Nº", min_value=1, step=1),
             "Nome": st.column_config.TextColumn(t("name")),
             "Custo": st.column_config.NumberColumn(t("cost"), min_value=0.0, step=1000.0, format="€ %.0f"),
             "Selecionada para 2.ª fase": st.column_config.CheckboxColumn(t("selected_phase2")),
@@ -954,6 +1142,7 @@ def page_criteria():
         num_rows="dynamic",
         use_container_width=True,
         column_config={
+            "Nº": st.column_config.NumberColumn("Nº", min_value=1, step=1),
             "Código": st.column_config.TextColumn(t("code"), help=t("unique_criterion_help")),
             "Nome": st.column_config.TextColumn(t("name")),
             "Fase": st.column_config.SelectboxColumn(t("phase"), options=[1, 2], default=1),
@@ -969,7 +1158,7 @@ def page_criteria():
     criteria = selected_criteria(st.session_state.analysis, 1)
     weights = normalize_weights(criteria)
     if criteria:
-        weights_df = pd.DataFrame([{t("criterion"): c.code, t("name"): c.name, t("original_weight"): c.weight, t("normalized_weight_pct"): round(weights[c.code] * 100, 1)} for c in criteria])
+        weights_df = pd.DataFrame([{"Nº": c.id, t("criterion"): c.code, t("name"): c.name, t("original_weight"): c.weight, t("normalized_weight_pct"): round(weights[c.code] * 100, 1)} for c in criteria])
         st.dataframe(weights_df, use_container_width=True)
         fig = px.bar(weights_df, x=t("normalized_weight_pct"), y=t("criterion"), orientation="h", text=t("normalized_weight_pct"), hover_data=[t("name")], title=t("relative_importance"), color_discrete_sequence=[GREEN])
         fig.update_layout(plot_bgcolor="white", paper_bgcolor="white", font_color=DARK_BLUE, height=360)
@@ -979,31 +1168,48 @@ def page_criteria():
 
 def page_levels():
     st.header(f"5. {t('nav_levels')}")
-    level_df = pd.DataFrame([{t("code"): l.code, t("level"): level_name_for_ui(l.code, l.name), t("score"): l.score} for l in SEVEN_LEVEL_SCALE])
-    st.dataframe(level_df, use_container_width=True, hide_index=True)
-    fig = px.bar(level_df.sort_values(t("score")), x=t("score"), y=t("code"), orientation="h", text=t("level"), title=t("semantic_scale_title"), color_discrete_sequence=[TEAL])
-    fig.update_layout(plot_bgcolor="white", paper_bgcolor="white", font_color=DARK_BLUE, height=360)
-    st.plotly_chart(fig, use_container_width=True)
-    st.subheader(t("reference_example"))
-    cols = st.columns(3)
-    cols[0].markdown(f'<div class="metric-card"><h4>{t("neutral")} (N)</h4><p>Calibre extra ≥ 70%</p></div>', unsafe_allow_html=True)
-    cols[1].markdown(f'<div class="metric-card"><h4>{t("better")} (M)</h4><p>Calibre extra ≥ 85%</p></div>', unsafe_allow_html=True)
-    cols[2].markdown(f'<div class="metric-card"><h4>{t("worse")} (P)</h4><p>Calibre extra &lt; 55%</p></div>', unsafe_allow_html=True)
+    st.caption("Edite, adicione ou remova níveis. Os códigos são usados nas avaliações; ao aplicar, avaliações incompatíveis são remapeadas para o nível neutro ou para a pontuação mais próxima.")
+    edited = st.data_editor(
+        scale_dataframe(st.session_state.analysis),
+        key=f"scale_editor_{st.session_state.get('criteria_revision', 0)}",
+        num_rows="dynamic",
+        use_container_width=True,
+        column_config={
+            "Nº": st.column_config.NumberColumn("Nº", min_value=1, step=1),
+            "Código": st.column_config.TextColumn(t("code"), help="Código único do nível, por exemplo MM, N ou P."),
+            "Nível": st.column_config.TextColumn(t("level")),
+            "Pontuação": st.column_config.NumberColumn(t("score"), step=1.0, default=0.0),
+            "Cor": st.column_config.TextColumn("Cor", help="Cor hexadecimal, por exemplo #49B051."),
+            "Descrição": st.column_config.TextColumn(t("description")),
+        },
+    )
+    if st.button("Aplicar escala"):
+        apply_scale_dataframe(edited)
+        rerun_save()
+        st.rerun()
+
+    level_df = scale_dataframe(st.session_state.analysis)
+    if not level_df.empty:
+        fig = px.bar(level_df.sort_values("Pontuação"), x="Pontuação", y="Código", orientation="h", text="Nível", title=t("semantic_scale_title"), color="Código", color_discrete_map={level.code: level.color for level in scale_for_analysis(st.session_state.analysis)})
+        fig.update_layout(plot_bgcolor="white", paper_bgcolor="white", font_color=DARK_BLUE, height=360, showlegend=False)
+        st.plotly_chart(fig, use_container_width=True)
 
 
 def page_scores():
     st.header(f"6. {t('nav_scores')}")
     df = semantic_scores_dataframe(st.session_state.analysis)
-    level_options = [level.code for level in SEVEN_LEVEL_SCALE]
+    scale = scale_for_analysis(st.session_state.analysis)
+    level_options = [level.code for level in scale]
     edited = st.data_editor(
         df,
         key=f"scores_editor_{st.session_state.get('criteria_revision', 0)}",
         use_container_width=True,
         column_config={
-            **{c.code: st.column_config.SelectboxColumn(f"{c.code} — {c.name}", options=level_options, help=c.description) for c in st.session_state.analysis.criteria},
+            **{c.code: st.column_config.SelectboxColumn(f"{c.id}. {c.code} — {c.name}", options=level_options, help=c.description) for c in st.session_state.analysis.criteria},
+            "Fornecedor Nº": st.column_config.NumberColumn("Fornecedor Nº"),
             "Alternativa": st.column_config.TextColumn(t("alternatives")),
         },
-        disabled=["Alternativa"],
+        disabled=["Fornecedor Nº", "Alternativa"],
     )
     if st.button(t("apply_scores")):
         apply_semantic_scores_dataframe(edited); rerun_save(); st.rerun()
@@ -1015,15 +1221,15 @@ def page_scores():
     visible_criteria = selected_criteria(st.session_state.analysis, 1)
     html = f'<table style="width:100%; border-collapse: collapse; background:white; box-shadow:0 8px 22px rgba(23,58,94,0.08);"><tr style="background:#173A5E;color:white;"><th style="padding:12px;text-align:left;">{t("producer")}</th>'
     for criterion in visible_criteria:
-        html += f'<th style="padding:12px;text-align:center;">{criterion.code}<br><span style="font-size:0.75rem;font-weight:500;">{criterion.name}</span></th>'
+        html += f'<th style="padding:12px;text-align:center;">{criterion.id}. {criterion.code}<br><span style="font-size:0.75rem;font-weight:500;">{criterion.name}</span></th>'
     html += '</tr>'
     for alternative in visible_alternatives:
-        html += f'<tr><td style="padding:12px;border-bottom:1px solid #E8EFEA;"><strong>{alternative.name}</strong></td>'
+        html += f'<tr><td style="padding:12px;border-bottom:1px solid #E8EFEA;"><strong>{alternative.id}. {alternative.name}</strong></td>'
         for criterion in visible_criteria:
-            level = st.session_state.analysis.semantic_scores.get(alternative.name, {}).get(criterion.code, "N")
+            level = st.session_state.analysis.semantic_scores.get(alternative.name, {}).get(criterion.code, neutral_level_code(scale))
             color = level_color(level)
-            text_color = "white" if level in ["MM", "M", "MP"] else DARK_BLUE
-            html += f'<td style="padding:12px;text-align:center;border-bottom:1px solid #E8EFEA;background:{color};color:{text_color};font-weight:800;">{level}<br><span style="font-size:0.75rem;">({level_score(level):+.0f})</span></td>'
+            text_color = text_color_for_background(color)
+            html += f'<td style="padding:12px;text-align:center;border-bottom:1px solid #E8EFEA;background:{color};color:{text_color};font-weight:800;">{level}<br><span style="font-size:0.75rem;">({level_score(level, scale):+.0f})</span></td>'
         html += '</tr>'
     html += '</table>'
     st.markdown(html, unsafe_allow_html=True)

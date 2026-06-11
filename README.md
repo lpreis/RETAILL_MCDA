@@ -1,8 +1,8 @@
 # RETAILL_MCDA
 
-## MMASSITI Moderno — Seleção de Fornecedores de Fruta
+## MCDA Moderno — Seleção de Fornecedores de Fruta
 
-Protótipo funcional em Python inspirado no MMASSI/IT e adaptado ao exemplo MCDA de seleção de fornecedores de fruta. A aplicação corre localmente em Streamlit, guarda análises em JSON e calcula rankings multicritério por soma ponderada.
+Protótipo funcional em Python inspirado no MCDA e adaptado ao exemplo MCDA de seleção de fornecedores de fruta. A aplicação corre localmente em Streamlit, guarda análises em JSON e calcula rankings multicritério por soma ponderada.
 
 ## Estado atual
 
@@ -13,7 +13,7 @@ Estado: protótipo funcional inicial.
 Inclui:
 
 - Interface Streamlit com navegação por secções.
-- Dashboard com contexto, ranking resumido, fornecedor recomendado e 8 etapas MMASSI/IT.
+- Dashboard com contexto, ranking resumido, fornecedor recomendado e 8 etapas MCDA.
 - Gestão de análises, fornecedores, critérios, pesos e avaliações.
 - Escala semântica de 7 níveis: `MM`, `M`, `LM`, `N`, `LP`, `P`, `MP`.
 - Ranking final por valor global.
@@ -49,6 +49,21 @@ Testes unitários:
 
 ```bash
 python -m unittest discover
+```
+
+## Executável Windows
+
+Para gerar um executável local que arranca a app em `http://localhost:8502`:
+
+```powershell
+py -m pip install pyinstaller
+.\build_exe.ps1
+```
+
+O executável fica em:
+
+```text
+dist\RETAILL_MCDA.exe
 ```
 
 ## Modelo de decisão
