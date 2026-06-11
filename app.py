@@ -436,7 +436,6 @@ def read_analysis_dialog() -> None:
                 st.session_state.current_path = str(safe_json_path(uploaded.name))
             sync_scores_with_structure()
             mark_analysis_replaced()
-            rerun_save(st.session_state.current_path)
             st.session_state.active_dialog = None
             st.toast(t("analysis_loaded"))
             st.rerun()
