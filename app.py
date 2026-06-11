@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import base64
+import html
 from io import BytesIO
 from pathlib import Path
 
@@ -221,21 +222,25 @@ def apply_css() -> None:
     .top-logo-row img {{ max-height: 34px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 8px rgba(23,58,94,0.12)); }}
     .top-logo-bar {{ display:flex; align-items:center; gap:12px; min-height:118px; padding: 18px 0 16px 0; margin: 4px 0 12px 0; flex-wrap:wrap; }}
     .top-logo-bar img {{ max-height:46px; max-width:132px; width:auto; object-fit:contain; display:block; filter: drop-shadow(0 4px 8px rgba(23,58,94,0.12)); }}
-    .nav-compact {{ display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 10px 0; }}
+    .nav-compact {{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 0 0 10px 0; }}
     .nav-chip {{
         display: inline-flex; align-items: center; justify-content: center;
         min-height: 36px; padding: 6px 12px; border-radius: 999px;
         font-size: 0.85rem; line-height: 1.05; font-weight: 800;
-        text-decoration: none; white-space: nowrap;
+        text-align: center; text-decoration: none; white-space: nowrap;
         color: #FFFFFF !important;
         border: 1px solid {DARK_BLUE};
-        background: linear-gradient(135deg, {DARK_BLUE} 0%, #1B4B6F 100%);
+        background: linear-gradient(180deg, #19506B 0%, #15465D 100%);
         box-shadow: 0 6px 12px rgba(23,58,94,0.12);
     }}
     .nav-chip.active {{
         background: linear-gradient(135deg, {GREEN} 0%, #2B8A3E 100%);
         border-color: {GREEN};
         box-shadow: 0 8px 14px rgba(73,176,81,0.18);
+    }}
+    @media (max-width: 760px) {{
+        .nav-compact {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
+        .nav-chip {{ white-space: normal; }}
     }}
     .step-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 10px 0 8px 0; }}
     .step-card {{
@@ -498,20 +503,12 @@ def render_section_nav() -> None:
     active = min(max(active, 0), len(MENU_ITEMS) - 1)
     st.session_state.active_page = active
 
-    st.markdown('<div class="nav-compact">', unsafe_allow_html=True)
-    cols = st.columns(4)
+    chips = ['<div class="nav-compact">']
     for idx, label in enumerate(translated_menu_items()):
-        with cols[idx % 4]:
-            if st.button(
-                f"{idx + 1}. {label}",
-                key=f"nav_{idx}",
-                use_container_width=True,
-                type="primary" if idx == active else "secondary",
-            ):
-                st.session_state.active_page = idx
-                st.query_params["page"] = str(idx)
-                st.rerun()
-    st.markdown("</div>", unsafe_allow_html=True)
+        cls = "nav-chip active" if idx == active else "nav-chip"
+        chips.append(f'<a class="{cls}" href="?page={idx}">{idx + 1}. {html.escape(label)}</a>')
+    chips.append("</div>")
+    st.markdown("".join(chips), unsafe_allow_html=True)
 
 
 def render_hero():
