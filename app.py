@@ -29,6 +29,157 @@ MENU_ITEMS = [
     "Resultados",
     "Sensibilidade",
 ]
+MENU_KEYS = [
+    "nav_dashboard",
+    "nav_analysis",
+    "nav_suppliers",
+    "nav_criteria",
+    "nav_levels",
+    "nav_scores",
+    "nav_results",
+    "nav_sensitivity",
+]
+LANGUAGES = {
+    "pt": "Português",
+    "en": "English",
+    "es": "Español",
+    "tr": "Türkçe",
+}
+TRANSLATIONS = {
+    "pt": {
+        "current_analysis": "Análise atual",
+        "language": "Idioma",
+        "new_analysis": "Nova Análise",
+        "read_analysis": "Ler Análise",
+        "save_analysis": "Gravar Análise",
+        "producer_filter": "Produtores nos gráficos",
+        "producer_filter_help": "Limita apenas a visualização. Os cálculos continuam a usar todos os produtores.",
+        "all": "Todos",
+        "complete_export": "Exportação completa",
+        "export_csv": "Exportar CSV",
+        "export_excel": "Exportar Excel",
+        "export_pdf": "Exportar PDF",
+        "yes": "Sim",
+        "no": "Não",
+        "cancel": "Cancelar",
+        "create": "Criar",
+        "save": "Gravar",
+        "saved_to": "Guardado em {name}",
+        "new_analysis_created": "Nova análise criada.",
+        "analysis_loaded": "Análise carregada.",
+        "confirm_new_body": "Antes de criar uma nova análise, escolha o que fazer com a análise atual.",
+        "confirm_read_body": "Antes de ler outra análise JSON, escolha o que fazer com a análise atual.",
+        "new_analysis_name": "Nome da nova análise",
+        "save_filename": "Nome do ficheiro JSON",
+        "select_json": "Selecionar ficheiro JSON",
+        "select_json_error": "Selecione um ficheiro JSON.",
+        "read_error": "Erro ao ler análise: {error}",
+        "nav_dashboard": "Dashboard",
+        "nav_analysis": "Análise",
+        "nav_suppliers": "Fornecedores",
+        "nav_criteria": "Critérios & Pesos",
+        "nav_levels": "Escala 7 Níveis",
+        "nav_scores": "Avaliações",
+        "nav_results": "Resultados",
+        "nav_sensitivity": "Sensibilidade",
+        "problem": "Problema",
+        "decision_conflicts": "Conflitos de decisão",
+        "decision_conflicts_text": "Preço vs. qualidade, prazo vs. variedade, sustentabilidade vs. custo e reputação vs. proximidade.",
+        "scale": "Escala",
+        "scale_text": "Sete níveis semânticos de -100 a +100, com neutro e melhor como referências.",
+        "quick_nav": "Navegação rápida e fluxo principal na barra superior.",
+        "steps_title": "8 etapas MMASSI/IT",
+        "recommended_supplier": "Fornecedor recomendado",
+        "global_value": "Valor Global",
+        "global_value_axis": "Valor global",
+        "supplier": "Fornecedor",
+        "final_ranking": "Ranking final",
+        "analysis_name": "Nome da análise",
+        "description": "Descrição",
+        "context": "Contexto do problema",
+        "notes": "Notas",
+        "methodology": "Metodologia",
+        "owner": "Responsável",
+        "alternatives": "Alternativas",
+        "criteria": "Critérios",
+        "save_analysis_changes": "Guardar alterações da análise",
+        "cost": "Custo",
+        "apply_suppliers": "Aplicar fornecedores",
+        "criteria_help": "Adicione linhas para criar critérios; edite linhas existentes; apague linhas para remover critérios.",
+        "code": "Código",
+        "name": "Nome",
+        "phase": "Fase",
+        "selected": "Selecionado",
+        "weight": "Peso",
+        "cost_risk": "Custo/Risco?",
+        "order": "Ordem",
+        "unique_criterion_help": "Identificador único do critério, por exemplo A1.7.",
+        "apply_criteria": "Aplicar critérios e pesos",
+        "original_weight": "Peso original",
+        "normalized_weight_pct": "Peso normalizado (%)",
+        "relative_importance": "Importância relativa dos critérios",
+        "level": "Nível",
+        "score": "Pontuação",
+        "semantic_scale_title": "Escala semântica de 7 níveis",
+        "reference_example": "Exemplo de referência: Calibre",
+        "neutral": "Neutro",
+        "better": "Melhor",
+        "worse": "Pior",
+        "apply_scores": "Aplicar avaliações",
+        "colored_matrix": "Matriz de avaliação colorida",
+        "matrix_caption": "Produtores nas linhas e critérios nas colunas. A lista segue o filtro visual definido na sidebar.",
+        "producer": "Produtor",
+        "no_results": "Não existem critérios selecionados para calcular resultados.",
+        "formula": "Fórmula",
+        "formula_text": "Valor Global = Σ (Peso normalizado do Critério × Pontuação na Escala)",
+        "contribution": "Contribuição",
+        "criterion": "Critério",
+        "criteria_contribution": "Contribuição dos critérios por fornecedor",
+        "download_phase_csv": "Descarregar resultados da fase {phase} em CSV",
+        "no_sensitivity": "Não existem dados suficientes para análise de sensibilidade.",
+        "scenarios": "Cenários",
+        "scenario": "Cenário",
+        "ranking_stability": "Estabilidade do ranking por cenário",
+        "robustness_summary": "Resumo de robustez",
+        "keeps_base_winner": "Mantém vencedor base?",
+        "winner": "Vencedor",
+        "robust_conclusion": "Conclusão: ranking robusto — {winner} mantém a recomendação nos cenários testados.",
+        "sensitive_ranking": "O ranking é sensível em pelo menos um cenário.",
+        "selected_phase2": "Selecionada para 2.ª fase",
+    },
+    "en": {
+        "current_analysis": "Current analysis", "language": "Language", "new_analysis": "New Analysis", "read_analysis": "Open Analysis", "save_analysis": "Save Analysis", "producer_filter": "Producers in charts", "producer_filter_help": "Only limits the view. Calculations still use all producers.", "all": "All", "complete_export": "Complete export", "export_csv": "Export CSV", "export_excel": "Export Excel", "export_pdf": "Export PDF", "yes": "Yes", "no": "No", "cancel": "Cancel", "create": "Create", "save": "Save", "saved_to": "Saved to {name}", "new_analysis_created": "New analysis created.", "analysis_loaded": "Analysis loaded.", "confirm_new_body": "Before creating a new analysis, choose what to do with the current analysis.", "confirm_read_body": "Before opening another JSON analysis, choose what to do with the current analysis.", "new_analysis_name": "New analysis name", "save_filename": "JSON file name", "select_json": "Select JSON file", "select_json_error": "Select a JSON file.", "read_error": "Error reading analysis: {error}", "nav_dashboard": "Dashboard", "nav_analysis": "Analysis", "nav_suppliers": "Suppliers", "nav_criteria": "Criteria & Weights", "nav_levels": "7-Level Scale", "nav_scores": "Assessments", "nav_results": "Results", "nav_sensitivity": "Sensitivity", "problem": "Problem", "decision_conflicts": "Decision conflicts", "decision_conflicts_text": "Price vs. quality, lead time vs. variety, sustainability vs. cost, and reputation vs. proximity.", "scale": "Scale", "scale_text": "Seven semantic levels from -100 to +100, with neutral and better as references.", "quick_nav": "Quick navigation and main workflow in the top bar.", "steps_title": "8 MMASSI/IT steps", "recommended_supplier": "Recommended supplier", "global_value": "Global Value", "global_value_axis": "Global value", "supplier": "Supplier", "final_ranking": "Final ranking", "analysis_name": "Analysis name", "description": "Description", "context": "Problem context", "notes": "Notes", "methodology": "Methodology", "owner": "Owner", "alternatives": "Alternatives", "criteria": "Criteria", "save_analysis_changes": "Save analysis changes", "cost": "Cost", "apply_suppliers": "Apply suppliers", "criteria_help": "Add rows to create criteria; edit existing rows; delete rows to remove criteria.", "code": "Code", "name": "Name", "phase": "Phase", "selected": "Selected", "weight": "Weight", "cost_risk": "Cost/Risk?", "order": "Order", "unique_criterion_help": "Unique criterion identifier, for example A1.7.", "apply_criteria": "Apply criteria and weights", "original_weight": "Original weight", "normalized_weight_pct": "Normalized weight (%)", "relative_importance": "Relative importance of criteria", "level": "Level", "score": "Score", "semantic_scale_title": "7-level semantic scale", "reference_example": "Reference example: Size grade", "neutral": "Neutral", "better": "Better", "worse": "Worse", "apply_scores": "Apply assessments", "colored_matrix": "Colored assessment matrix", "matrix_caption": "Producers in rows and criteria in columns. The list follows the visual filter set in the sidebar.", "producer": "Producer", "no_results": "No selected criteria are available to calculate results.", "formula": "Formula", "formula_text": "Global Value = Σ (Normalized Criterion Weight × Scale Score)", "contribution": "Contribution", "criterion": "Criterion", "criteria_contribution": "Criteria contribution by supplier", "download_phase_csv": "Download phase {phase} results as CSV", "no_sensitivity": "There is not enough data for sensitivity analysis.", "scenarios": "Scenarios", "scenario": "Scenario", "ranking_stability": "Ranking stability by scenario", "robustness_summary": "Robustness summary", "keeps_base_winner": "Keeps base winner?", "winner": "Winner", "robust_conclusion": "Conclusion: robust ranking — {winner} keeps the recommendation in the tested scenarios.", "sensitive_ranking": "The ranking is sensitive in at least one scenario.", "selected_phase2": "Selected for phase 2",
+    },
+    "es": {
+        "current_analysis": "Análisis actual", "language": "Idioma", "new_analysis": "Nuevo Análisis", "read_analysis": "Leer Análisis", "save_analysis": "Guardar Análisis", "producer_filter": "Productores en gráficos", "producer_filter_help": "Solo limita la visualización. Los cálculos siguen usando todos los productores.", "all": "Todos", "complete_export": "Exportación completa", "export_csv": "Exportar CSV", "export_excel": "Exportar Excel", "export_pdf": "Exportar PDF", "yes": "Sí", "no": "No", "cancel": "Cancelar", "create": "Crear", "save": "Guardar", "saved_to": "Guardado en {name}", "new_analysis_created": "Nuevo análisis creado.", "analysis_loaded": "Análisis cargado.", "confirm_new_body": "Antes de crear un nuevo análisis, elija qué hacer con el análisis actual.", "confirm_read_body": "Antes de leer otro análisis JSON, elija qué hacer con el análisis actual.", "new_analysis_name": "Nombre del nuevo análisis", "save_filename": "Nombre del fichero JSON", "select_json": "Seleccionar fichero JSON", "select_json_error": "Seleccione un fichero JSON.", "read_error": "Error al leer el análisis: {error}", "nav_dashboard": "Panel", "nav_analysis": "Análisis", "nav_suppliers": "Proveedores", "nav_criteria": "Criterios y Pesos", "nav_levels": "Escala de 7 Niveles", "nav_scores": "Evaluaciones", "nav_results": "Resultados", "nav_sensitivity": "Sensibilidad", "problem": "Problema", "decision_conflicts": "Conflictos de decisión", "decision_conflicts_text": "Precio vs. calidad, plazo vs. variedad, sostenibilidad vs. coste y reputación vs. proximidad.", "scale": "Escala", "scale_text": "Siete niveles semánticos de -100 a +100, con neutro y mejor como referencias.", "quick_nav": "Navegación rápida y flujo principal en la barra superior.", "steps_title": "8 etapas MMASSI/IT", "recommended_supplier": "Proveedor recomendado", "global_value": "Valor Global", "global_value_axis": "Valor global", "supplier": "Proveedor", "final_ranking": "Ranking final", "analysis_name": "Nombre del análisis", "description": "Descripción", "context": "Contexto del problema", "notes": "Notas", "methodology": "Metodología", "owner": "Responsable", "alternatives": "Alternativas", "criteria": "Criterios", "save_analysis_changes": "Guardar cambios del análisis", "cost": "Coste", "apply_suppliers": "Aplicar proveedores", "criteria_help": "Añada filas para crear criterios; edite filas existentes; elimine filas para quitar criterios.", "code": "Código", "name": "Nombre", "phase": "Fase", "selected": "Seleccionado", "weight": "Peso", "cost_risk": "Coste/Riesgo?", "order": "Orden", "unique_criterion_help": "Identificador único del criterio, por ejemplo A1.7.", "apply_criteria": "Aplicar criterios y pesos", "original_weight": "Peso original", "normalized_weight_pct": "Peso normalizado (%)", "relative_importance": "Importancia relativa de los criterios", "level": "Nivel", "score": "Puntuación", "semantic_scale_title": "Escala semántica de 7 niveles", "reference_example": "Ejemplo de referencia: Calibre", "neutral": "Neutro", "better": "Mejor", "worse": "Peor", "apply_scores": "Aplicar evaluaciones", "colored_matrix": "Matriz de evaluación coloreada", "matrix_caption": "Productores en las filas y criterios en las columnas. La lista sigue el filtro visual definido en la barra lateral.", "producer": "Productor", "no_results": "No hay criterios seleccionados para calcular resultados.", "formula": "Fórmula", "formula_text": "Valor Global = Σ (Peso normalizado del Criterio × Puntuación en la Escala)", "contribution": "Contribución", "criterion": "Criterio", "criteria_contribution": "Contribución de criterios por proveedor", "download_phase_csv": "Descargar resultados de la fase {phase} en CSV", "no_sensitivity": "No hay datos suficientes para el análisis de sensibilidad.", "scenarios": "Escenarios", "scenario": "Escenario", "ranking_stability": "Estabilidad del ranking por escenario", "robustness_summary": "Resumen de robustez", "keeps_base_winner": "Mantiene el ganador base?", "winner": "Ganador", "robust_conclusion": "Conclusión: ranking robusto — {winner} mantiene la recomendación en los escenarios probados.", "sensitive_ranking": "El ranking es sensible en al menos un escenario.", "selected_phase2": "Seleccionada para la fase 2",
+    },
+    "tr": {
+        "current_analysis": "Geçerli analiz", "language": "Dil", "new_analysis": "Yeni Analiz", "read_analysis": "Analiz Aç", "save_analysis": "Analizi Kaydet", "producer_filter": "Grafiklerdeki üreticiler", "producer_filter_help": "Yalnızca görünümü sınırlar. Hesaplamalar tüm üreticileri kullanmaya devam eder.", "all": "Tümü", "complete_export": "Tam dışa aktarma", "export_csv": "CSV dışa aktar", "export_excel": "Excel dışa aktar", "export_pdf": "PDF dışa aktar", "yes": "Evet", "no": "Hayır", "cancel": "İptal", "create": "Oluştur", "save": "Kaydet", "saved_to": "{name} dosyasına kaydedildi", "new_analysis_created": "Yeni analiz oluşturuldu.", "analysis_loaded": "Analiz yüklendi.", "confirm_new_body": "Yeni analiz oluşturmadan önce geçerli analizle ne yapılacağını seçin.", "confirm_read_body": "Başka bir JSON analizi açmadan önce geçerli analizle ne yapılacağını seçin.", "new_analysis_name": "Yeni analiz adı", "save_filename": "JSON dosya adı", "select_json": "JSON dosyası seç", "select_json_error": "Bir JSON dosyası seçin.", "read_error": "Analiz okunurken hata: {error}", "nav_dashboard": "Panel", "nav_analysis": "Analiz", "nav_suppliers": "Tedarikçiler", "nav_criteria": "Kriterler ve Ağırlıklar", "nav_levels": "7 Seviyeli Ölçek", "nav_scores": "Değerlendirmeler", "nav_results": "Sonuçlar", "nav_sensitivity": "Duyarlılık", "problem": "Problem", "decision_conflicts": "Karar çatışmaları", "decision_conflicts_text": "Fiyat ve kalite, teslim süresi ve çeşitlilik, sürdürülebilirlik ve maliyet, itibar ve yakınlık.", "scale": "Ölçek", "scale_text": "-100 ile +100 arasında, nötr ve daha iyi referanslarıyla yedi anlamsal seviye.", "quick_nav": "Üst çubukta hızlı gezinme ve ana akış.", "steps_title": "8 MMASSI/IT adımı", "recommended_supplier": "Önerilen tedarikçi", "global_value": "Global Değer", "global_value_axis": "Global değer", "supplier": "Tedarikçi", "final_ranking": "Nihai sıralama", "analysis_name": "Analiz adı", "description": "Açıklama", "context": "Problem bağlamı", "notes": "Notlar", "methodology": "Metodoloji", "owner": "Sorumlu", "alternatives": "Alternatifler", "criteria": "Kriterler", "save_analysis_changes": "Analiz değişikliklerini kaydet", "cost": "Maliyet", "apply_suppliers": "Tedarikçileri uygula", "criteria_help": "Kriter oluşturmak için satır ekleyin; mevcut satırları düzenleyin; kriter silmek için satırları kaldırın.", "code": "Kod", "name": "Ad", "phase": "Aşama", "selected": "Seçili", "weight": "Ağırlık", "cost_risk": "Maliyet/Risk?", "order": "Sıra", "unique_criterion_help": "Benzersiz kriter tanımlayıcısı, örneğin A1.7.", "apply_criteria": "Kriterleri ve ağırlıkları uygula", "original_weight": "Orijinal ağırlık", "normalized_weight_pct": "Normalize ağırlık (%)", "relative_importance": "Kriterlerin göreli önemi", "level": "Seviye", "score": "Puan", "semantic_scale_title": "7 seviyeli anlamsal ölçek", "reference_example": "Referans örnek: Kalibre", "neutral": "Nötr", "better": "Daha iyi", "worse": "Daha kötü", "apply_scores": "Değerlendirmeleri uygula", "colored_matrix": "Renkli değerlendirme matrisi", "matrix_caption": "Üreticiler satırlarda, kriterler sütunlarda gösterilir. Liste yan çubuktaki görsel filtreyi izler.", "producer": "Üretici", "no_results": "Sonuç hesaplamak için seçili kriter yok.", "formula": "Formül", "formula_text": "Global Değer = Σ (Normalize Kriter Ağırlığı × Ölçek Puanı)", "contribution": "Katkı", "criterion": "Kriter", "criteria_contribution": "Tedarikçiye göre kriter katkısı", "download_phase_csv": "{phase}. aşama sonuçlarını CSV indir", "no_sensitivity": "Duyarlılık analizi için yeterli veri yok.", "scenarios": "Senaryolar", "scenario": "Senaryo", "ranking_stability": "Senaryoya göre sıralama kararlılığı", "robustness_summary": "Sağlamlık özeti", "keeps_base_winner": "Temel kazanan korunuyor mu?", "winner": "Kazanan", "robust_conclusion": "Sonuç: sağlam sıralama — {winner} test edilen senaryolarda öneriyi koruyor.", "sensitive_ranking": "Sıralama en az bir senaryoda duyarlıdır.", "selected_phase2": "2. aşama için seçili",
+    },
+}
+
+
+def current_language() -> str:
+    return st.session_state.get("language", "pt")
+
+
+def t(key: str, **kwargs) -> str:
+    text = TRANSLATIONS.get(current_language(), TRANSLATIONS["pt"]).get(key, TRANSLATIONS["pt"].get(key, key))
+    return text.format(**kwargs) if kwargs else text
+
+
+def translated_menu_items() -> list[str]:
+    return [t(key) for key in MENU_KEYS]
+
+
+def level_name_for_ui(level_code: str, fallback: str) -> str:
+    names = {
+        "pt": {"MM": "Muito Melhor", "M": "Melhor", "LM": "Ligeiramente Melhor", "N": "Neutro", "LP": "Ligeiramente Pior", "P": "Pior", "MP": "Muito Pior"},
+        "en": {"MM": "Much Better", "M": "Better", "LM": "Slightly Better", "N": "Neutral", "LP": "Slightly Worse", "P": "Worse", "MP": "Much Worse"},
+        "es": {"MM": "Mucho Mejor", "M": "Mejor", "LM": "Ligeramente Mejor", "N": "Neutro", "LP": "Ligeramente Peor", "P": "Peor", "MP": "Mucho Peor"},
+        "tr": {"MM": "Çok Daha İyi", "M": "Daha İyi", "LM": "Biraz Daha İyi", "N": "Nötr", "LP": "Biraz Daha Kötü", "P": "Daha Kötü", "MP": "Çok Daha Kötü"},
+    }
+    return names.get(current_language(), names["pt"]).get(level_code, fallback)
 
 
 st.set_page_config(page_title="RETAILL MCDA", page_icon="📊", layout="wide")
@@ -109,6 +260,7 @@ def apply_css() -> None:
 
 def init_state() -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
+    st.session_state.setdefault("language", "pt")
     st.session_state.setdefault("active_page", 0)
     st.session_state.setdefault("analysis_revision", 0)
     st.session_state.setdefault("criteria_revision", 0)
@@ -127,7 +279,7 @@ def init_state() -> None:
 def rerun_save(path: str | Path | None = None):
     saved_path = save_analysis(st.session_state.analysis, path or st.session_state.get("current_path"))
     st.session_state.current_path = str(saved_path)
-    st.toast(f"Guardado em {saved_path.name}")
+    st.toast(t("saved_to", name=saved_path.name))
 
 
 def safe_json_path(filename: str) -> Path:
@@ -159,40 +311,43 @@ def open_save_dialog(post_save_action: str | None = None) -> None:
     st.session_state.active_dialog = "save"
 
 
-@st.dialog("Deseja Gravar a Análise Atual?")
+@st.dialog("MMASSITI")
 def confirm_new_analysis_dialog() -> None:
-    st.write("Antes de criar uma nova análise, escolha o que fazer com a análise atual.")
+    st.subheader(t("save_analysis"))
+    st.write(t("confirm_new_body"))
     c1, c2, c3 = st.columns(3)
-    if c1.button("Sim", use_container_width=True):
+    if c1.button(t("yes"), use_container_width=True):
         open_save_dialog("new_name")
         st.rerun()
-    if c2.button("Não", use_container_width=True):
+    if c2.button(t("no"), use_container_width=True):
         st.session_state.active_dialog = "new_name"
         st.rerun()
-    if c3.button("Cancelar", use_container_width=True):
+    if c3.button(t("cancel"), use_container_width=True):
         st.session_state.active_dialog = None
         st.rerun()
 
 
-@st.dialog("Nome da Nova Análise")
+@st.dialog("MMASSITI")
 def new_analysis_name_dialog() -> None:
-    st.text_input("Nome da nova análise", key="new_analysis_name")
+    st.subheader(t("new_analysis_name"))
+    st.text_input(t("new_analysis_name"), key="new_analysis_name")
     c1, c2 = st.columns(2)
-    if c1.button("Criar", use_container_width=True):
+    if c1.button(t("create"), use_container_width=True):
         set_empty_analysis(st.session_state.new_analysis_name)
         st.session_state.active_dialog = None
-        st.toast("Nova análise criada.")
+        st.toast(t("new_analysis_created"))
         st.rerun()
-    if c2.button("Cancelar", use_container_width=True):
+    if c2.button(t("cancel"), use_container_width=True):
         st.session_state.active_dialog = None
         st.rerun()
 
 
-@st.dialog("Gravar Análise")
+@st.dialog("MMASSITI")
 def save_analysis_dialog() -> None:
-    st.text_input("Nome do ficheiro JSON", key="save_analysis_filename")
+    st.subheader(t("save_analysis"))
+    st.text_input(t("save_filename"), key="save_analysis_filename")
     c1, c2 = st.columns(2)
-    if c1.button("Gravar", use_container_width=True):
+    if c1.button(t("save"), use_container_width=True):
         target_path = safe_json_path(st.session_state.save_analysis_filename)
         rerun_save(target_path)
         post_save_action = st.session_state.get("post_save_action")
@@ -205,35 +360,37 @@ def save_analysis_dialog() -> None:
         else:
             st.session_state.active_dialog = None
         st.rerun()
-    if c2.button("Cancelar", use_container_width=True):
+    if c2.button(t("cancel"), use_container_width=True):
         st.session_state.post_save_action = None
         st.session_state.active_dialog = None
         st.rerun()
 
 
-@st.dialog("Deseja Gravar a Análise Atual?")
+@st.dialog("MMASSITI")
 def confirm_read_analysis_dialog() -> None:
-    st.write("Antes de ler outra análise JSON, escolha o que fazer com a análise atual.")
+    st.subheader(t("save_analysis"))
+    st.write(t("confirm_read_body"))
     c1, c2, c3 = st.columns(3)
-    if c1.button("Sim", use_container_width=True):
+    if c1.button(t("yes"), use_container_width=True):
         open_save_dialog("read_file")
         st.rerun()
-    if c2.button("Não", use_container_width=True):
+    if c2.button(t("no"), use_container_width=True):
         set_empty_analysis("Análise a carregar")
         st.session_state.active_dialog = "read_file"
         st.rerun()
-    if c3.button("Cancelar", use_container_width=True):
+    if c3.button(t("cancel"), use_container_width=True):
         st.session_state.active_dialog = None
         st.rerun()
 
 
-@st.dialog("Ler Análise")
+@st.dialog("MMASSITI")
 def read_analysis_dialog() -> None:
-    uploaded = st.file_uploader("Selecionar ficheiro JSON", type=["json"])
+    st.subheader(t("read_analysis"))
+    uploaded = st.file_uploader(t("select_json"), type=["json"])
     c1, c2 = st.columns(2)
-    if c1.button("Ler Análise", use_container_width=True):
+    if c1.button(t("read_analysis"), use_container_width=True):
         if uploaded is None:
-            st.error("Selecione um ficheiro JSON.")
+            st.error(t("select_json_error"))
             return
         try:
             text_from_file = uploaded.getvalue().decode("utf-8")
@@ -243,11 +400,11 @@ def read_analysis_dialog() -> None:
             mark_analysis_replaced()
             rerun_save(st.session_state.current_path)
             st.session_state.active_dialog = None
-            st.toast("Análise carregada.")
+            st.toast(t("analysis_loaded"))
             st.rerun()
         except Exception as e:
-            st.error(f"Erro ao ler análise: {e}")
-    if c2.button("Cancelar", use_container_width=True):
+            st.error(t("read_error", error=e))
+    if c2.button(t("cancel"), use_container_width=True):
         st.session_state.active_dialog = None
         st.rerun()
 
@@ -272,27 +429,36 @@ def render_sidebar():
         st.sidebar.image(str(retail_logo), width=260)
     else:
         st.sidebar.title("RETAILL MCDA")
-    st.sidebar.markdown(f"**Análise atual:** {st.session_state.analysis.name}")
+    st.sidebar.selectbox(
+        t("language"),
+        options=list(LANGUAGES),
+        format_func=lambda code: LANGUAGES[code],
+        key="language",
+    )
+    st.sidebar.markdown(f"**{t('current_analysis')}:** {st.session_state.analysis.name}")
     st.sidebar.divider()
-    if st.sidebar.button("Nova Análise", use_container_width=True):
+    if st.sidebar.button(t("new_analysis"), use_container_width=True):
         st.session_state.active_dialog = "confirm_new"
         st.rerun()
-    if st.sidebar.button("Ler Análise", use_container_width=True):
+    if st.sidebar.button(t("read_analysis"), use_container_width=True):
         st.session_state.active_dialog = "confirm_read"
         st.rerun()
-    if st.sidebar.button("Gravar Análise", use_container_width=True):
+    if st.sidebar.button(t("save_analysis"), use_container_width=True):
         open_save_dialog()
         st.rerun()
     st.sidebar.divider()
+    filter_options = ["Top 5", "Top 10", "Todos"]
+    filter_labels = {"Top 5": "Top 5", "Top 10": "Top 10", "Todos": t("all")}
     st.sidebar.selectbox(
-        "Produtores nos gráficos",
-        ["Top 5", "Top 10", "Todos"],
+        t("producer_filter"),
+        filter_options,
         index=0,
         key="producer_display_limit",
-        help="Limita apenas a visualização. Os cálculos continuam a usar todos os produtores.",
+        format_func=lambda option: filter_labels[option],
+        help=t("producer_filter_help"),
     )
     st.sidebar.divider()
-    st.sidebar.caption("Exportação completa")
+    st.sidebar.caption(t("complete_export"))
     render_export_buttons()
 
 
@@ -334,7 +500,7 @@ def render_section_nav() -> None:
 
     st.markdown('<div class="nav-compact">', unsafe_allow_html=True)
     cols = st.columns(4)
-    for idx, label in enumerate(MENU_ITEMS):
+    for idx, label in enumerate(translated_menu_items()):
         with cols[idx % 4]:
             if st.button(
                 f"{idx + 1}. {label}",
@@ -361,7 +527,7 @@ def render_hero():
 
 def render_steps(active: int = 1):
     html = '<div class="step-grid">'
-    for i, name in enumerate(MENU_ITEMS, start=1):
+    for i, name in enumerate(translated_menu_items(), start=1):
         cls = "step-card active" if i == active else "step-card"
         html += f'<div class="{cls}"><div class="step-number">{i}</div><strong>{name}</strong></div>'
     html += "</div>"
@@ -698,21 +864,21 @@ def build_complete_pdf(analysis) -> bytes:
 def render_export_buttons() -> None:
     analysis = st.session_state.analysis
     st.sidebar.download_button(
-        "Exportar CSV",
+        t("export_csv"),
         data=build_complete_csv(analysis),
         file_name=_safe_download_name(analysis.name, "csv"),
         mime="text/csv",
         use_container_width=True,
     )
     st.sidebar.download_button(
-        "Exportar Excel",
+        t("export_excel"),
         data=build_complete_excel(analysis),
         file_name=_safe_download_name(analysis.name, "xlsx"),
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         use_container_width=True,
     )
     st.sidebar.download_button(
-        "Exportar PDF",
+        t("export_pdf"),
         data=build_complete_pdf(analysis),
         file_name=_safe_download_name(analysis.name, "pdf"),
         mime="application/pdf",
@@ -722,22 +888,22 @@ def render_export_buttons() -> None:
 
 def page_dashboard():
     analysis = st.session_state.analysis
-    st.header("1. Dashboard")
+    st.header(f"1. {t('nav_dashboard')}")
     render_hero()
     c1, c2, c3 = st.columns(3)
-    c1.markdown(f'<div class="metric-card"><h4>Problema</h4><p>{analysis.context}</p></div>', unsafe_allow_html=True)
-    c2.markdown('<div class="metric-card"><h4>Conflitos de decisão</h4><p>Preço vs. qualidade, prazo vs. variedade, sustentabilidade vs. custo e reputação vs. proximidade.</p></div>', unsafe_allow_html=True)
-    c3.markdown('<div class="metric-card"><h4>Escala</h4><p>Sete níveis semânticos de -100 a +100, com neutro e melhor como referências.</p></div>', unsafe_allow_html=True)
-    st.caption("Navegação rápida e fluxo principal na barra superior.")
-    st.subheader("8 etapas MMASSI/IT")
+    c1.markdown(f'<div class="metric-card"><h4>{t("problem")}</h4><p>{analysis.context}</p></div>', unsafe_allow_html=True)
+    c2.markdown(f'<div class="metric-card"><h4>{t("decision_conflicts")}</h4><p>{t("decision_conflicts_text")}</p></div>', unsafe_allow_html=True)
+    c3.markdown(f'<div class="metric-card"><h4>{t("scale")}</h4><p>{t("scale_text")}</p></div>', unsafe_allow_html=True)
+    st.caption(t("quick_nav"))
+    st.subheader(t("steps_title"))
     render_steps()
     results = evaluate_phase(analysis, 1)
     if not results.empty:
         winner, value = results.iloc[0]["Alternativa"], results.iloc[0]["Valor Global"]
-        st.markdown(f'<div class="winner-box">Fornecedor recomendado: {winner} — Valor Global {value:.1f}</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="winner-box">{t("recommended_supplier")}: {winner} — {t("global_value")} {value:.1f}</div>', unsafe_allow_html=True)
         visible_results = filter_alternative_rows(results, analysis, 1)
-        fig = px.bar(visible_results.sort_values("Valor Global"), x="Valor Global", y="Alternativa", orientation="h", text="Valor Global", title="Ranking final", color_discrete_sequence=[GREEN])
-        fig.update_layout(plot_bgcolor="white", paper_bgcolor="white", font_color=DARK_BLUE, title_font_color=DARK_BLUE, xaxis_title="Valor global", yaxis_title="Fornecedor", height=360)
+        fig = px.bar(visible_results.sort_values("Valor Global"), x="Valor Global", y="Alternativa", orientation="h", text="Valor Global", title=t("final_ranking"), color_discrete_sequence=[GREEN])
+        fig.update_layout(plot_bgcolor="white", paper_bgcolor="white", font_color=DARK_BLUE, title_font_color=DARK_BLUE, xaxis_title=t("global_value_axis"), yaxis_title=t("supplier"), height=360)
         fig.update_traces(texttemplate="%{text:.1f}", textposition="outside", marker_line_width=0)
         st.plotly_chart(fig, use_container_width=True)
 
@@ -745,24 +911,24 @@ def page_dashboard():
 def page_analysis():
     a = st.session_state.analysis
     revision = st.session_state.get("analysis_revision", 0)
-    st.header("2. Análise")
+    st.header(f"2. {t('nav_analysis')}")
     col1, col2 = st.columns([2, 1])
     with col1:
-        a.name = st.text_input("Nome da análise", a.name, key=f"analysis_name_{revision}")
-        a.description = st.text_area("Descrição", a.description, height=90, key=f"analysis_description_{revision}")
-        a.context = st.text_area("Contexto do problema", a.context, height=120, key=f"analysis_context_{revision}")
-        a.notes = st.text_area("Notas", a.notes, height=100, key=f"analysis_notes_{revision}")
+        a.name = st.text_input(t("analysis_name"), a.name, key=f"analysis_name_{revision}")
+        a.description = st.text_area(t("description"), a.description, height=90, key=f"analysis_description_{revision}")
+        a.context = st.text_area(t("context"), a.context, height=120, key=f"analysis_context_{revision}")
+        a.notes = st.text_area(t("notes"), a.notes, height=100, key=f"analysis_notes_{revision}")
     with col2:
         methodology_options = ["1fase", "2fases", "1e2fases"]
-        a.methodology = st.selectbox("Metodologia", methodology_options, index=methodology_options.index(a.methodology), key=f"analysis_methodology_{revision}")
-        a.created_by = st.text_input("Responsável", a.created_by, key=f"analysis_created_by_{revision}")
-        st.metric("Alternativas", len(a.alternatives)); st.metric("Critérios", len(a.criteria))
-    if st.button("Guardar alterações da análise"):
+        a.methodology = st.selectbox(t("methodology"), methodology_options, index=methodology_options.index(a.methodology), key=f"analysis_methodology_{revision}")
+        a.created_by = st.text_input(t("owner"), a.created_by, key=f"analysis_created_by_{revision}")
+        st.metric(t("alternatives"), len(a.alternatives)); st.metric(t("criteria"), len(a.criteria))
+    if st.button(t("save_analysis_changes")):
         rerun_save()
 
 
 def page_alternatives():
-    st.header("3. Fornecedores")
+    st.header(f"3. {t('nav_suppliers')}")
     df = alternatives_dataframe(st.session_state.analysis)
     edited = st.data_editor(
         df,
@@ -770,81 +936,87 @@ def page_alternatives():
         num_rows="dynamic",
         use_container_width=True,
         column_config={
-            "Custo": st.column_config.NumberColumn("Custo", min_value=0.0, step=1000.0, format="€ %.0f")
+            "Nome": st.column_config.TextColumn(t("name")),
+            "Custo": st.column_config.NumberColumn(t("cost"), min_value=0.0, step=1000.0, format="€ %.0f"),
+            "Selecionada para 2.ª fase": st.column_config.CheckboxColumn(t("selected_phase2")),
+            "Descrição": st.column_config.TextColumn(t("description")),
         },
     )
-    if st.button("Aplicar fornecedores"):
+    if st.button(t("apply_suppliers")):
         apply_alternatives_dataframe(edited)
         sync_scores_with_structure()
         rerun_save(); st.rerun()
 
 
 def page_criteria():
-    st.header("4. Critérios & Pesos")
-    st.caption("Adicione linhas para criar critérios; edite linhas existentes; apague linhas para remover critérios.")
+    st.header(f"4. {t('nav_criteria')}")
+    st.caption(t("criteria_help"))
     edited = st.data_editor(
         criteria_dataframe(st.session_state.analysis),
         key=f"criteria_editor_{st.session_state.get('criteria_revision', 0)}",
         num_rows="dynamic",
         use_container_width=True,
         column_config={
-            "Código": st.column_config.TextColumn("Código", help="Identificador único do critério, por exemplo A1.7."),
-            "Nome": st.column_config.TextColumn("Nome"),
-            "Fase": st.column_config.SelectboxColumn("Fase", options=[1, 2], default=1),
-            "Selecionado": st.column_config.CheckboxColumn("Selecionado", default=True),
-            "Peso": st.column_config.NumberColumn("Peso", min_value=0.0, step=1.0, default=1.0),
-            "Custo/Risco?": st.column_config.CheckboxColumn("Custo/Risco?", default=False),
-            "Ordem": st.column_config.NumberColumn("Ordem", min_value=0, step=1, default=0),
-            "Descrição": st.column_config.TextColumn("Descrição"),
+            "Código": st.column_config.TextColumn(t("code"), help=t("unique_criterion_help")),
+            "Nome": st.column_config.TextColumn(t("name")),
+            "Fase": st.column_config.SelectboxColumn(t("phase"), options=[1, 2], default=1),
+            "Selecionado": st.column_config.CheckboxColumn(t("selected"), default=True),
+            "Peso": st.column_config.NumberColumn(t("weight"), min_value=0.0, step=1.0, default=1.0),
+            "Custo/Risco?": st.column_config.CheckboxColumn(t("cost_risk"), default=False),
+            "Ordem": st.column_config.NumberColumn(t("order"), min_value=0, step=1, default=0),
+            "Descrição": st.column_config.TextColumn(t("description")),
         },
     )
-    if st.button("Aplicar critérios e pesos"):
+    if st.button(t("apply_criteria")):
         apply_criteria_dataframe(edited); rerun_save(); st.rerun()
     criteria = selected_criteria(st.session_state.analysis, 1)
     weights = normalize_weights(criteria)
     if criteria:
-        weights_df = pd.DataFrame([{"Critério": c.code, "Nome": c.name, "Peso original": c.weight, "Peso normalizado (%)": round(weights[c.code] * 100, 1)} for c in criteria])
+        weights_df = pd.DataFrame([{t("criterion"): c.code, t("name"): c.name, t("original_weight"): c.weight, t("normalized_weight_pct"): round(weights[c.code] * 100, 1)} for c in criteria])
         st.dataframe(weights_df, use_container_width=True)
-        fig = px.bar(weights_df, x="Peso normalizado (%)", y="Critério", orientation="h", text="Peso normalizado (%)", hover_data=["Nome"], title="Importância relativa dos critérios", color_discrete_sequence=[GREEN])
+        fig = px.bar(weights_df, x=t("normalized_weight_pct"), y=t("criterion"), orientation="h", text=t("normalized_weight_pct"), hover_data=[t("name")], title=t("relative_importance"), color_discrete_sequence=[GREEN])
         fig.update_layout(plot_bgcolor="white", paper_bgcolor="white", font_color=DARK_BLUE, height=360)
         fig.update_traces(texttemplate="%{text:.1f}%", textposition="outside")
         st.plotly_chart(fig, use_container_width=True)
 
 
 def page_levels():
-    st.header("5. Escala 7 Níveis")
-    level_df = pd.DataFrame([{"Código": l.code, "Nível": l.name, "Pontuação": l.score} for l in SEVEN_LEVEL_SCALE])
+    st.header(f"5. {t('nav_levels')}")
+    level_df = pd.DataFrame([{t("code"): l.code, t("level"): level_name_for_ui(l.code, l.name), t("score"): l.score} for l in SEVEN_LEVEL_SCALE])
     st.dataframe(level_df, use_container_width=True, hide_index=True)
-    fig = px.bar(level_df.sort_values("Pontuação"), x="Pontuação", y="Código", orientation="h", text="Nível", title="Escala semântica de 7 níveis", color_discrete_sequence=[TEAL])
+    fig = px.bar(level_df.sort_values(t("score")), x=t("score"), y=t("code"), orientation="h", text=t("level"), title=t("semantic_scale_title"), color_discrete_sequence=[TEAL])
     fig.update_layout(plot_bgcolor="white", paper_bgcolor="white", font_color=DARK_BLUE, height=360)
     st.plotly_chart(fig, use_container_width=True)
-    st.subheader("Exemplo de referência: Calibre")
+    st.subheader(t("reference_example"))
     cols = st.columns(3)
-    cols[0].markdown('<div class="metric-card"><h4>Neutro (N)</h4><p>Calibre extra ≥ 70%</p></div>', unsafe_allow_html=True)
-    cols[1].markdown('<div class="metric-card"><h4>Melhor (M)</h4><p>Calibre extra ≥ 85%</p></div>', unsafe_allow_html=True)
-    cols[2].markdown('<div class="metric-card"><h4>Pior (P)</h4><p>Calibre extra &lt; 55%</p></div>', unsafe_allow_html=True)
+    cols[0].markdown(f'<div class="metric-card"><h4>{t("neutral")} (N)</h4><p>Calibre extra ≥ 70%</p></div>', unsafe_allow_html=True)
+    cols[1].markdown(f'<div class="metric-card"><h4>{t("better")} (M)</h4><p>Calibre extra ≥ 85%</p></div>', unsafe_allow_html=True)
+    cols[2].markdown(f'<div class="metric-card"><h4>{t("worse")} (P)</h4><p>Calibre extra &lt; 55%</p></div>', unsafe_allow_html=True)
 
 
 def page_scores():
-    st.header("6. Avaliações")
+    st.header(f"6. {t('nav_scores')}")
     df = semantic_scores_dataframe(st.session_state.analysis)
     level_options = [level.code for level in SEVEN_LEVEL_SCALE]
     edited = st.data_editor(
         df,
         key=f"scores_editor_{st.session_state.get('criteria_revision', 0)}",
         use_container_width=True,
-        column_config={c.code: st.column_config.SelectboxColumn(f"{c.code} — {c.name}", options=level_options, help=c.description) for c in st.session_state.analysis.criteria},
+        column_config={
+            **{c.code: st.column_config.SelectboxColumn(f"{c.code} — {c.name}", options=level_options, help=c.description) for c in st.session_state.analysis.criteria},
+            "Alternativa": st.column_config.TextColumn(t("alternatives")),
+        },
         disabled=["Alternativa"],
     )
-    if st.button("Aplicar avaliações"):
+    if st.button(t("apply_scores")):
         apply_semantic_scores_dataframe(edited); rerun_save(); st.rerun()
-    st.subheader("Matriz de avaliação colorida")
-    st.caption("Produtores nas linhas e critérios nas colunas. A lista segue o filtro visual definido na sidebar.")
+    st.subheader(t("colored_matrix"))
+    st.caption(t("matrix_caption"))
     visible_names = visible_producer_names(st.session_state.analysis, 1)
     alternatives_by_name = {alternative.name: alternative for alternative in st.session_state.analysis.alternatives}
     visible_alternatives = [alternatives_by_name[name] for name in visible_names if name in alternatives_by_name]
     visible_criteria = selected_criteria(st.session_state.analysis, 1)
-    html = '<table style="width:100%; border-collapse: collapse; background:white; box-shadow:0 8px 22px rgba(23,58,94,0.08);"><tr style="background:#173A5E;color:white;"><th style="padding:12px;text-align:left;">Produtor</th>'
+    html = f'<table style="width:100%; border-collapse: collapse; background:white; box-shadow:0 8px 22px rgba(23,58,94,0.08);"><tr style="background:#173A5E;color:white;"><th style="padding:12px;text-align:left;">{t("producer")}</th>'
     for criterion in visible_criteria:
         html += f'<th style="padding:12px;text-align:center;">{criterion.code}<br><span style="font-size:0.75rem;font-weight:500;">{criterion.name}</span></th>'
     html += '</tr>'
@@ -861,51 +1033,51 @@ def page_scores():
 
 
 def page_results():
-    st.header("7. Resultados")
+    st.header(f"7. {t('nav_results')}")
     results = evaluate_all(st.session_state.analysis)
     if not results:
-        st.info("Não existem critérios selecionados para calcular resultados."); return
+        st.info(t("no_results")); return
     for phase, df in results.items():
-        st.subheader(f"Fase {phase}")
-        st.markdown('<div class="metric-card"><h4>Fórmula</h4><p>Valor Global = Σ (Peso normalizado do Critério × Pontuação na Escala)</p></div>', unsafe_allow_html=True)
+        st.subheader(f"{t('phase')} {phase}")
+        st.markdown(f'<div class="metric-card"><h4>{t("formula")}</h4><p>{t("formula_text")}</p></div>', unsafe_allow_html=True)
         st.dataframe(df, use_container_width=True)
         if not df.empty:
             winner, value = df.iloc[0]["Alternativa"], df.iloc[0]["Valor Global"]
-            st.markdown(f'<div class="winner-box">Fornecedor recomendado: {winner} — Valor Global {value:.1f}</div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="winner-box">{t("recommended_supplier")}: {winner} — {t("global_value")} {value:.1f}</div>', unsafe_allow_html=True)
             visible_df = filter_alternative_rows(df, st.session_state.analysis, phase)
-            fig = px.bar(visible_df[["Alternativa", "Valor Global"]].sort_values("Valor Global"), x="Valor Global", y="Alternativa", orientation="h", text="Valor Global", title=f"Ranking final — Fase {phase}", color_discrete_sequence=[GREEN])
-            fig.update_layout(plot_bgcolor="white", paper_bgcolor="white", font_color=DARK_BLUE, title_font_color=DARK_BLUE, xaxis_title="Valor global", yaxis_title="Fornecedor", height=420)
+            fig = px.bar(visible_df[["Alternativa", "Valor Global"]].sort_values("Valor Global"), x="Valor Global", y="Alternativa", orientation="h", text="Valor Global", title=f"{t('final_ranking')} — {t('phase')} {phase}", color_discrete_sequence=[GREEN])
+            fig.update_layout(plot_bgcolor="white", paper_bgcolor="white", font_color=DARK_BLUE, title_font_color=DARK_BLUE, xaxis_title=t("global_value_axis"), yaxis_title=t("supplier"), height=420)
             fig.update_traces(texttemplate="%{text:.1f}", textposition="outside")
             st.plotly_chart(fig, use_container_width=True)
             contrib = criterion_contributions(st.session_state.analysis, phase)
             visible_contrib = filter_alternative_rows(contrib, st.session_state.analysis, phase)
-            fig2 = px.bar(visible_contrib, x="Alternativa", y="Contribuição", color="Critério", title="Contribuição dos critérios por fornecedor")
+            fig2 = px.bar(visible_contrib, x="Alternativa", y="Contribuição", color="Critério", title=t("criteria_contribution"))
             fig2.update_layout(plot_bgcolor="white", paper_bgcolor="white", font_color=DARK_BLUE, height=420)
             st.plotly_chart(fig2, use_container_width=True)
-        st.download_button(f"Descarregar resultados da fase {phase} em CSV", data=df.to_csv(index=False).encode("utf-8"), file_name=f"resultados_fase_{phase}.csv", mime="text/csv")
+        st.download_button(t("download_phase_csv", phase=phase), data=df.to_csv(index=False).encode("utf-8"), file_name=f"resultados_fase_{phase}.csv", mime="text/csv")
 
 
 def page_sensitivity():
-    st.header("8. Sensibilidade")
-    phase = st.selectbox("Fase", [1, 2], index=0, key=f"sensitivity_phase_{st.session_state.get('analysis_revision', 0)}")
+    st.header(f"8. {t('nav_sensitivity')}")
+    phase = st.selectbox(t("phase"), [1, 2], index=0, key=f"sensitivity_phase_{st.session_state.get('analysis_revision', 0)}")
     sens_df = sensitivity_scenarios(st.session_state.analysis, phase)
     if sens_df.empty:
-        st.info("Não existem dados suficientes para análise de sensibilidade."); return
-    st.subheader("Cenários")
+        st.info(t("no_sensitivity")); return
+    st.subheader(t("scenarios"))
     st.dataframe(sens_df, use_container_width=True)
     visible_sens_df = filter_alternative_rows(sens_df, st.session_state.analysis, phase)
-    fig = px.line(visible_sens_df, x="Cenário", y="Valor Global", color="Alternativa", markers=True, title="Estabilidade do ranking por cenário")
+    fig = px.line(visible_sens_df, x="Cenário", y="Valor Global", color="Alternativa", markers=True, title=t("ranking_stability"))
     fig.update_layout(plot_bgcolor="white", paper_bgcolor="white", font_color=DARK_BLUE, height=430)
     st.plotly_chart(fig, use_container_width=True)
     robust = robustness_summary(st.session_state.analysis, phase)
-    st.subheader("Resumo de robustez")
+    st.subheader(t("robustness_summary"))
     st.dataframe(robust, use_container_width=True)
 
     if not robust.empty and bool(robust["Mantém vencedor base?"].all()):
         base_winner = robust.iloc[0]["Vencedor"]
-        st.markdown(f'<div class="winner-box">Conclusão: ranking robusto — {base_winner} mantém a recomendação nos cenários testados.</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="winner-box">{t("robust_conclusion", winner=base_winner)}</div>', unsafe_allow_html=True)
     else:
-        st.warning("O ranking é sensível em pelo menos um cenário.")
+        st.warning(t("sensitive_ranking"))
 
 
 def page_json():
